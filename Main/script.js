@@ -9,36 +9,39 @@ const aboutDetails = document.querySelectorAll(
     "[id^='about__details-element--']"
 );
 
-// Lecturers
-const boxes = document.querySelectorAll(".lecturers__box");
-
-// Function
-
-// Navigation Bar Scroll Fixed
-window.addEventListener("scroll", () => {
-    header.classList.toggle("sticky", window.scrollY);
-});
-
-// About
 aboutSelections.forEach((selection, index) => {
     selection.addEventListener("click", () => {
         aboutDetails.forEach((detail, detailIndex) => {
             detail.style.display = index === detailIndex ? "block" : "none";
         });
+
+        aboutSelections.forEach((s, sIndex) => {
+            s.classList.toggle(
+                "about__selection-element--active",
+                sIndex === index
+            );
+        });
     });
 });
 
-// Lecturers Hover
+// Lecturers
+const boxes = document.querySelectorAll(".lecturers__box");
+
 document.addEventListener("DOMContentLoaded", () => {
     let activeBox = null;
 
     boxes.forEach((box) => {
         box.addEventListener("mouseenter", () => {
-            if (activeBox) {
+            if (activeBox && activeBox !== box) {
                 activeBox.classList.remove("lecturers__box--active");
             }
             box.classList.add("lecturers__box--active");
             activeBox = box;
         });
     });
+});
+
+// Navigation Bar Scroll Fixed
+window.addEventListener("scroll", () => {
+    header.classList.toggle("sticky", window.scrollY);
 });
