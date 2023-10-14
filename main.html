@@ -35,19 +35,30 @@
                 <div class="navigation__menu">
                     <ul class="navigation__menu-list">
                         <li class="navigation__menu-item">
-                            <a href="#section-about">About</a>
+                            <a
+                                class="navigation__menu-item-btn"
+                                href="#section-about"
+                                >About</a
+                            >
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Lecturers</a></li>
+                            </ul>
                         </li>
                         <li class="navigation__menu-item">
-                            <a href="#">Program</a>
+                            <a class="navigation__menu-item-btn" href="#"
+                                >Program</a
+                            >
                         </li>
                         <li class="navigation__menu-item">
-                            <a href="#">Admission</a>
+                            <a class="navigation__menu-item-btn" href="#"
+                                >Admission</a
+                            >
                         </li>
                         <li class="navigation__menu-item">
-                            <a href="#">News</a>
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a href="#">Contact</a>
+                            <a class="navigation__menu-item-btn" href="#"
+                                >Contact</a
+                            >
                         </li>
                     </ul>
                 </div>
@@ -115,23 +126,26 @@
             <div class="about__left-section">
                 <div class="about__selection">
                     <div
-                        class="about__selection-element about__selection-element--1"
+                        class="about__selection-element"
+                        id="about__selection-element--1"
                     >
-                        <p class="about__section-element--text">
-                            What is Software Engineering
+                        <p class="about__section-element-text">
+                            What is Software Engineering?
                         </p>
                     </div>
                     <div
-                        class="about__selection-element about__selection-element--2"
+                        class="about__selection-element"
+                        id="about__selection-element--2"
                     >
-                        <p class="about__section-element--text">
-                            Why Study Software Engineering
+                        <p class="about__section-element-text">
+                            Why Study Software Engineering?
                         </p>
                     </div>
                     <div
-                        class="about__selection-element about__selection-element--3"
+                        class="about__selection-element"
+                        id="about__selection-element--3"
                     >
-                        <p class="about__section-element--text">
+                        <p class="about__section-element-text">
                             Careers in Software Engineering
                         </p>
                     </div>
@@ -140,14 +154,81 @@
             </div>
             <div class="about__details">
                 <div
-                    class="about__details-element about__details-element--1"
-                ></div>
+                    class="about__details-element"
+                    id="about__details-element--1"
+                >
+                    <h3 class="about__details-element-header">
+                        What is Software Engineering?
+                    </h3>
+                    <p class="about__details-element-text">
+                        Software engineering (SE) is an engineering discipline
+                        concerning all aspects of software production, including
+                        software analysis, design, development, testing, and
+                        deployment. SE requires profound abstract and logical
+                        thinking and the application of mathematics, logic, and
+                        computer science in order to produce efficient and
+                        reliable software with the available resources.
+                    </p>
+                </div>
                 <div
-                    class="about__details-element about__details-element--2"
-                ></div>
+                    class="about__details-element"
+                    id="about__details-element--2"
+                >
+                    <h3 class="about__details-element-header">
+                        Why Study Software Engineering?
+                    </h3>
+                    <p class="about__details-element-text">
+                        It is hard to overstate the ubiquity of software
+                        nowadays. Every computer system is governed by software.
+                        Almost every human activity involves software in some
+                        form. Undoubtedly software industry is one of the
+                        largest and fastest growing industries in the world.
+                        Consequently, skilled software engineers are in high
+                        demand worldwide. As software becomes more and more
+                        complex, the programming skills and the rudimentary
+                        knowledge of software engineering that students obtained
+                        from traditional computer science and computer
+                        engineering curriculums are insufficient. The
+                        development of real-world software applications requires
+                        the skills in analysing the problem domain and the
+                        customer's requirement and the skills in designing the
+                        software from the topmost level down to the
+                        implementation level. Moreover, a software engineer must
+                        be able to use proper tools, techniques, and
+                        methodologies in order to produce the software in an
+                        efficient manner.
+                    </p>
+                </div>
                 <div
-                    class="about__details-element about__details-element--3"
-                ></div>
+                    class="about__details-element"
+                    id="about__details-element--3"
+                >
+                    <h3 class="about__details-element-header">
+                        Careers in Software Engineering
+                    </h3>
+                    <p class="about__details-element-text">
+                        There are abundant career opportunities for graduates
+                        from the software engineering program.
+
+                        <span>
+                            Software engineers, software architects, and
+                            software developers on various platforms, including
+                            enterprise software, web applications, mobile
+                            applications, games, embedded applications, etc.
+                        </span>
+                        <span
+                            >Analysts and designers of IT systems, IT
+                            consultants</span
+                        >
+                        <span>Software entrepreneurs</span>
+
+                        With strong foundation in computer science, mathematics,
+                        and software engineering principles, graduates of the SE
+                        program may continue their studies at postgraduate level
+                        in various software engineering or computing related
+                        fields in universities worldwide.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -220,7 +301,9 @@
 
             <div class="lecturers__find-out-more">
                 <a class="lecturers__find-out-more-btn" href="#"
-                    >All Lecturers<i class="icon fa-solid fa-arrow-right"></i
+                    >Meet all Lecturers<i
+                        class="icon fa-solid fa-arrow-right"
+                    ></i
                 ></a>
             </div>
         </div>
@@ -397,16 +480,66 @@
             </div>
         </div>
 
+        <!-- Divider -->
+
+        <div class="lecturers__divider"></div>
+        <div class="admissions__divider"></div>
+
         <!-- Section - Admissions -->
 
         <div class="admissions">
             <h1 class="admissions__header">Admissions</h1>
             <div class="admissions__container">
                 <div class="admissions__row">
-                    <i class="fa-solid fa-bullhorn"></i>
+                    <div class="admissions__stack-left">
+                        <i class="icon fa-solid fa-bullhorn"></i>
+                        <p class="admissions__topic">
+                            Announcement Direct Admissions 1-1 (Early Round)
+                        </p>
+                    </div>
+                    <div class="admissions__find-out-more">
+                        <a class="admissions__find-out-more-btn" href="#"
+                            >Read more<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i
+                        ></a>
+                    </div>
                 </div>
-                <div class="admissions__row"></div>
-                <div class="admissions__row"></div>
+                <div class="admissions__row">
+                    <div class="admissions__stack-left">
+                        <i class="icon fa-solid fa-bullhorn"></i>
+                        <p class="admissions__topic">
+                            Announcement Direct Admissions 1-1 (Early Round)
+                        </p>
+                    </div>
+                    <div class="admissions__find-out-more">
+                        <a class="admissions__find-out-more-btn" href="#"
+                            >Read more<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i
+                        ></a>
+                    </div>
+                </div>
+                <div class="admissions__row">
+                    <div class="admissions__stack-left">
+                        <i class="icon fa-solid fa-bullhorn"></i>
+                        <p class="admissions__topic">
+                            Announcement Direct Admissions 1-1 (Early Round)
+                        </p>
+                    </div>
+                    <div class="admissions__find-out-more">
+                        <a class="admissions__find-out-more-btn" href="#"
+                            >Read more<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+            <div class="admissions__find-out-all">
+                <a class="admissions__find-out-all-btn" href="#"
+                    >Read All<i class="icon fa-solid fa-arrow-right"></i
+                ></a>
             </div>
         </div>
 

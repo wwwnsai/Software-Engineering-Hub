@@ -92,7 +92,7 @@ body {
 }
 
 .navigation__menu-list {
-    width: 80rem;
+    width: 60rem;
     display: flex;
     align-items: center;
     list-style: none;
@@ -100,25 +100,67 @@ body {
 }
 
 .navigation__menu-item {
+    position: relative;
     margin: 0;
     padding: 0;
 }
 
-.navigation__menu-item a:link,
-.navigation__menu-item a:visited {
+.navigation__menu-item .navigation__menu-item-btn:link,
+.navigation__menu-item .navigation__menu-item-btn:visited {
     font-size: 1.6rem;
     color: #fff;
     text-decoration: none;
     padding: 1rem 2rem;
-    border-radius: 1rem;
 
     /* Transition */
     transition: 0.3s ease;
 }
 
-.navigation__menu-item a:hover {
+.navigation__menu-item .navigation__menu-item-btn:hover {
     background-color: #fa991c;
     color: #101d2c;
+}
+
+.navigation__menu-item ul {
+    position: absolute;
+    left: 0;
+    top: 3.5rem;
+    width: 15rem;
+    background-color: #f9f7f6;
+    visibility: hidden;
+    opacity: 0;
+    list-style: none;
+
+    /* Transition */
+    transition: visibility 0.1s, opacity 0.5s linear;
+}
+
+.navigation__menu-item ul a {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    width: 100%;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
+.navigation__menu-item ul a:link,
+.navigation__menu-item ul a:visited {
+    font-size: 1.6rem;
+    color: #101d2c;
+    padding: 1rem 2rem;
+    text-decoration: none;
+
+    /* Transition */
+    transition: 0.3s ease;
+}
+
+.navigation__menu-item:hover ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+.navigation__menu-item ul li a:hover {
+    color: #fa991c;
 }
 
 .stack-right {
@@ -194,7 +236,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #101d2c;
-    height: 100rem;
+    height: 95rem;
     padding-bottom: 35rem;
     overflow: hidden;
 }
@@ -239,25 +281,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fa991c;
     height: 20rem;
     width: 40rem;
     padding: 5rem;
     text-align: right;
+    color: #dba858;
+    cursor: pointer;
 }
 
-.about__selection-element--1 {
-}
-
-.about__selection-element--2 {
-}
-
-.about__selection-element--3 {
-}
-
-.about__section-element--text {
-    text-wrap: wrap;
+.about__selection-element:hover {
     color: #101d2c;
+    background-color: #f9f7f6;
+}
+
+.about__section-element-text {
+    text-wrap: wrap;
     font-size: 2.4rem;
     font-weight: bold;
 }
@@ -269,20 +307,30 @@ body {
 }
 
 .about__details-element {
-    height: 20rem;
+    color: #101d2c;
+    height: 100%rem;
     width: 105rem;
 }
 
-.about__details-element--1 {
-    background-color: #fa991c;
+.about__details-element-header {
+    font-size: 2.8rem;
+    margin-bottom: 2.5rem;
 }
 
-.about__details-element--2 {
-    background-color: #3d2300;
+.about__details-element-text {
+    font-size: 2.4rem;
 }
 
-.about__details-element--3 {
-    background-color: #956e3b;
+#about__details-element--1 {
+    display: block;
+}
+
+#about__details-element--2 {
+    display: none;
+}
+
+#about__details-element--3 {
+    display: none;
 }
 
 /* Lecturers */
@@ -607,20 +655,6 @@ body {
     font-weight: 100;
 }
 
-/* Lecturers - Program Divider */
-
-.lecturers__divider {
-    height: 15rem;
-    background-color: #101d2c;
-    clip-path: polygon(0 0, 100% 8rem, 100% 100%, 0 100%);
-}
-
-.program__divider {
-    height: 15rem;
-    background-color: #101d2c;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
-}
-
 /* Admissions */
 
 .admissions {
@@ -643,9 +677,109 @@ body {
 }
 
 .admissions__row {
-    box-shadow: 0 0 4rem 1rem rgb(0, 0, 0, 0.1);
-    width: 100%;
+    border-radius: 2rem;
+    box-shadow: 0 0 4rem 1rem rgb(0, 0, 0, 0.05);
+    width: 130rem;
     height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10rem;
+}
+
+.admissions__stack-left {
+    display: flex;
+    align-items: center;
+}
+
+.admissions__stack-left > .icon {
+    margin-right: 4rem;
+    color: #101d2c;
+    font-size: 2.4rem;
+}
+
+.admissions__topic {
+    font-size: 2.4rem;
+    color: #101d2c;
+}
+
+.admissions__find-out-more-btn:link,
+.admissions__find-out-more-btn:visited {
+    display: inline-block;
+    position: relative;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #101d2c;
+    background-color: #fa991c;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
+    /* Transition */
+    transition: 0.3s ease;
+}
+
+.admissions__find-out-more-btn > .icon {
+    margin-left: 1rem;
+}
+
+.admissions__find-out-more-btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgb(16, 29, 44, 0.1);
+}
+
+.admissions__find-out-more-btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgb(16, 29, 44, 0.3);
+}
+
+.admissions__find-out-all-btn:link,
+.admissions__find-out-all-btn:visited {
+    margin-top: 10rem;
+    display: inline-block;
+    position: relative;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #101d2c;
+    background-color: #fa991c;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
+    /* Transition */
+    transition: 0.3s ease;
+}
+
+.admissions__find-out-all-btn > .icon {
+    margin-left: 1rem;
+}
+
+.admissions__find-out-all-btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgb(16, 29, 44, 0.1);
+}
+
+.admissions__find-out-all-btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgb(16, 29, 44, 0.3);
+}
+
+/* Lecturers - Program Divider */
+
+.lecturers__divider {
+    height: 10rem;
+    background-color: #101d2c;
+    clip-path: polygon(0 0, 100% 8rem, 100% 100%, 0 100%);
+}
+
+.program__divider {
+    height: 10rem;
+    background-color: #101d2c;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
+}
+
+.admissions__divider {
+    height: 10rem;
+    background-color: #101d2c;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
 }
 
 /* Footer */
