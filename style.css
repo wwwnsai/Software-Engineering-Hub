@@ -188,7 +188,7 @@ body {
 
 /* About */
 
-.about {
+.about__header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -199,25 +199,90 @@ body {
     overflow: hidden;
 }
 
-.about__text {
+.about__header-text {
     color: #fff;
     font-size: 4.8rem;
 }
 
-.about__find-out-more {
+.about__header-find-out-more {
     margin-top: 8rem;
 }
 
-.about__find-out-more-btn:link,
-.about__find-out-more-btn:visited {
+.about__header-find-out-more-btn:link,
+.about__header-find-out-more-btn:visited {
     font-size: 2rem;
     color: #fa991c;
     text-decoration: none;
     padding: 1rem 1.5rem;
 }
 
-.about__find-out-more-btn > .icon {
+.about__header-find-out-more-btn > .icon {
     margin-left: 1rem;
+}
+
+.about {
+    height: 80vh;
+    width: 100%;
+    padding: 10rem 45rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about__left-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about__selection-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fa991c;
+    height: 20rem;
+    width: 40rem;
+    padding: 5rem;
+    text-align: right;
+}
+
+.about__selection-element--1 {
+}
+
+.about__selection-element--2 {
+}
+
+.about__selection-element--3 {
+}
+
+.about__section-element--text {
+    text-wrap: wrap;
+    color: #101d2c;
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+.about__bar {
+    background-color: #101d2c;
+    height: 60rem;
+    width: 0.5rem;
+}
+
+.about__details-element {
+    height: 20rem;
+    width: 105rem;
+}
+
+.about__details-element--1 {
+    background-color: #fa991c;
+}
+
+.about__details-element--2 {
+    background-color: #3d2300;
+}
+
+.about__details-element--3 {
+    background-color: #956e3b;
 }
 
 /* Lecturers */
@@ -331,11 +396,11 @@ body {
 
 /* About - Lecturers section divider */
 
-.about {
+.about__header {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
 }
 
-.lecturers {
+.about {
     clip-path: polygon(0 0, 100% 8rem, 100% 100%, 0 100%);
 }
 
