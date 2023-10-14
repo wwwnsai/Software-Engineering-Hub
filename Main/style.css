@@ -125,14 +125,21 @@ body {
     position: absolute;
     left: 0;
     top: 3.5rem;
-    width: 15rem;
-    background-color: #f9f7f6;
+    background-color: #e3e3e3;
     visibility: hidden;
     opacity: 0;
     list-style: none;
 
     /* Transition */
-    transition: visibility 0.1s, opacity 0.5s linear;
+    transition: visibility 0.2s, opacity 0.2s linear;
+}
+
+.navigation__menu-item-about {
+    width: 15rem;
+}
+
+.navigation__menu-item-program {
+    width: 28rem;
 }
 
 .navigation__menu-item ul a {
@@ -160,7 +167,7 @@ body {
 }
 
 .navigation__menu-item ul li a:hover {
-    color: #fa991c;
+    background-color: #bfbfbf;
 }
 
 .stack-right {
@@ -762,24 +769,50 @@ body {
     box-shadow: 0 0.5rem 1rem rgb(16, 29, 44, 0.3);
 }
 
-/* Lecturers - Program Divider */
+/* Contacts */
 
-.lecturers__divider {
-    height: 10rem;
-    background-color: #101d2c;
-    clip-path: polygon(0 0, 100% 8rem, 100% 100%, 0 100%);
+.contacts {
+    height: 50vh;
+    text-align: center;
+    padding: 10rem 45rem;
 }
 
-.program__divider {
-    height: 10rem;
-    background-color: #101d2c;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
+.contacts__header {
+    width: 100%;
+    font-size: 5.2rem;
+    margin-bottom: 5rem;
 }
 
-.admissions__divider {
-    height: 10rem;
-    background-color: #101d2c;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
+.contacts__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.contacts__row .icon {
+    margin-right: 2rem;
+    font-size: 3rem;
+}
+
+.contacts__text {
+    font-size: 2rem;
+}
+
+/* Divider */
+
+.divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider__bar {
+    height: 0.5rem;
+    border-radius: 1rem;
+    width: 50%;
+    background-color: #e2e2e2;
 }
 
 /* Footer */
