@@ -9,6 +9,11 @@ const aboutDetails = document.querySelectorAll(
     "[id^='about__details-element--']"
 );
 
+// Navigation Bar Scroll Fixed
+window.addEventListener("scroll", () => {
+    header.classList.toggle("sticky", window.scrollY);
+});
+
 aboutSelections.forEach((selection, index) => {
     selection.addEventListener("click", () => {
         aboutDetails.forEach((detail, detailIndex) => {
@@ -39,9 +44,4 @@ document.addEventListener("DOMContentLoaded", () => {
             activeBox = box;
         });
     });
-});
-
-// Navigation Bar Scroll Fixed
-window.addEventListener("scroll", () => {
-    header.classList.toggle("sticky", window.scrollY);
 });

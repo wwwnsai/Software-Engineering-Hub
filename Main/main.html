@@ -99,21 +99,29 @@
 
         <!-- Section - Hero -->
 
-        <div class="hero">
-            <div class="hero_img">
-                <img
-                    class="man-with-tech"
-                    src="../img/images/man_with_tech.png"
-                    alt="man_with_tech"
-                />
+        <div class="hero" id="hero-section">
+            <div class="hero__upper">
+                <div class="hero_img">
+                    <img
+                        class="man-with-tech"
+                        src="../img/images/man_with_tech.png"
+                        alt="man_with_tech"
+                    />
+                </div>
+                <div class="hero__content">
+                    <p class="hero__content--white">Welcome to</p>
+                    <p class="hero__content--orange">Software</p>
+                    <p class="hero__content--orange">Engineering</p>
+                    <p class="hero__content--white">
+                        King Mongkut's Institute of Technology Ladkrabang |
+                        KMITL
+                    </p>
+                </div>
             </div>
-            <div class="hero__content">
-                <p class="hero__content--white">Welcome to</p>
-                <p class="hero__content--orange">Software</p>
-                <p class="hero__content--orange">Engineering</p>
-                <p class="hero__content--white">
-                    King Mongkut's Institute of Technology Ladkrabang | KMITL
-                </p>
+            <div class="hero__lower">
+                <p>Become apart of our faculty</p>
+                <p>Sign in</p>
+                <p>Sign up</p>
             </div>
         </div>
 
@@ -262,8 +270,8 @@
                 <div class="lecturers__row">
                     <div class="lecturers__box lecturers__box-1">
                         <p class="lecturers__info">
-                            Thatchapon Chatthanes <br />
-                            SE Department
+                            Thatchapon <br />
+                            Chatthanes
                         </p>
                         <img
                             class="lecturers__image"
@@ -273,8 +281,8 @@
                     </div>
                     <div class="lecturers__box lecturers__box-2">
                         <p class="lecturers__info">
-                            Thatchapon Chatthanes <br />
-                            SE Department
+                            Thatchapon <br />
+                            Chatthanes
                         </p>
                         <img
                             class="lecturers__image"
@@ -286,8 +294,8 @@
                         class="lecturers__box lecturers__box--active lecturers__box-3"
                     >
                         <p class="lecturers__info">
-                            Thatchapon Chatthanes <br />
-                            SE Department
+                            Thatchapon <br />
+                            Chatthanes
                         </p>
                         <img
                             class="lecturers__image"
@@ -297,8 +305,8 @@
                     </div>
                     <div class="lecturers__box lecturers__box-4">
                         <p class="lecturers__info">
-                            Thatchapon Chatthanes <br />
-                            SE Department
+                            Thatchapon <br />
+                            Chatthanes
                         </p>
                         <img
                             class="lecturers__image"
@@ -308,8 +316,8 @@
                     </div>
                     <div class="lecturers__box lecturers__box-5">
                         <p class="lecturers__info">
-                            Thatchapon Chatthanes <br />
-                            SE Department
+                            Thatchapon <br />
+                            Chatthanes
                         </p>
                         <img
                             class="lecturers__image"
@@ -653,59 +661,62 @@
             </div>
 
             <div class="services__row services__row--2">
-                <div class="services__element services__element--1">
-                    <h2 class="services__element-header">
-                        Student's Locker<i
-                            class="icon fa-solid fa-arrow-right"
-                        ></i>
-                    </h2>
-                    <h2
-                        class="services__element-header services__element-header--show"
-                    >
-                        Student's Locker<i
-                            class="icon fa-solid fa-arrow-right"
-                        ></i>
-                    </h2>
-                    <img
-                        class="services__element-image"
-                        src="../img/images/test.jpg"
-                        alt=""
-                    />
-                </div>
-                <div class="services__element services__element--2">
-                    <h2 class="services__element-header">
-                        Parking Reservation<i
-                            class="icon fa-solid fa-arrow-right"
-                        ></i>
-                    </h2>
-                    <h2
-                        class="services__element-header services__element-header--show"
-                    >
-                        Parking Reservation<i
-                            class="icon fa-solid fa-arrow-right"
-                        ></i>
-                    </h2>
-                    <img
-                        class="services__element-image"
-                        src="../img/images/test.jpg"
-                        alt=""
-                    />
-                </div>
-                <div class="services__element services__element--3">
-                    <h2 class="services__element-header">
-                        ยืมของ<i class="icon fa-solid fa-arrow-right"></i>
-                    </h2>
-                    <h2
-                        class="services__element-header services__element-header--show"
-                    >
-                        ยืมของ<i class="icon fa-solid fa-arrow-right"></i>
-                    </h2>
-                    <img
-                        class="services__element-image"
-                        src="../img/images/test.jpg"
-                        alt=""
-                    />
-                </div>
+                <a class="services__element-btn" href="../Locker/locker.html">
+                    <div class="services__element services__element--1">
+                        <h2 class="services__element-header">
+                            Student's Locker<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i>
+                        </h2>
+                        <h2
+                            class="services__element-header services__element-header--show"
+                        >
+                            Student's Locker<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i>
+                        </h2>
+                        <img
+                            class="services__element-image"
+                            src="../img/images/test.jpg"
+                            alt=""
+                        /></div
+                ></a>
+                <a class="services__element-btn" href="../Locker/locker.html">
+                    <div class="services__element services__element--2">
+                        <h2 class="services__element-header">
+                            Parking Reservation<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i>
+                        </h2>
+                        <h2
+                            class="services__element-header services__element-header--show"
+                        >
+                            Parking Reservation<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i>
+                        </h2>
+                        <img
+                            class="services__element-image"
+                            src="../img/images/test.jpg"
+                            alt=""
+                        /></div
+                ></a>
+                <a class="services__element-btn" href="../Locker/locker.html">
+                    <div class="services__element services__element--3">
+                        <h2 class="services__element-header">
+                            ยืมของ<i class="icon fa-solid fa-arrow-right"></i>
+                        </h2>
+                        <h2
+                            class="services__element-header services__element-header--show"
+                        >
+                            ยืมของ<i class="icon fa-solid fa-arrow-right"></i>
+                        </h2>
+                        <img
+                            class="services__element-image"
+                            src="../img/images/test.jpg"
+                            alt=""
+                        /></div
+                ></a>
             </div>
         </div>
 
@@ -721,18 +732,6 @@
                     </p>
                     <p class="footer__text-location">
                         Lat Krabang, Bangkok 10520
-                    </p>
-                </div>
-                <div class="footer__column">
-                    <p class="footer__text--bold">Contact Us</p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> se_kmitl
-                    </p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> Facebook
-                    </p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> Line
                     </p>
                 </div>
                 <div class="footer__column">

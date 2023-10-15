@@ -217,11 +217,27 @@ body {
 
 .hero {
     background-color: #101d2c;
-    padding: 0 70rem;
+    padding: 10rem 70rem 0 70rem;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero__upper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.hero__lower {
+    margin-top: 5rem;
+    height: 10rem;
+    width: 100%;
+    background-color: #fa991c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .man-with-tech {
@@ -374,7 +390,7 @@ body {
 /* Lecturers */
 
 .lecturers {
-    padding: 10rem 0;
+    padding: 10rem 70rem;
     height: 100%;
     width: 100%;
     text-align: center;
@@ -400,16 +416,16 @@ body {
 }
 
 .lecturers__row {
-    height: 75rem;
+    height: 50rem;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .lecturers__box {
     position: relative;
-    width: 100%;
+    width: 20rem;
     height: 70%;
     overflow: hidden;
 
@@ -716,6 +732,12 @@ body {
 
     /* Transition */
     transition: 0.6s ease;
+}
+
+.services__element-btn:link,
+.services__element-btn:visited {
+    text-decoration: none;
+    color: inherit;
 }
 
 .services__element:hover > .services__element-image {
