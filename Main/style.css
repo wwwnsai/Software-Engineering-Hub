@@ -773,7 +773,7 @@ body {
     justify-content: center;
     background: linear-gradient(
             to right,
-            rgba(0, 0, 0, 0.3),
+            rgba(184, 165, 165, 0.3),
             rgba(0, 0, 0, 0.8)
         ),
         url(../img/images/kmitl_photo_1.jpg);
@@ -880,4 +880,116 @@ body {
 
 .footer__text-contact > .icon {
     margin-right: 1rem;
+}
+
+/* Responsive */
+
+/* @media only screen and (max-width: 37.5em) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 56.25em) {
+    html {
+        font-size: 8px;
+    }
+}
+
+*/
+
+/* <=1800 */
+
+@media only screen and (max-width: 112.5em) {
+    html {
+        font-size: 9px;
+    }
+
+    .navigation {
+        padding: 0 45rem;
+    }
+
+    .hero {
+        padding: 10rem 45rem 0 45rem;
+    }
+
+    .about__header {
+        padding: 10rem 45rem;
+    }
+
+    .about {
+        padding: 0 45rem 10rem 45rem;
+    }
+
+    .lecturers {
+        padding: 10rem 45rem;
+    }
+
+    .program {
+        padding: 10rem 45rem;
+    }
+
+    .admissions {
+        padding: 10rem 45rem;
+    }
+
+    .services {
+        padding: 10rem 45rem;
+    }
+
+    .divider__image {
+        padding: 0rem 45rem;
+    }
+
+    .footer {
+        padding: 10rem 45rem;
+    }
+}
+
+/* <=1200 */
+
+@media only screen and (max-width: 75em) {
+    html {
+        font-size: 8px;
+    }
+
+    .navigation {
+        padding: 0 10rem;
+    }
+
+    .hero {
+        padding: 10rem 10rem 0 10rem;
+    }
+
+    .about__header {
+        padding: 10rem 10rem;
+    }
+
+    .about {
+        padding: 0 10rem 10rem 10rem;
+    }
+
+    .lecturers {
+        padding: 10rem 10rem;
+    }
+
+    .program {
+        padding: 10rem 10rem;
+    }
+
+    .admissions {
+        padding: 10rem 10rem;
+    }
+
+    .services {
+        padding: 10rem 10rem;
+    }
+
+    .divider__image {
+        padding: 0rem 10rem;
+    }
+
+    .footer {
+        padding: 10rem 10rem;
+    }
 }
