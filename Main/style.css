@@ -233,11 +233,41 @@ body {
 .hero__lower {
     margin-top: 5rem;
     height: 10rem;
-    width: 100%;
-    background-color: #fa991c;
-    display: flex;
+    width: 35%;
+    padding: 2rem;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__lower--text {
+    font-size: 2rem;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.hero__lower--btn:link {
+    display: inline-block;
+    position: relative;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #101d2c;
+    background-color: #fa991c;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    margin: 0 0 2rem 2rem;
+
+    /* Transition */
+    transition: 0.3s ease;
+}
+
+.hero__lower--btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgb(16, 29, 44, 0.1);
 }
 
 .man-with-tech {
