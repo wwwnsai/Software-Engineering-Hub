@@ -1,4 +1,4 @@
-function login() {
+const login = function () {
     const username = document.getElementById("username-login").value;
     const password = document.getElementById("password-login").value;
 
@@ -15,10 +15,9 @@ function login() {
             if (this.status == 200) {
                 const response = JSON.parse(this.responseText);
                 console.log(response);
-                if (response.message == "Login successful") {
+                if (response.message == "Login succesful") {
                     // Store the username in localStorage if login is successful.
                     localStorage.setItem("user", username);
-                    window.location.href = "index.html";
                 } else {
                     alert(response.message);
                 }
@@ -27,13 +26,13 @@ function login() {
             }
         }
     };
-}
+};
 
-function logout() {
+const logout = function () {
     localStorage.removeItem("user");
-}
+};
 
-function register() {
+const register = function () {
     const username = document.getElementById("username-register").value;
     const email = document.getElementById("email-register").value;
     const password = document.getElementById("password-register").value;
@@ -62,9 +61,9 @@ function register() {
             }
         }
     };
-}
+};
 
-function getInfo() {
+const getInfo = function () {
     const username = localStorage.getItem("user");
 
     const xhttp = new XMLHttpRequest();
@@ -89,4 +88,4 @@ function getInfo() {
             }
         }
     };
-}
+};

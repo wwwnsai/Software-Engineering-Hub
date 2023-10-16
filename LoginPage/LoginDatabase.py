@@ -46,7 +46,7 @@ def login(username: str = Form(...), password: str = Form(...)):
             if user_data.password == password:
                 user_data.is_logged_in = True  # Set to True when the user logs in
                 transaction.commit()
-                return {"message": "Login Succesful"}
+                return {"message": "Login succesful"}
             else:
                 return {"message": "Incorrect password"}
         else:
