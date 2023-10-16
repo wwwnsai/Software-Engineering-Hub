@@ -890,59 +890,53 @@ body {
     }
 }
 
-@media only screen and (max-width: 56.25em) {
-    html {
-        font-size: 8px;
-    }
-}
-
 */
 
 /* <=1800 */
 
 @media only screen and (max-width: 112.5em) {
     html {
-        font-size: 9px;
+        font-size: 8px;
     }
 
     .navigation {
-        padding: 0 45rem;
+        padding: 0 30rem;
     }
 
     .hero {
-        padding: 10rem 45rem 0 45rem;
+        padding: 10rem 30rem 0 30rem;
     }
 
     .about__header {
-        padding: 10rem 45rem;
+        padding: 10rem 30rem;
     }
 
     .about {
-        padding: 0 45rem 10rem 45rem;
+        padding: 0 30rem 10rem 30rem;
     }
 
     .lecturers {
-        padding: 10rem 45rem;
+        padding: 10rem 30rem;
     }
 
     .program {
-        padding: 10rem 45rem;
+        padding: 10rem 30rem;
     }
 
     .admissions {
-        padding: 10rem 45rem;
+        padding: 10rem 30rem;
     }
 
     .services {
-        padding: 10rem 45rem;
+        padding: 10rem 30rem;
     }
 
     .divider__image {
-        padding: 0rem 45rem;
+        padding: 0rem 30rem;
     }
 
     .footer {
-        padding: 10rem 45rem;
+        padding: 10rem 30rem;
     }
 }
 
@@ -950,46 +944,54 @@ body {
 
 @media only screen and (max-width: 75em) {
     html {
-        font-size: 8px;
+        font-size: 7px;
     }
 
     .navigation {
-        padding: 0 10rem;
+        padding: 0 20rem;
     }
 
     .hero {
-        padding: 10rem 10rem 0 10rem;
+        padding: 10rem 20rem 0 20rem;
     }
 
     .about__header {
-        padding: 10rem 10rem;
+        padding: 10rem 20rem;
     }
 
     .about {
-        padding: 0 10rem 10rem 10rem;
+        padding: 0 20rem 10rem 20rem;
     }
 
     .lecturers {
-        padding: 10rem 10rem;
+        padding: 10rem 20rem;
     }
 
     .program {
-        padding: 10rem 10rem;
+        padding: 10rem 20rem;
     }
 
     .admissions {
-        padding: 10rem 10rem;
+        padding: 10rem 20rem;
     }
 
     .services {
-        padding: 10rem 10rem;
+        padding: 10rem 20rem;
     }
 
     .divider__image {
-        padding: 0rem 10rem;
+        padding: 0rem 20rem;
     }
 
     .footer {
-        padding: 10rem 10rem;
+        padding: 10rem 20rem;
+    }
+}
+
+/* <= 900px */
+
+@media only screen and (max-width: 56.25em) {
+    html {
+        font-size: 6px;
     }
 }
