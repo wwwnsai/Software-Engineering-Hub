@@ -2,36 +2,48 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form onsubmit="return login()">
-        <label for="username">Username:</label>
-        <input type="text" id="username-login" name="username" required>
+    <div class="main" id="section-login">
+        <div class="main__header">
+            <h1>Login</h1>
+        </div>
+        <div class="main__body">
+            <form onsubmit="return login()" class="main__body--input">
+                <label for="username">Username:</label>
+                <input type="text" id="username-login" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password-login" name="password" required>
+                <br>
+            </form>
+        </div>
+        <!-- <div class="main__btn"> -->
+            <input type="submit" value="Login" class="main__btn">
+            <button onclick="logout()" class="main__btn">Logout</button>
+        <!-- </div> -->
         <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password-login" name="password" required>
         <br>
-        <input type="submit" value="Login">
-    </form>
-    <button onclick="logout()">Logout</button>
-    <br>
-    <br>
-    <h1>Register</h1>
-    <form onsubmit="return register()">
-        <label for="username">Username:</label>
-        <input type="text" id="username-register" name="username" required>
+    </div>
+
+    <div class="main" id="section-login">
+        <h1>Register</h1>
+        <form onsubmit="return register()">
+            <label for="username">Username:</label>
+            <input type="text" id="username-register" name="username" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email-register" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password-register" name="password" required>
+            <br>
+            <input type="submit" value="Register">
+        </form>
         <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email-register" name="email" required>
         <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password-register" name="password" required>
-        <br>
-        <input type="submit" value="Register">
-    </form>
-    <br>
-    <br>
+    </div>
     <h1>USER info</h1>
     <button type="button" onclick="getInfo()">Show Info</button><br>
     <p id="username-info"></p>

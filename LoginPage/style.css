@@ -1,0 +1,98 @@
+/*
+
+COLORS
+
+Background: #101D2C
+Background-secondary: #D9D9D9
+
+orange-primary: #FA991C
+
+color-primary: #c69963
+color-primary-dark: #B28451
+
+color-grey-light-1: #f9f7f6
+color-grey-light-2: #aaa
+
+color-grey-dark-1: #54483A
+color-grey-dark-2: #6D5D4B
+
+*/
+
+/*
+
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+*/
+
+/* Universal */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+}
+
+/* main */
+
+.main {
+    background-color: #101D2C;
+    color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.main__header {
+    color: white;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+
+.main__body {
+    background-color: #FA991C;
+    width: 100%;
+    height: 100%;
+    padding: 5rem;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80rem;
+}
+
+.main__body--input {
+    /* height: 10rem; */
+    margin: 3rem;
+}
+
+.main__btn {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: #FA991C;
+    color: #101D2C;
+    text-decoration: none;
+
+}
