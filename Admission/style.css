@@ -67,9 +67,11 @@ td {
 
 /* Header and Navigation */
 
+
 .navigation {
     z-index: 1;
     background-color: #101d2c;
+    position: fixed;
     width: 100%;
     padding: 0 45rem;
     height: 10rem;
@@ -210,11 +212,12 @@ td {
     box-shadow: 0 0.5rem 1rem rgb(250, 153, 28, 0.1);
 }
 
+
 /* Admission 1-1 (Early Round)*/
 
 .admission_main {
     background-color: #101d2c;
-    padding: 0 70rem;
+    padding: 10rem 70rem;
     height: auto;
     display: flex;
     justify-content: center;
@@ -229,6 +232,42 @@ td {
 .indented-paragraph {
     text-indent: 10rem;
 }
+
+.admission__navigation{
+    height: 15rem;
+    width: 100%;
+    margin: 5rem 5rem 0 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.admission__navigation--each{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 5rem;
+    background-color: #101d2c;
+    color: #fa991c;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.admission__navigation--each:hover{
+    color: #101d2c;
+    background-color: #f9f7f6;
+}
+
+.active {
+    background-color: #fa991c;
+    color: #101d2c;
+}
+
+
 
 .admission {
     background-color: WHITE;
