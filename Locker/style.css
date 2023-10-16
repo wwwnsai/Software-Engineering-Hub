@@ -210,9 +210,14 @@ body {
 
 /* Locker */
 
+.locker__header {
+    height: 30rem;
+    width: 100%s;
+}
+
 .locker {
     background-color: #101d2c;
-    height: calc(100vh - 10rem - 45rem);
+    height: 80rem;
     padding: 10rem 70rem;
     color: #fff;
     display: flex;
@@ -242,6 +247,11 @@ body {
     height: 100%;
     width: 100%;
     background-color: #fff;
+}
+
+.locker__footer {
+    height: 30rem;
+    width: 100%s;
 }
 
 /* Footer */
