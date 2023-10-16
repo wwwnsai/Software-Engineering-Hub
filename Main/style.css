@@ -206,6 +206,10 @@ body {
     position: relative;
 }
 
+.navigation__menu-item-program--user {
+    display: none;
+}
+
 .navigation__user-logo ul {
     width: 12rem;
     position: absolute;

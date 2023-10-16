@@ -96,27 +96,27 @@
                             src="../img/logo/User_logo.png"
                             alt="user Logo"
                     /></a>
-                    <ul class="navigation__menu-item-program">
+                    <ul
+                        class="navigation__menu-item-program navigation__menu-item-program--guest"
+                    >
                         <li>
                             <a
-                                onclick="getInfo()"
                                 href="../LoginPage/index.html"
+                                onclick="getInfo()"
                                 >Sign In</a
                             >
                         </li>
                         <li><a href="../LoginPage/index.html">Sign Up</a></li>
                     </ul>
 
-                    <!-- fix later -->
-
-                    <!-- <ul class="navigation__menu-item-program--login">
+                    <ul
+                        class="navigation__menu-item-program navigation__menu-item-program--user"
+                    >
+                        <li id="userName"></li>
                         <li>
-                            <a id="userName" href="../LoginPage/index.html"
-                                >Logout</a
-                            >
+                            <a id="logOut" href="#">Logout</a>
                         </li>
-                        <li><a href="../LoginPage/index.html">Logout</a></li>
-                    </ul> -->
+                    </ul>
                 </div>
             </div>
         </div>
