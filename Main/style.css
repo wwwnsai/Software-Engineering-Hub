@@ -282,27 +282,21 @@ body {
 }
 
 .hero__lower {
-    margin-top: 20rem;
+    margin-top: 5rem;
     height: 10rem;
-    width: 100%;
-    display: flex;
     width: 35%;
     padding: 2rem;
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
 }
-
+/* 
 .hero__lower--text {
     font-size: 2rem;
     color: #fff;
     text-transform: uppercase;
     margin-bottom: 2rem;
-}
-
+} 
 .hero__lower--btn:link {
     display: inline-block;
     position: relative;
@@ -314,21 +308,21 @@ body {
     padding: 1rem 2rem;
     margin: 0 0 2rem 2rem;
 
-    /* Transition */
     transition: 0.3s ease;
 }
 
 .hero__lower--btn:hover {
     transform: translateY(-0.3rem);
     box-shadow: 0 1rem 2rem rgb(16, 29, 44, 0.1);
-}
+} */
 
 .sign__text {
-    margin-right: 4rem;
+    margin: 4rem;
     color: #fff;
 }
 
 .signin__btn {
+    margin: 1rem;
     padding: 1rem 2rem;
     background-color: #101d2c;
 }

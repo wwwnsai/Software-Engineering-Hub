@@ -67,10 +67,9 @@ body {
 }
 
 .main__body {
-    background-color: #fa991c;
-    width: 100%;
-    height: 100%;
-    padding: 5rem;
+    /* background-color: #fa991c; */
+    padding-top: 10rem;
+    height: 30rem;
     font-size: 3rem;
     display: flex;
     flex-direction: column;
@@ -80,18 +79,43 @@ body {
 }
 
 .main__body--input {
-    /* height: 10rem; */
-    margin: 3rem;
+    display: flex;
+    margin: 2rem auto 5rem auto;
+}
+
+.main__body--input-text {
+    padding: 0 4rem;
 }
 
 .main__btn {
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
+    margin: 3rem auto;
     font-size: 2rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
     background-color: #fa991c;
     color: #101d2c;
     text-decoration: none;
+}
+
+.main__btn:hover {
+    background-color: #D9D9D9;
+}
+
+.main__link {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    color: #D9D9D9;
+    text-decoration: none;
+}
+
+.main__link--signup {
+    color: #D9D9D9;
+    margin: 0 0 0 1rem;
+}
+
+.main__link--signup:hover {
+    color: #fa991c;
 }

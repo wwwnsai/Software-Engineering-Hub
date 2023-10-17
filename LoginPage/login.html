@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log in</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="main" id="section-login">
+            <div class="main__header">
+                <h1>Login</h1>
+            </div>
+            <div class="main__body">
+                <form onsubmit="return login()">
+                    <div class="main__body--input">
+                        <div class="main__body--input-text">
+                            <label for="username">Username:</label>
+                            <br />
+                            <label for="password">Password:</label>
+                            <br />
+                        </div>
+                        <div class="main__body--input-text">
+                            <input
+                                type="text"
+                                id="username-login"
+                                name="username"
+                                required
+                            />
+                            <br />
+                            <input
+                                type="password"
+                                id="password-login"
+                                name="password"
+                                required
+                            />
+                            <br />
+                        </div>
+                    </div>
+                    <p class="main__link">Don't have an account? <a href="register.html" class="main__link--signup">Register</a></p>
+                    <div class="main__body--input">
+                        <input type="submit" value=" Login " class="main__btn" />
+                    </div>
+                    
+                        
+                </form>
+            </div>
+                <button onclick="logout()" class="main__btn">Logout</button>
+            <br />
+            <br />
+        </div>
+
+        <h1>USER info</h1>
+        <button type="button" onclick="getInfo()">Show Info</button><br />
+        <p id="username-info"></p>
+        <p id="email-info"></p>
+    </body>
+    <script src="main.js"></script>
+</html>
