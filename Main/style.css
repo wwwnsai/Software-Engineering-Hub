@@ -224,12 +224,10 @@ body {
     /* Transition */
     transition: visibility 0.2s, opacity 0.2s linear;
 }
-
 .navigation__user-logo ul a {
     display: flex;
     align-items: center;
     height: 4rem;
-    width: 12rem;
     border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
 }
 
@@ -242,6 +240,11 @@ body {
 
     /* Transition */
     transition: 0.3s ease;
+}
+
+.navigation__username {
+    padding: 1rem 2rem;
+    background-color: #e3e3e3;
 }
 
 .navigation__user-logo:hover ul {
@@ -284,6 +287,7 @@ body {
 .hero__lower {
     margin-top: 5rem;
     height: 10rem;
+<<<<<<< Updated upstream
     width: 35%;
     padding: 2rem;
     align-items: center;
@@ -292,9 +296,21 @@ body {
 }
 /* 
 .hero__lower--text {
+=======
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__lower-text {
+>>>>>>> Stashed changes
     font-size: 2rem;
+    margin-right: 5rem;
     color: #fff;
     text-transform: uppercase;
+<<<<<<< Updated upstream
     margin-bottom: 2rem;
 } 
 .hero__lower--btn:link {
@@ -318,11 +334,22 @@ body {
 
 .sign__text {
     margin: 4rem;
+=======
+}
+
+.hero__lower-text--user {
+    font-size: 2rem;
+    margin: 0;
+>>>>>>> Stashed changes
     color: #fff;
 }
 
 .signin__btn {
+<<<<<<< Updated upstream
     margin: 1rem;
+=======
+    text-transform: uppercase;
+>>>>>>> Stashed changes
     padding: 1rem 2rem;
     background-color: #101d2c;
 }

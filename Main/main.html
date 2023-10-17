@@ -113,7 +113,7 @@
                     <ul
                         class="navigation__menu-item-program navigation__menu-item-program--user"
                     >
-                        <li id="userName"></li>
+                        <li class="navigation__username" id="userNameNav"></li>
                         <li>
                             <a id="logOut" href="#">Logout</a>
                         </li>
@@ -143,8 +143,8 @@
                     </p>
                 </div>
             </div>
-            <div class="hero__lower">
-                <p class="sign__text">Become apart of our faculty</p>
+            <div class="hero__lower hero__lower--guest">
+                <p class="hero__lower-text">Become apart of our faculty</p>
                 <p>
                     <a
                         class="btn__next--orange signin__btn"
@@ -157,6 +157,7 @@
                         >Sign up</a
                     >
                 </p>
+<<<<<<< Updated upstream
                 <!-- <div class="hero__lower--text">
                     <p>Become apart of our faculty</p>
                 </div>
@@ -166,6 +167,11 @@
                 <a class="hero__lower--btn" href="../LoginPage/index.html">
                     Sign up
                 </a> -->
+=======
+            </div>
+            <div class="hero__lower hero__lower--user">
+                <p class="hero__lower-text--user" id="userNameHero"></p>
+>>>>>>> Stashed changes
             </div>
         </div>
 
@@ -814,6 +820,6 @@
             crossorigin="anonymous"
         ></script>
 
-        <script src="script.js"></script>
+        <script type="module" src="main.js"></script>
     </body>
 </html>
