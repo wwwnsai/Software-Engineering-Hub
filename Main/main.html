@@ -2,11 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>Software Engineering | KMITL</title>
 
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="css/general.css" />
+        <link rel="stylesheet" href="css/queries.css" />
+        <link rel="stylesheet" href="css/style.css" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -24,7 +27,7 @@
     <body>
         <!-- Section - Navigation -->
 
-        <div class="navigation">
+        <div class="container navigation">
             <div class="stack-left">
                 <div class="navigation__se-logo">
                     <a href="#">
@@ -90,13 +93,12 @@
                     >Services</a
                 >
                 <div class="navigation__user-logo">
-                    <!-- <a href="../LoginPage/index.html"> -->
+                    <a href="../LoginPage/login.html">
                         <img
                             class="user-logo"
                             src="../img/logo/User_logo.png"
                             alt="user Logo"
-                        />
-                    <!-- </a> -->
+                    /></a>
                     <ul
                         class="navigation__menu-item-program navigation__menu-item-program--guest"
                     >
@@ -104,10 +106,12 @@
                             <a
                                 href="../LoginPage/login.html"
                                 onclick="getInfo()"
-                                >Log In</a
+                                >Sign In</a
                             >
                         </li>
-                        <li><a href="../LoginPage/register.html">Sign Up</a></li>
+                        <li>
+                            <a href="../LoginPage/register.html">Sign Up</a>
+                        </li>
                     </ul>
 
                     <ul
@@ -124,7 +128,7 @@
 
         <!-- Section - Hero -->
 
-        <div class="hero" id="hero-section">
+        <div class="container hero" id="hero-section">
             <div class="hero__upper">
                 <div class="hero_img">
                     <img
@@ -149,35 +153,18 @@
                     <a
                         class="btn__next--orange signin__btn"
                         href="../LoginPage/login.html"
-                        >Log in</a
-                    >
-                    <a
-                        class="btn__next--orange signin__btn"
-                        href="../LoginPage/register.html"
-                        >Sign up</a
+                        >Sign in</a
                     >
                 </p>
-<<<<<<< Updated upstream
-                <!-- <div class="hero__lower--text">
-                    <p>Become apart of our faculty</p>
-                </div>
-                <a class="hero__lower--btn" href="../LoginPage/index.html">
-                    Sign in
-                </a>
-                <a class="hero__lower--btn" href="../LoginPage/index.html">
-                    Sign up
-                </a> -->
-=======
             </div>
             <div class="hero__lower hero__lower--user">
                 <p class="hero__lower-text--user" id="userNameHero"></p>
->>>>>>> Stashed changes
             </div>
         </div>
 
         <!-- Section - About -->
 
-        <div class="about__header">
+        <div class="container about__header">
             <p class="about__header-text">What is Software Engineering?</p>
             <p class="about__header-text">Why study Software Engineering?</p>
             <p class="about__header-text">Careers in Software Engineering</p>
@@ -194,7 +181,7 @@
 
         <h1 class="about-section__header" id="section-about">About</h1>
 
-        <div class="about">
+        <div class="container about">
             <div class="about__left-section">
                 <div class="about__selection">
                     <div
@@ -313,7 +300,7 @@
 
         <!-- Section - Lecturers -->
 
-        <div class="lecturers" id="section-lecturers">
+        <div class="container lecturers" id="section-lecturers">
             <h1 class="lecturers__header">Lecturers</h1>
 
             <div class="lecturers__box-slider">
@@ -403,7 +390,7 @@
 
         <!-- Section - Program -->
 
-        <div class="program" id="section-program">
+        <div class="container program" id="section-program">
             <h1 class="program__header">Program</h1>
 
             <div class="program__row">
@@ -609,7 +596,7 @@
 
         <!-- Section - Admissions -->
 
-        <div class="admissions" id="section-admissions">
+        <div class="container admissions" id="section-admissions">
             <h1 class="admissions__header">Admissions</h1>
             <div class="admissions__container">
                 <div class="admissions__row">
@@ -685,7 +672,7 @@
 
         <!-- Services -->
 
-        <div class="services" id="section-services">
+        <div class="container services" id="section-services">
             <h1 class="services__header">Services</h1>
 
             <div class="services__row services__row--1">
@@ -772,8 +759,15 @@
 
         <!-- Section - Footer -->
 
-        <div class="footer" id="section-footer">
+        <div class="container footer" id="section-footer">
             <div class="footer__upper">
+                <div class="footer__column">
+                    <img
+                        class="footer__image"
+                        src="../img/logo/Admission_LogoKMITL.png"
+                        alt=""
+                    />
+                </div>
                 <div class="footer__column">
                     <p class="footer__header">KMITL</p>
                     <p class="footer__text--bold">Software Engineering</p>
@@ -786,17 +780,6 @@
                 </div>
                 <div class="footer__column">
                     <p class="footer__text--bold">Contact Us</p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> se_kmitl
-                    </p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> Facebook
-                    </p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> Line
-                    </p>
-                </div>
-                <div class="footer__column">
                     <p class="footer__text-icon">
                         <i class="icon fa-solid fa-phone"></i> +66 65 878 5000
                     </p>
@@ -804,10 +787,25 @@
                         <i class="icon fa-solid fa-phone"></i>
                         saraban@kmitl.ac.th
                     </p>
+                    <div class="footer__icon-contact">
+                        <i class="icon fa-brands fa-instagram"></i>
+                        <i class="icon fa-brands fa-instagram"></i>
+                        <i class="icon fa-brands fa-instagram"></i>
+                    </div>
                 </div>
             </div>
             <div class="footer__lower">
-                <div class="footer__bar"></div>
+                <div class="footer__lower-stack-left">
+                    <p class="footer__text-cpr footer__lower-btn">
+                        Cookie Statement
+                    </p>
+                    <p class="footer__text-cpr footer__lower-btn">
+                        Terms of Service
+                    </p>
+                    <p class="footer__text-cpr footer__lower-btn">
+                        Privacy Policy
+                    </p>
+                </div>
                 <p class="footer__text-cpr">
                     &copy;2023 Software Engineering, King Mongkut's Institute of
                     Technology Ladkrabang

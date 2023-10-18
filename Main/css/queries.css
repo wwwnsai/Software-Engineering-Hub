@@ -1,0 +1,57 @@
+/* Responsive */
+
+/* >= 1920 */
+
+@media screen and (min-width: 120em) {
+    html {
+        font-size: 10px;
+    }
+}
+
+/* <=1800 */
+
+/* @media only screen and (max-width: 112.5em) {
+    html {
+        font-size: 8px;
+    }
+
+    .navigation {
+        padding: 0 50rem;
+    }
+
+    .hero {
+        padding: 10rem 50rem 0 50rem;
+    }
+
+    .about__header {
+        padding: 10rem 50rem;
+    }
+
+    .about {
+        padding: 0 50rem 10rem 50rem;
+    }
+
+    .lecturers {
+        padding: 10rem 50rem;
+    }
+
+    .program {
+        padding: 10rem 50rem;
+    }
+
+    .admissions {
+        padding: 10rem 50rem;
+    }
+
+    .services {
+        padding: 10rem 50rem;
+    }
+
+    .divider__image {
+        padding: 0rem 50rem;
+    }
+
+    .footer {
+        padding: 10rem 50rem;
+    }
+} */
