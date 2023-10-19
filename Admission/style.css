@@ -378,3 +378,29 @@ td {
     color: #101d2c;
     font-size: 2rem;
 }
+
+
+
+/* <=1440 */
+@media only screen and (max-width: 90em){
+    html {
+        font-size: 7px;
+    }
+
+    .navigation {
+        padding: 0 15rem;
+    }
+
+    .admission_main {
+        padding: 10rem 15rem 0 15rem;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    .footer {
+        padding: 10rem 15rem;
+    }
+    
+}

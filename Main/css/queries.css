@@ -55,3 +55,60 @@
         padding: 10rem 50rem;
     }
 } */
+
+
+/* <=1440 */
+@media only screen and (max-width: 90em){
+    html {
+        font-size: 7px;
+    }
+
+    .navigation {
+        padding: 0 15rem;
+    }
+
+    .hero {
+        padding: 10rem 15rem 0 15rem;
+    }
+
+    .hero__upper {
+        padding: 0 15rem;
+    }
+
+    .hero__lower {
+        padding: 0 0 0 10rem;
+    }
+
+    .about__header {
+        padding: 10rem 15rem;
+    }
+
+    .about {
+        padding: 0 40rem;
+    }
+
+    .lecturers {
+        padding: 10rem 15rem;
+    }
+
+    .program {
+        padding: 10rem 15rem;
+    }
+
+    .admissions {
+        padding: 10rem 15rem;
+    }
+
+    .services {
+        padding: 10rem 15rem;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    .footer {
+        padding: 10rem 15rem;
+    }
+    
+}
