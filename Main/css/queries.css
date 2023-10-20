@@ -1,57 +1,64 @@
 /* Responsive */
 
-/* >= 1920 */
+/* >= 1024 */
 
-@media screen and (min-width: 120em) {
+@media only screen and (min-width: 64em) {
     html {
-        font-size: 10px;
-    }
-}
-
-/* <=1800 */
-
-/* @media only screen and (max-width: 112.5em) {
-    html {
-        font-size: 8px;
+        font-size: 50%;
     }
 
-    .navigation {
-        padding: 0 50rem;
+    .container {
+        padding: 0 10rem;
     }
 
     .hero {
-        padding: 10rem 50rem 0 50rem;
+        padding-top: 35rem;
     }
 
     .about__header {
-        padding: 10rem 50rem;
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+}
+
+/* >= 1280 */
+
+@media only screen and (min-width: 80em) {
+    html {
+        font-size: 56.25%;
     }
 
-    .about {
-        padding: 0 50rem 10rem 50rem;
+    .container {
+        padding: 0 25rem;
     }
 
-    .lecturers {
-        padding: 10rem 50rem;
+    .hero {
+        padding-top: 35rem;
     }
 
-    .program {
-        padding: 10rem 50rem;
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+}
+
+/* >= 1920 */
+
+@media only screen and (min-width: 120em) {
+    html {
+        font-size: 62.5%;
     }
 
-    .admissions {
-        padding: 10rem 50rem;
+    .container {
+        padding: 0 70rem;
     }
 
-    .services {
-        padding: 10rem 50rem;
+    .hero {
+        padding-top: 30rem;
     }
 
-    .divider__image {
-        padding: 0rem 50rem;
+    .about__header {
+        padding-top: 35rem;
+        padding-bottom: 40rem;
     }
-
-    .footer {
-        padding: 10rem 50rem;
-    }
-} */
+}

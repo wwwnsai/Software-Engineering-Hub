@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Software Engineering | KMITL</title>
 
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="css/general.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/queries.css" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -21,10 +26,10 @@
     <body>
         <!-- Section - Navigation -->
 
-        <div class="navigation">
+        <div class="container navigation">
             <div class="stack-left">
                 <div class="navigation__se-logo">
-                    <a href="../Main/main.html">
+                    <a href="../Main/main.html#">
                         <img
                             class="se-logo"
                             src="../img/logo/SE_logo.png"
@@ -83,25 +88,54 @@
             <div class="stack-right">
                 <a
                     class="btn__next--orange navigation__menu-item navigation__menu-item--special"
-                    href="#"
+                    href="#section-services"
                     >Services</a
                 >
                 <div class="navigation__user-logo">
-                    <a href="#">
+                    <a href="../LoginPage/login.html">
                         <img
                             class="user-logo"
                             src="../img/logo/User_logo.png"
                             alt="user Logo"
                     /></a>
+                    <ul
+                        class="navigation__menu-item-program navigation__menu-item-program--guest"
+                    >
+                        <li>
+                            <a
+                                href="../LoginPage/login.html"
+                                onclick="getInfo()"
+                                >Sign In</a
+                            >
+                        </li>
+                        <li>
+                            <a href="../LoginPage/register.html">Sign Up</a>
+                        </li>
+                    </ul>
+
+                    <ul
+                        class="navigation__menu-item-program navigation__menu-item-program--user"
+                    >
+                        <li class="navigation__username" id="userNameNav"></li>
+                        <li>
+                            <a id="logOut" href="#">Logout</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <!-- Section - Locker -->
 
-        <div class="locker__header"></div>
+        <div class="container locker__header">
+            <div class="locker__header-image-text">
+                <p class="locker__header-image-text--display">locker</p>
+            </div>
+        </div>
 
-        <div class="locker">
+        <div class="container locker__guide"></div>
+
+        <div class="container locker">
             <div class="locker__left">
                 <h1>Locker</h1>
                 <h1>Reservation</h1>
@@ -114,11 +148,11 @@
             </div>
         </div>
 
-        <div class="locker__footer"></div>
+        <div class="container locker__footer"></div>
 
         <!-- Section - Footer -->
 
-        <div class="footer" id="section-footer">
+        <div class="container footer" id="section-footer">
             <div class="footer__upper">
                 <div class="footer__column">
                     <p class="footer__header">KMITL</p>
@@ -132,17 +166,6 @@
                 </div>
                 <div class="footer__column">
                     <p class="footer__text--bold">Contact Us</p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> se_kmitl
-                    </p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> Facebook
-                    </p>
-                    <p class="footer__text-contact">
-                        <i class="icon fa-brands fa-instagram"></i> Line
-                    </p>
-                </div>
-                <div class="footer__column">
                     <p class="footer__text-icon">
                         <i class="icon fa-solid fa-phone"></i> +66 65 878 5000
                     </p>
@@ -150,11 +173,26 @@
                         <i class="icon fa-solid fa-phone"></i>
                         saraban@kmitl.ac.th
                     </p>
+                    <div class="footer__icon-contact">
+                        <i class="icon fa-brands fa-instagram"></i>
+                        <i class="icon fa-brands fa-instagram"></i>
+                        <i class="icon fa-brands fa-instagram"></i>
+                    </div>
                 </div>
             </div>
             <div class="footer__lower">
-                <div class="footer__bar"></div>
-                <p class="footer__text-cpr">
+                <div class="footer__lower-stack-left">
+                    <p class="footer__text-statement footer__lower-btn">
+                        Cookie Statement
+                    </p>
+                    <p class="footer__text-statement footer__lower-btn">
+                        Terms of Service
+                    </p>
+                    <p class="footer__text-statement footer__lower-btn">
+                        Privacy Policy
+                    </p>
+                </div>
+                <p class="footer__text-statement">
                     &copy;2023 Software Engineering, King Mongkut's Institute of
                     Technology Ladkrabang
                 </p>
@@ -166,6 +204,6 @@
             crossorigin="anonymous"
         ></script>
 
-        <script src="script.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>
