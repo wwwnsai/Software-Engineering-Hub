@@ -1,0 +1,85 @@
+/* Responsive */
+
+/* >= 1024 */
+
+@media only screen and (min-width: 64em) {
+    html {
+        font-size: 50%;
+    }
+
+    .container {
+        padding: 0 10rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+}
+
+/* >= 1280 */
+
+@media only screen and (min-width: 80em) {
+    html {
+        font-size: 56.25%;
+    }
+
+    .container {
+        padding: 0 25rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+}
+
+/* >= 1920 */
+
+@media only screen and (min-width: 120em) {
+    html {
+        font-size: 62.5%;
+    }
+
+    .container {
+        padding: 0 40rem;
+    }
+
+    .hero {
+        padding-top: 30rem;
+    }
+
+    .about__header {
+        padding-top: 35rem;
+        padding-bottom: 40rem;
+    }
+}
+
+/* >= 2560 */
+
+@media only screen and (min-width: 160em) {
+    html {
+        font-size: 62.5%;
+    }
+
+    .container {
+        padding: 0 70rem;
+    }
+
+    .hero {
+        padding-top: 40rem;
+    }
+
+    .about__header {
+        padding-top: 40rem;
+        padding-bottom: 40rem;
+    }
+}
