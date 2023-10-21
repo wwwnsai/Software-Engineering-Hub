@@ -387,6 +387,10 @@ td {
         font-size: 7px;
     }
 
+    .container {
+        padding: 0 40rem;
+    }
+    
     .navigation {
         padding: 0 15rem;
     }

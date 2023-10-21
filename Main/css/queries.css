@@ -42,6 +42,35 @@
     }
 }
 
+/* >= 1440 */
+
+@media only screen and (max-width: 90em){
+    html {
+        font-size: 42%;
+    }
+
+    .container {
+        padding: 0 40rem;
+    }
+
+    .navigation {
+        padding: 0 15rem;
+    }
+
+    .admission_main {
+        padding: 10rem 15rem 0 15rem;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    .footer {
+        padding: 10rem 15rem;
+    }
+    
+}
+
 /* >= 1920 */
 
 @media only screen and (min-width: 120em) {

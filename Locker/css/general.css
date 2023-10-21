@@ -17,6 +17,11 @@ body {
     overflow-x: hidden;
 }
 
+h1 {
+    font-size: 6rem;
+    font-weight: bold;
+}
+
 :root {
     --royal-blue-primary: #101d2c;
     --orange-primary: #fa991c;

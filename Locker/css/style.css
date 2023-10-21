@@ -246,6 +246,29 @@
     height: 0.2rem;
     width: 80%;
     background-color: #fff;
+    margin: 5rem 0;
+}
+
+.locker__nav {
+    width: 80%;
+    text-align: center;
+    padding: 5rem;
+    /* background-color: rgba(250, 153, 28, 1); */
+}
+
+.locker__nav-text {
+    font-size: 3rem;
+}
+
+.locker__nav:hover {
+    background-color: var(--color-grey-dark);
+    color: var(--royal-blue-primary);
+    transition: ease-in 0.3s;
+}
+
+.active {
+    background-color: #fa991c;
+    color: #101d2c;
 }
 
 .locker__container {
