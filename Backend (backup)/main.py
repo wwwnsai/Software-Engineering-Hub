@@ -37,6 +37,11 @@ def login(request: Request):
 def signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 
+#User info
+@app.get("/userinfo", response_class=HTMLResponse, tags=["website"])
+def userinfo(request: Request):
+    return templates.TemplateResponse("userinfo.html", {"request": request})
+
 #List of items
 @app.get("/items", response_class=HTMLResponse, tags=["website"])
 def items(request: Request):
@@ -94,6 +99,21 @@ def delete_user(request: Request):
             del root.users[userDB.id]
             transaction.commit()
             return {"status": True, "message": "User deleted"}
+    raise HTTPException(status_code=404, detail="User not found")
+
+# Logout
+@app.get("/logout", tags=["user"])
+def logout(response: Response):
+    response.delete_cookie(key="token")
+    return {"status": True, "message": "Logout successful"}
+
+# USER INFO ==============================================================================
+@app.get("/userinfo", tags=["userinfo"])
+def get_userinfo(request: Request):
+    userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    for userDB in root.users.values():
+        if userDB.email == userEmail:
+            return {"status": True, "message": "User found", "userinfo": userDB.toJSON()}
     raise HTTPException(status_code=404, detail="User not found")
     
 # ITEM ===================================================================================
