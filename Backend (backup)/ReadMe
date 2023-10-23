@@ -1,0 +1,4 @@
+pip install -r requirement.txt first
+also install pydantic[email]
+
+pipenv install -r requirement.txt
