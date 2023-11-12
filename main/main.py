@@ -30,7 +30,6 @@ app.mount("/images",
 
 # Main
 
-
 # Main StaticFiles
 app.mount("/main-css",
           StaticFiles(directory="templates/Main/css"), name="main-css")
@@ -39,13 +38,12 @@ app.mount("/main-js",
 
 
 @app.get("/", response_class=HTMLResponse, tags=["website"])
-def index(request: Request):
+async def index(request: Request):
     return templates.TemplateResponse("Main/main.html", {"request": request})
 
-# Login
+# Login & SignUp
 
-
-# Main StaticFiles
+# Login StaticFiles
 app.mount("/login-css",
           StaticFiles(directory="templates/LoginPage/"), name="login-css")
 app.mount("/login-js",
@@ -53,36 +51,47 @@ app.mount("/login-js",
 
 
 @app.get("/login", response_class=HTMLResponse, tags=["website"])
-def login(request: Request):
+async def login(request: Request):
     return templates.TemplateResponse("LoginPage/login.html", {"request": request})
 
 # Sign up
 
-
 @app.get("/signup", response_class=HTMLResponse, tags=["website"])
-def signup(request: Request):
+async def signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 
 # User info
 
-
 @app.get("/userinfo", response_class=HTMLResponse, tags=["website"])
-def userinfo(request: Request):
+async def userinfo(request: Request):
     return templates.TemplateResponse("userinfo.html", {"request": request})
+
+# Items Borrow
 
 # List of items
 
-
 @app.get("/items", response_class=HTMLResponse, tags=["website"])
-def items(request: Request):
+async def items(request: Request):
     return templates.TemplateResponse("items.html", {"request": request})
 
 # Add item
 
-
 @app.get("/additem", response_class=HTMLResponse, tags=["website"])
-def additem(request: Request):
+async def additem(request: Request):
     return templates.TemplateResponse("additem.html", {"request": request})
+
+# Locker
+
+# Login StaticFiles
+app.mount("/locker-css",
+          StaticFiles(directory="templates/Locker/css"), name="locker-css")
+app.mount("/locker-js",
+          StaticFiles(directory="templates/Locker/"), name="locker-js")
+
+@app.get("/student_locker", response_class=HTMLResponse, tags=["website"])
+async def items(request: Request):
+    return templates.TemplateResponse("Locker/locker.html", {"request": request})
+
 
 # USER ===================================================================================
 
@@ -118,7 +127,7 @@ async def login_user(user: Login, response: Response):
 
 
 @app.put("/user/update", tags=["user"])
-def update_user(request: Request, user: SignUp,):
+async def update_user(request: Request, user: SignUp,):
     userEmail = getPayload(request.cookies.get("token"))["user_id"]
     for userDB in root.users.values():
         if userDB.email == userEmail:
@@ -130,7 +139,7 @@ def update_user(request: Request, user: SignUp,):
 
 # for deleting user
 @app.delete("/user/deleteuser", tags=["user"])
-def delete_user(request: Request):
+async def delete_user(request: Request):
     userEmail = getPayload(request.cookies.get("token"))["user_id"]
     for userDB in root.users.values():
         if userDB.email == userEmail:
@@ -143,7 +152,7 @@ def delete_user(request: Request):
 
 
 @app.get("/logout", tags=["user"])
-def logout(response: Response):
+async def logout(response: Response):
     response.delete_cookie(key="token")
     return {"status": True, "message": "Logout successful"}
 
@@ -151,7 +160,7 @@ def logout(response: Response):
 
 
 @app.get("/userinfo", tags=["userinfo"])
-def get_userinfo(request: Request):
+async def get_userinfo(request: Request):
     userEmail = getPayload(request.cookies.get("token"))["user_id"]
     for userDB in root.users.values():
         if userDB.email == userEmail:
@@ -165,7 +174,7 @@ def get_userinfo(request: Request):
 
 # Check Users
 @app.get("/user/{id}", tags=["check"])
-def get_user(id: int):
+async def get_user(id: int):
     if id in root.users:
         return root.users[id].toJSON()
     else:
@@ -173,7 +182,7 @@ def get_user(id: int):
 
 
 @app.get("/users", tags=["check"])
-def get_users():
+async def get_users():
     users = []
     for user in root.users.values():
         users.append(user.toJSON())
@@ -183,7 +192,7 @@ def get_users():
 
 
 @app.get("/clear", tags=["check"])
-def clear():
+async def clear():
     root.users.clear()
     transaction.commit()
     return {"status": True, "message": "Database cleared"}
@@ -209,7 +218,7 @@ async def check_token(request: Request):
 
 
 @app.get("/clearCookie", tags=["auth"])
-def clear_cookie(response: Response):
+async def clear_cookie(response: Response):
     response.delete_cookie(key="token")
     return {"status": True, "message": "Cookie cleared"}
 
@@ -217,6 +226,6 @@ def clear_cookie(response: Response):
 
 
 @app.on_event("shutdown")
-def shutdown_event():
+async def shutdown_event():
     transaction.commit()
     db.close()

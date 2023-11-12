@@ -5,9 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Software Engineering | KMITL</title>
 
-        <link rel="stylesheet" href="css/general.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/queries.css" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('locker-css', path='/general.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('locker-css', path='/style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('locker-css', path='/queries.css') }}"
+        />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,10 +38,10 @@
         <div class="container navigation">
             <div class="stack-left">
                 <div class="navigation__se-logo">
-                    <a href="../Main/main.html#">
+                    <a href="/">
                         <img
                             class="se-logo"
-                            src="../img/logo/SE_logo.png"
+                            src="{{ url_for('images', path='/logo/SE_logo.png') }}"
                             alt="SE Logo"
                     /></a>
                 </div>
@@ -46,8 +55,8 @@
                                 >About</a
                             >
                             <ul class="navigation__menu-item-about">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Lecturers</a></li>
+                                <li><a href="/">About</a></li>
+                                <li><a href="/">Lecturers</a></li>
                             </ul>
                         </li>
                         <li class="navigation__menu-item">
@@ -57,10 +66,10 @@
                                 >Program</a
                             >
                             <ul class="navigation__menu-item-program">
-                                <li><a href="#">Software-Engineering</a></li>
-                                <li><a href="#">KMITL-Glasgow</a></li>
-                                <li><a href="#">Exchange-Study-Abroad</a></li>
-                                <li><a href="#">Internships</a></li>
+                                <li><a href="/">Software-Engineering</a></li>
+                                <li><a href="/">KMITL-Glasgow</a></li>
+                                <li><a href="/">Exchange-Study-Abroad</a></li>
+                                <li><a href="/">Internships</a></li>
                             </ul>
                         </li>
                         <li class="navigation__menu-item">
@@ -92,24 +101,20 @@
                     >Services</a
                 >
                 <div class="navigation__user-logo">
-                    <a href="../LoginPage/login.html">
+                    <a href="../UserInfo/userinfo.html">
                         <img
                             class="user-logo"
-                            src="../img/logo/User_logo.png"
+                            src="{{ url_for('images', path='/logo/User_logo.png') }}"
                             alt="user Logo"
                     /></a>
                     <ul
                         class="navigation__menu-item-program navigation__menu-item-program--guest"
                     >
                         <li>
-                            <a
-                                href="../LoginPage/login.html"
-                                onclick="getInfo()"
-                                >Sign In</a
-                            >
+                            <a href="/login" onclick="getInfo()">Sign In</a>
                         </li>
                         <li>
-                            <a href="../LoginPage/register.html">Sign Up</a>
+                            <a href="/login">Sign Up</a>
                         </li>
                     </ul>
 
@@ -118,7 +123,7 @@
                     >
                         <li class="navigation__username" id="userNameNav"></li>
                         <li>
-                            <a id="logOut" href="#">Logout</a>
+                            <a id="logOut" href="/">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -152,16 +157,18 @@
 
         <!-- Section - Footer -->
 
-        <div class="container footer" id="section-footer">
+        <div class="footer" id="section-footer">
             <div class="footer__upper">
                 <div class="footer__column">
-                    <p class="footer__header">KMITL</p>
+                    <img
+                        class="footer__logo"
+                        src="{{ url_for('images', path='/logo/SE_logo.png') }}"
+                        alt="KMITL Logo"
+                    />
                     <p class="footer__text--bold">Software Engineering</p>
-                    <p class="footer__text-location">
-                        1 Chalong Krung, 1 Alley,
-                    </p>
-                    <p class="footer__text-location">
-                        Lat Krabang, Bangkok 10520
+                    <p class="footer__text-low-important">
+                        1 Chalong Krung, 1 Alley, <br />
+                        Krabang, Bangkok 10520
                     </p>
                 </div>
                 <div class="footer__column">
@@ -173,11 +180,19 @@
                         <i class="icon fa-solid fa-phone"></i>
                         saraban@kmitl.ac.th
                     </p>
+                </div>
+                <div class="footer__column">
                     <div class="footer__icon-contact">
                         <i class="icon fa-brands fa-instagram"></i>
                         <i class="icon fa-brands fa-instagram"></i>
                         <i class="icon fa-brands fa-instagram"></i>
                     </div>
+                </div>
+                <div class="footer__column">
+                    <p class="footer__text--bold">Newsletter</p>
+                    <p class="footer__text-low-important">
+                        Subscribe To Our Newsletter
+                    </p>
                 </div>
             </div>
             <div class="footer__lower">
@@ -204,6 +219,9 @@
             crossorigin="anonymous"
         ></script>
 
-        <script src="js/script.js"></script>
+        <script
+            type="module"
+            src="{{ url_for('locker-js', path='main.js') }}"
+        ></script>
     </body>
 </html>

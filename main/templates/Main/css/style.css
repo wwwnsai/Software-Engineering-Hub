@@ -806,7 +806,7 @@
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
-    padding: 10rem 70rem 3rem 70rem;
+    padding: 10rem 70rem;
     background-color: var(--royal-blue-primary);
     color: var(--color-white);
 }
