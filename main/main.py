@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Depends, HTTPException, Response, Cookie, Form
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
@@ -57,7 +57,7 @@ async def login(request: Request):
 
 # Sign up
 
-@app.get("/signup", response_class=HTMLResponse, tags=["website"])
+@app.get("/register", response_class=HTMLResponse, tags=["website"])
 async def signup(request: Request):
     return templates.TemplateResponse("LoginPage/register.html", {"request": request})
 
@@ -104,25 +104,26 @@ async def items(request: Request):
 
 # USER ===================================================================================
 
-@app.post("/signup", tags=["user"])
-async def create_user(request: Request, user: SignUp):
-    if not checkDuplicateEmail(user.email):
-        user = UserDB(user.id, user.username, user.email, Hash.bcrypt(user.password))
-        root.users[user.id] = user
+@app.post("/register", tags=["user"])
+async def create_user(request: Request, student_id: int=Form(), username: str=Form(), email: str=Form(), password: str=Form()):
+    if not checkDuplicateEmail(email):
+        user = UserDB(student_id, username, email, Hash.bcrypt(password))
+        root.users[student_id] = user
         transaction.commit()
-        token = signJWT(user.email)
+        token = signJWT(email)
         return {"status": True, "message": "User created", "token": token}
     else:
         raise HTTPException(status_code=400, detail="User already exists")
     
 @app.post("/login", tags=["user"])
-async def login_user(user: Login, response: Response):
+async def login_user(response: Response, email: str=Form(), password: str=Form()):
     for userDB in root.users.values():
-        if userDB.email == user.email:
-            if Hash.verify(userDB.password, user.password):
-                token = signJWT(user.email)
+        if userDB.email == email:
+            if Hash.verify(userDB.password, password):
+                token = signJWT(email)
                 response.set_cookie(key="token", value=token)
-                return {"status": True, "message": "User logged in", "token": token}
+                direct = RedirectResponse(url="/", status_code=303, headers={"Set-Cookie": f"access_token={token}; Path=/"})
+                return direct
             else:
                 raise HTTPException(status_code=400, detail="Incorrect password")
     raise HTTPException(status_code=404, detail="User not found")
@@ -135,7 +136,8 @@ async def borrowProduct(request: Request, product: borrowProduct):
         userEmail = getPayload(request.cookies.get("token"))["user_id"]
     except (KeyError, TypeError):
         # Handle the exception if "token" is missing or doesn't contain "user_id"
-        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+        redirect = RedirectResponse(url="/login", status_code=303)
+        return redirect
 
     for userDB in root.users.values():
         if userDB.email == userEmail:
@@ -186,7 +188,7 @@ async def returnProduct(request :Request, productname: str=Form()):
 
 #reserve locker
 @app.post("/user/reserve/", tags=["user-service"])
-async def reserveLocker(request :Request, lockerID: int=Form()):
+async def reserveLocker(request :Request, lockerID: int=Form(), date: str=Form()):
     try:
         userEmail = getPayload(request.cookies.get("token"))["user_id"]
     except (KeyError, TypeError):
@@ -199,7 +201,7 @@ async def reserveLocker(request :Request, lockerID: int=Form()):
                 if lockerDB.id == lockerID:
                     if lockerDB.status == True:
                         lockerDB.status = False
-                        lockerDB.user = userDB.username
+                        lockerDB.borrower = userDB.username
                         transaction.commit()
                         return {"status": True, "message": "Locker reserved"}
                     else:

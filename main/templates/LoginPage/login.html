@@ -23,18 +23,18 @@
                 <h1>Login</h1>
             </div>
             <div class="main__body">
-                <form onsubmit="return login()">
+                <form action="/login" method="POST">
                     <div class="main__body--input">
                         <div class="main__body--input-text">
                             <label for="username-login" class="main__label"
-                                >Username</label
+                                >Email</label
                             >
                             <input
                                 type="text"
                                 id="username-login"
                                 class="main__input"
-                                name="username"
-                                placeholder="Enter your username"
+                                name="email"
+                                placeholder="Enter your email"
                                 required
                             />
                         </div>

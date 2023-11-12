@@ -8,25 +8,20 @@ function login() {
 
     const xhttp = new XMLHttpRequest();
     xhttp.open('POST', 'http://127.0.0.1:8000/login');
-    xhttp.send(formData);
 
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                const response = JSON.parse(this.responseText);
-                console.log(response);
-                if (response.message == 'Login successful') {
-                    localStorage.setItem('user', username);
-                    window.location.href = '../Main/main.html';
-                } else {
-                    alert(response.message);
-                }
-            } else {
-                alert('Login failed. Check your credentials.');
-            }
+        if (this.readyState == 4 && this.status == 200) {
+            const response = JSON.parse(this.responseText);
+            console.log(response);
         }
+
+        const data = JSON.stringify({
+            username: username,
+            password: password
+        });
+
+        xhttp.send(data);
     }
-    
 }
 
 function logout() {
