@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sign up</title>
-        <link rel="stylesheet" href="style.css" />
 
+        <link
+            rel="stylesheet"
+            href="{{ url_for('login-css', path='/style.css') }}"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
     </head>
 
     <body>
-
         <div class="main" id="section-login">
             <div class="main__header">
                 <h1>Register</h1>
@@ -16,39 +26,65 @@
                 <form onsubmit="return register()">
                     <div class="main__body--input">
                         <div class="main__body--input-text">
-                            <label for="username">Username:</label>
-                            <br />
-                            <label for="email">Email:</label>
-                            <br />
-                            <label for="password">Password:</label>
-                            <br />
-                        </div>
-                        <div class="main__body--input-text">
+                            <label for="username" class="main__label"
+                                >Username:</label
+                            >
                             <input
                                 type="text"
                                 id="username-register"
+                                class="main__input"
                                 name="username"
+                                placeholder="Enter your username"
                                 required
                             />
-                            <br />
-                            <input type="email" id="email-register" name="email" required />
-                            <br />
+                        </div>
+                        <div class="main__body--input-text">
+                            <label for="email" class="main__label"
+                                >Email:</label
+                            >
+                            <input
+                                type="email"
+                                id="email-register"
+                                class="main__input"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+                        <div class="main__body--input-text">
+                            <label for="password" class="main__label"
+                                >Password:</label
+                            >
                             <input
                                 type="password"
                                 id="password-register"
+                                class="main__input"
                                 name="password"
+                                placeholder="Enter your password"
                                 required
                             />
-                            <br />
                         </div>
                     </div>
-                    <p class="main__link">Already have an account? <a href="login.html" class="main__link--signup">Log in</a></p>
-                    <input type="submit" value="Register" class="main__btn" />
+                    <div class="main__body--input">
+                        <input
+                            type="submit"
+                            value="Register"
+                            class="main__btn"
+                        />
+                    </div>
+                    <p class="main__link">
+                        Already have an account?
+                        <a href="/login" class="main__link--signup">Log in</a>
+                    </p>
                 </form>
             </div>
             <br />
             <br />
         </div>
     </body>
-        <script src="main.js"></script>
+
+    <script
+        type="module"
+        src="{{ url_for('login-js', path='main.js') }}"
+    ></script>
 </html>

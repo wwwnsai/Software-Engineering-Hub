@@ -10,6 +10,12 @@
             rel="stylesheet"
             href="{{ url_for('login-css', path='/style.css') }}"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <div class="main" id="section-login">
@@ -20,34 +26,32 @@
                 <form onsubmit="return login()">
                     <div class="main__body--input">
                         <div class="main__body--input-text">
-                            <label for="username">Username:</label>
-                            <br />
-                            <label for="password">Password:</label>
-                            <br />
-                        </div>
-                        <div class="main__body--input-text">
+                            <label for="username-login" class="main__label"
+                                >Username</label
+                            >
                             <input
                                 type="text"
                                 id="username-login"
+                                class="main__input"
                                 name="username"
+                                placeholder="Enter your username"
                                 required
                             />
-                            <br />
+                        </div>
+                        <div class="main__body--input-text">
+                            <label for="password-login" class="main__label"
+                                >Password</label
+                            >
                             <input
                                 type="password"
                                 id="password-login"
+                                class="main__input"
                                 name="password"
+                                placeholder="Enter your password"
                                 required
                             />
-                            <br />
                         </div>
                     </div>
-                    <p class="main__link">
-                        Don't have an account?
-                        <a href="register.html" class="main__link--signup"
-                            >Register</a
-                        >
-                    </p>
                     <div class="main__body--input">
                         <input
                             type="submit"
@@ -55,9 +59,14 @@
                             class="main__btn"
                         />
                     </div>
+                    <p class="main__link">
+                        Don't have an account?
+                        <a href="/signup" class="main__link--signup"
+                            >Register</a
+                        >
+                    </p>
                 </form>
             </div>
-            <button onclick="logout()" class="main__btn">Logout</button>
             <br />
             <br />
         </div>
@@ -67,5 +76,9 @@
         <p id="username-info"></p>
         <p id="email-info"></p>
     </body>
-    <script src="main.js"></script>
+
+    <script
+        type="module"
+        src="{{ url_for('login-js', path='main.js') }}"
+    ></script>
 </html>

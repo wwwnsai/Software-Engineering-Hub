@@ -1,4 +1,5 @@
 import persistent
+import datetime
 
 class User(persistent.Persistent):
     def __init__(self, id, username, email, password) -> None:
@@ -6,28 +7,113 @@ class User(persistent.Persistent):
         self.username = username
         self.email = email
         self.password = password
-        borrowed_items = []
-        parking = None
-        locker = None
+        self.items = []
+    
+    def borrowProduct(self, product):
+        self.items.append(product)
+        self._p_changed = True
         
     def toJSON(self):
         return {
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "password": self.password
+            "password": self.password,
+            "items": self.items
+        }
+        
+    def showInfo(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "items": self.items
         }
         
 
-# class Student(User):
-#     def __init__(self, id, username, email, password, student_id):
-#         super().__init__(id, username, email, password)
-#         self.student_id = student_id
-#         borrowed_items = []
-#         parking = None
-#         locker = None
+class Product(persistent.Persistent):
+    def __init__(self, id, name, stock, status = True) -> None:
+        self.id = id
+        self.name = name
+        self.stock = stock
+        self.status = status # True = Available, False = Unavailable
         
-# class Staff(User):
-#     def __init__(self, id, username, email, password, staff_id):
-#         super().__init__(id, username, email, password)
-#         self.staff_id = staff_id
+    def borrow(self, user):
+        self.borrower = user
+        
+    def toJSON(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "stock": self.stock,
+            "status": self.status
+        }
+        
+    def showInfo(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "stock": self.stock,
+        }
+        
+
+class BorrowedList(persistent.Persistent):
+    idCounter = 0
+    
+    def __init__(self, name, product) -> None:
+        self.id = BorrowedList.idCounter
+        BorrowedList.idCounter += 1
+        self.name = name
+        self.product = product
+        self.dateOfBorrow = datetime.datetime.now()
+        self.dateOfReturn = None
+        
+    def toJSON(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "product": self.product,
+            "dateOfBorrow": self.dateOfBorrow,
+        }
+        
+    def showInfo(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "product": self.product,
+            "dateOfBorrow": self.dateOfBorrow,
+        }
+        
+class Locker(persistent.Persistent):
+    amount = 40
+    
+    def __init__(self, id, status = True) -> None:
+        self.id = id
+        self.status = status # True = Available, False = Unavailable
+        self.borrower = None
+        self.borrowedDate = None
+        self.reservedLocker = []
+        
+    def borrow(self, user):
+        self.borrower = user
+        
+    def toJSON(self):
+        return {
+            "id": self.id,
+            "status": self.status,
+            "borrower": self.borrower
+        }
+        
+    def showInfo(self):
+        return {
+            "id": self.id
+        }
+        
+    def available(self):
+        return self.status
+    
+    def reserve(self, user):
+        self.reservedLocker.append(user)
+        self._p_changed = True
+    
+        

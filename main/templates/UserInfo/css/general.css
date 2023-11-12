@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    overflow-x: hidden;
+}
+
+:root {
+    --royal-blue-primary: #101d2c;
+    --orange-primary: #fa991c;
+    --color-white: #fff;
+    --color-grey-dark: #e3e3e3;
+    --color-grey-dark-mark: #808080;
+    --color-grey-light: #f9f7f6;
+}
+
+.btn__next--orange:link,
+.btn__next--orange:visited {
+    display: inline-block;
+    position: relative;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #101d2c;
+    background-color: #fa991c;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
+    /* Transition */
+    transition: 0.3s ease;
+}
+
+.btn__next--orange > .icon {
+    margin-left: 1rem;
+}
+
+.btn__next--orange:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgb(16, 29, 44, 0.1);
+}
+
+.btn__next--orange:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgb(16, 29, 44, 0.3);
+}
+
+/* GENRAL REUSABLE COMPONENTS */
+
+.container {
+    padding: 0 70rem;
+}
