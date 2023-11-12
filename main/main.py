@@ -92,9 +92,7 @@ app.mount("/locker-js",
 async def items(request: Request):
     return templates.TemplateResponse("Locker/locker.html", {"request": request})
 
-
 # USER ===================================================================================
-
 
 @app.post("/signup", tags=["user"])
 async def create_user(request: Request, user: SignUp, response: Response):
@@ -107,7 +105,6 @@ async def create_user(request: Request, user: SignUp, response: Response):
         return {"status": True, "message": "User created", "token": token}
     else:
         raise HTTPException(status_code=400, detail="User already exists")
-
 
 @app.post("/login", tags=["user"])
 async def login_user(user: Login, response: Response):
@@ -125,7 +122,6 @@ async def login_user(user: Login, response: Response):
 # User Services
 # for updating user
 
-
 @app.put("/user/update", tags=["user"])
 async def update_user(request: Request, user: SignUp,):
     userEmail = getPayload(request.cookies.get("token"))["user_id"]
@@ -135,7 +131,6 @@ async def update_user(request: Request, user: SignUp,):
             userDB.password = Hash.bcrypt(user.password)
             transaction.commit()
             return {"status": True, "message": "User updated"}
-
 
 # for deleting user
 @app.delete("/user/deleteuser", tags=["user"])
@@ -150,14 +145,12 @@ async def delete_user(request: Request):
 
 # Logout
 
-
 @app.get("/logout", tags=["user"])
 async def logout(response: Response):
     response.delete_cookie(key="token")
     return {"status": True, "message": "Logout successful"}
 
 # USER INFO ==============================================================================
-
 
 @app.get("/userinfo", tags=["userinfo"])
 async def get_userinfo(request: Request):
@@ -180,7 +173,6 @@ async def get_user(id: int):
     else:
         raise HTTPException(status_code=404, detail="User not found")
 
-
 @app.get("/users", tags=["check"])
 async def get_users():
     users = []
@@ -189,7 +181,6 @@ async def get_users():
     return {"users": users}
 
 # Clear User Database
-
 
 @app.get("/clear", tags=["check"])
 async def clear():
@@ -200,7 +191,6 @@ async def clear():
 # AUTH ===================================================================================
 
 # Check Token
-
 
 @app.get("/checkToken", tags=["auth"])
 async def check_token(request: Request):
@@ -216,14 +206,12 @@ async def check_token(request: Request):
 
 # Clear cookies
 
-
 @app.get("/clearCookie", tags=["auth"])
 async def clear_cookie(response: Response):
     response.delete_cookie(key="token")
     return {"status": True, "message": "Cookie cleared"}
 
 # When server close ===============================================================
-
 
 @app.on_event("shutdown")
 async def shutdown_event():
