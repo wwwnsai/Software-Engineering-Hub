@@ -90,18 +90,19 @@ class Locker(persistent.Persistent):
     def __init__(self, id, status = True) -> None:
         self.id = id
         self.status = status # True = Available, False = Unavailable
-        self.borrower = None
-        self.borrowedDate = None
+        self.reserveBy = None
+        self.reserveDate = None
         self.reservedLocker = []
         
     def borrow(self, user):
-        self.borrower = user
+        self.reserveBy = user
         
     def toJSON(self):
         return {
             "id": self.id,
             "status": self.status,
-            "borrower": self.borrower
+            "reserveBy": self.reserveBy,
+            "reserveDate": self.reserveDate,
         }
         
     def showInfo(self):
