@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Depends, HTTPException, Response, Cookie, Form
-from fastapi.responses import HTMLResponse, RedirectResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
@@ -30,7 +30,7 @@ app.mount("/images",
 
 # WEBSITE ================================================================================
 
-# Main
+# Main -------------------------------------
 
 # Main StaticFiles
 app.mount("/main-css",
@@ -43,7 +43,7 @@ app.mount("/main-js",
 async def index(request: Request):
     return templates.TemplateResponse("Main/main.html", {"request": request})
 
-# Login & SignUp
+# Login & SignUp -------------------------------------
 
 # Login StaticFiles
 app.mount("/login-css",
@@ -57,11 +57,11 @@ async def login(request: Request):
 
 # Sign up
 
-@app.get("/register", response_class=HTMLResponse, tags=["website"])
+@app.get("/signup", response_class=HTMLResponse, tags=["website"])
 async def signup(request: Request):
     return templates.TemplateResponse("LoginPage/register.html", {"request": request})
 
-# User info
+# User info -------------------------------------
 
 # User info StaticFiles
 app.mount("/userinfo-css",
@@ -69,11 +69,11 @@ app.mount("/userinfo-css",
 app.mount("/userinfo-js",
           StaticFiles(directory="templates/UserInfo/"), name="userinfo-js")
 
-@app.get("/userinfo", response_class=HTMLResponse, tags=["website"])
+@app.get("/userinfos", response_class=HTMLResponse, tags=["website"])
 async def userinfo(request: Request):
     return templates.TemplateResponse("UserInfo/userinfo.html", {"request": request})
 
-# Items Borrow
+# Items Borrow -------------------------------------
 
 # Items StaticFiles
 app.mount("/item-css",
@@ -90,7 +90,7 @@ async def items(request: Request):
 async def additem(request: Request):
     return templates.TemplateResponse("addproduct.html", {"request": request})
 
-# Locker
+# Locker -------------------------------------
 
 # Locker StaticFiles
 app.mount("/locker-css",
@@ -104,26 +104,25 @@ async def items(request: Request):
 
 # USER ===================================================================================
 
-@app.post("/register", tags=["user"])
-async def create_user(request: Request, student_id: int=Form(), username: str=Form(), email: str=Form(), password: str=Form()):
-    if not checkDuplicateEmail(email):
-        user = UserDB(student_id, username, email, Hash.bcrypt(password))
-        root.users[student_id] = user
+@app.post("/signup", tags=["user"])
+async def create_user(request: Request, user: SignUp):
+    if not checkDuplicateEmail(user.email):
+        user = UserDB(user.id, user.username, user.email, Hash.bcrypt(user.password))
+        root.users[user.id] = user
         transaction.commit()
-        token = signJWT(email)
+        token = signJWT(user.email)
         return {"status": True, "message": "User created", "token": token}
     else:
         raise HTTPException(status_code=400, detail="User already exists")
     
 @app.post("/login", tags=["user"])
-async def login_user(response: Response, email: str=Form(), password: str=Form()):
+async def login_user(user: Login, response: Response):
     for userDB in root.users.values():
-        if userDB.email == email:
-            if Hash.verify(userDB.password, password):
-                token = signJWT(email)
-                response.set_cookie(key="token", value=token)
-                direct = RedirectResponse(url="/", status_code=303, headers={"Set-Cookie": f"access_token={token}; Path=/"})
-                return direct
+        if userDB.email == user.email:
+            if Hash.verify(userDB.password, user.password):
+                token = signJWT(user.email)
+                response.set_cookie(key="token", value=token) 
+                return {"status": True, "message": "User logged in", "token": token}
             else:
                 raise HTTPException(status_code=400, detail="Incorrect password")
     raise HTTPException(status_code=404, detail="User not found")
@@ -136,8 +135,7 @@ async def borrowProduct(request: Request, product: borrowProduct):
         userEmail = getPayload(request.cookies.get("token"))["user_id"]
     except (KeyError, TypeError):
         # Handle the exception if "token" is missing or doesn't contain "user_id"
-        redirect = RedirectResponse(url="/login", status_code=303)
-        return redirect
+        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
 
     for userDB in root.users.values():
         if userDB.email == userEmail:
@@ -188,7 +186,7 @@ async def returnProduct(request :Request, productname: str=Form()):
 
 #reserve locker
 @app.post("/user/reserve/", tags=["user-service"])
-async def reserveLocker(request :Request, lockerID: int=Form(), date: str=Form()):
+async def reserveLocker(request :Request, lockerID: int=Form()):
     try:
         userEmail = getPayload(request.cookies.get("token"))["user_id"]
     except (KeyError, TypeError):
@@ -201,7 +199,7 @@ async def reserveLocker(request :Request, lockerID: int=Form(), date: str=Form()
                 if lockerDB.id == lockerID:
                     if lockerDB.status == True:
                         lockerDB.status = False
-                        lockerDB.borrower = userDB.username
+                        lockerDB.user = userDB.username
                         transaction.commit()
                         return {"status": True, "message": "Locker reserved"}
                     else:

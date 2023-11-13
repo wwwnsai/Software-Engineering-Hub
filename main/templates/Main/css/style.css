@@ -127,10 +127,6 @@
     position: relative;
 }
 
-.navigation__menu-item-program--user {
-    display: none;
-}
-
 .navigation__user-logo ul {
     width: 12rem;
     position: absolute;
@@ -161,11 +157,6 @@
 
     /* Transition */
     transition: 0.3s ease;
-}
-
-.navigation__username {
-    padding: 1rem 2rem;
-    background-color: var(--color-grey-dark);
 }
 
 .navigation__user-logo:hover ul {
@@ -221,12 +212,6 @@
     margin-right: 5rem;
     color: var(--color-white);
     text-transform: uppercase;
-}
-
-.hero__lower-text--user {
-    font-size: 2rem;
-    margin: 0;
-    color: var(--color-white);
 }
 
 .signin__btn {

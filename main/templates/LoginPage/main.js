@@ -1,86 +1,89 @@
-function login() {
-    const username = document.getElementById('username-login').value;
-    const password = document.getElementById('password-login').value;
+// Login
 
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
+document.getElementById("loginForm").addEventListener("submit", loginUser);
+const xhttp = new XMLHttpRequest();
+xhttp.open("POST", "http://127.0.0.1:8000/login");
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('POST', 'http://127.0.0.1:8000/login');
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(this.responseText);
+        console.log(response);
+    }
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const response = JSON.parse(this.responseText);
-            console.log(response);
-        }
+    const data = JSON.stringify({
+        username: username,
+        password: password,
+    });
 
-        const data = JSON.stringify({
-            username: username,
-            password: password
+    xhttp.send(data);
+};
+
+function loginUser(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("username-login").value;
+    const password = document.getElementById("password-login").value;
+
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.status === true) {
+                document.cookie = `token=${data.token}`;
+                alert("Login successful");
+                window.location.href = "/";
+            } else {
+                alert("Login failed: " + data.detail);
+            }
+        })
+        .catch((error) => {
+            console.error("Error during login:", error);
         });
-
-        xhttp.send(data);
-    }
 }
 
-function logout() {
-    localStorage.removeItem('user');
-}
+// Register
 
-function register() {
-    const username = document.getElementById('username-register').value;
-    const email = document.getElementById('email-register').value;
-    const password = document.getElementById('password-register').value;
+document
+    .getElementById("registerForm")
+    .addEventListener("submit", registerUser);
 
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('email', email);
-    formData.append('password', password);
+function registerUser(event) {
+    event.preventDefault();
 
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('POST', 'http://127.0.0.1:8000/register');
-    xhttp.send(formData);
+    const username = document.getElementById("username-register").value;
+    const email = document.getElementById("email-register").value;
+    const password = document.getElementById("password-register").value;
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                const response = JSON.parse(this.responseText);
-                console.log(response);
-                if (response.message == 'Registration successful') {
-                    window.location.href = 'login.html';
-                } else {
-                    alert(response.message);
-                }
+    fetch("/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.status === true) {
+                document.cookie = `token=${data.token}`;
+                alert("Registration successful");
+                window.location.href = "/";
             } else {
-                alert('Registration failed. Try again.');
+                alert("Registration failed: " + data.detail);
             }
-        }
-    }
+        })
+        .catch((error) => {
+            console.error("Error during registration:", error);
+        });
 }
-
-function getInfo(){
-    const username = localStorage.getItem('user');
-
-    const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', `http://127.0.0.1:8000/user/${username}`);
-    xhttp.send();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                const response = JSON.parse(this.responseText);
-                console.log(response);
-                if (response.username == username) {
-                    document.getElementById('username-info').innerHTML = response.username;
-                    document.getElementById('email-info').innerHTML = response.email;
-                } else {
-                    alert(response.message);
-                }
-            } else {
-                alert('User not found.');
-            }
-        }
-    }
-}
-

@@ -110,23 +110,19 @@
                     /></a>
                     <ul
                         class="navigation__menu-item-program navigation__menu-item-program--guest"
+                        id="loginBlock"
                     >
                         <li>
-                            <a href="/login" onclick="getInfo()">Sign In</a>
+                            <a href="/login">Sign In</a>
                         </li>
                         <li>
                             <a href="/register">Sign Up</a>
                         </li>
                     </ul>
-
                     <ul
-                        class="navigation__menu-item-program navigation__menu-item-program--user"
-                    >
-                        <li class="navigation__username" id="userNameNav"></li>
-                        <li>
-                            <a id="logOut" href="/">Logout</a>
-                        </li>
-                    </ul>
+                        class="navigation__menu-item-program navigation__menu-item-program--guest"
+                        id="userBlock"
+                    ></ul>
                 </div>
             </div>
         </div>
@@ -152,17 +148,18 @@
                     </p>
                 </div>
             </div>
-            <div class="hero__lower hero__lower--guest">
+            <div class="hero__lower hero__lower--guest" id="heroLoginBlock">
                 <p class="hero__lower-text">Become apart of our faculty</p>
                 <p>
-                    <a class="btn__next--orange signin__btn" href="/userinfo"
+                    <a class="btn__next--orange signin__btn" href="/login"
                         >Sign in</a
                     >
                 </p>
             </div>
-            <div class="hero__lower hero__lower--user">
-                <p class="hero__lower-text--user" id="userNameHero"></p>
-            </div>
+            <div
+                class="hero__lower hero__lower--guest"
+                id="heroUserBlock"
+            ></div>
         </div>
 
         <!-- Section - About -->

@@ -23,14 +23,12 @@
                 <h1>Login</h1>
             </div>
             <div class="main__body">
-                <form action="/login" method="POST">
+                <form id="loginForm">
                     <div class="main__body--input">
                         <div class="main__body--input-text">
-                            <label for="username-login" class="main__label"
-                                >Email</label
-                            >
+                            <label for="email" class="main__label">Email</label>
                             <input
-                                type="text"
+                                type="email"
                                 id="username-login"
                                 class="main__input"
                                 name="email"
@@ -39,7 +37,7 @@
                             />
                         </div>
                         <div class="main__body--input-text">
-                            <label for="password-login" class="main__label"
+                            <label for="password" class="main__label"
                                 >Password</label
                             >
                             <input
@@ -55,8 +53,9 @@
                     <div class="main__body--input">
                         <input
                             type="submit"
-                            value=" Login "
+                            value="Login"
                             class="main__btn"
+                            onclick="loginUser(event)"
                         />
                     </div>
                     <p class="main__link">

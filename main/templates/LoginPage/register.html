@@ -23,7 +23,7 @@
                 <h1>Register</h1>
             </div>
             <div class="main__body">
-                <form onsubmit="return register()">
+                <form id="registerForm">
                     <div class="main__body--input">
                         <div class="main__body--input-text">
                             <label for="username" class="main__label"
@@ -70,6 +70,7 @@
                             type="submit"
                             value="Register"
                             class="main__btn"
+                            onclick="registerUser(event)"
                         />
                     </div>
                     <p class="main__link">
@@ -78,8 +79,6 @@
                     </p>
                 </form>
             </div>
-            <br />
-            <br />
         </div>
     </body>
 

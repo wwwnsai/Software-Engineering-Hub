@@ -1,44 +1,54 @@
-// user.js
-export const showUser = document.querySelector(
-    ".navigation__menu-item-program--login"
-);
-export const userNameNav = document.getElementById("userNameNav");
-export const userNameHero = document.getElementById("userNameHero");
-export const logOutBtn = document.getElementById("logOut");
-export const guestShowNav = document.querySelector(
-    ".navigation__menu-item-program--guest"
-);
-export const userShowNav = document.querySelector(
-    ".navigation__menu-item-program--user"
-);
-export const guestShowHero = document.querySelector(".hero__lower--guest");
-export const userShowHero = document.querySelector(".hero__lower--user");
+// Function to check login status and update page content
+export function updatePageContent() {
+    const token = getCookie("token");
+    const loginBlock = document.getElementById("loginBlock");
+    const userBlock = document.getElementById("userBlock");
+    const heroLoginBlock = document.getElementById("heroLoginBlock");
+    const heroUserBlock = document.getElementById("heroUserBlock");
 
-export function checkUser() {
-    try {
-        if (localStorage.getItem("user")) {
-            const username = localStorage.getItem("user");
-            guestShowNav.style.display = "none";
-            userShowNav.style.display = "block";
+    if (token) {
+        // User is logged in
+        loginBlock.style.display = "none";
+        userBlock.style.display = "block";
+        heroLoginBlock.style.display = "none";
+        heroUserBlock.style.display = "block";
 
-            guestShowHero.style.display = "none";
-            userShowHero.style.display = "flex";
-
-            userNameNav.innerHTML = username;
-            userNameHero.innerHTML = `Welcome to our faculty, ${username}`;
-        } else {
-            guestShowNav.style.display = "block";
-            userShowNav.style.display = "none";
-
-            guestShowHero.style.display = "flex";
-            userShowHero.style.display = "none";
-        }
-    } catch (error) {
-        console.error("Error accessing localStorage: " + error);
+        // Fetch user information based on the token (you'll need to implement this)
+        fetch(`/userinfo`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                // Update userBlock with user information
+                let firstName = data.user.username.split(" ");
+                userBlock.innerHTML = `<li><a href="/userinfos">${firstName[0]}</a>
+                                        </li><li><a href="/logout">Logout</a></li>`;
+                heroUserBlock.innerHTML = `
+                <p style="text-align: center; text-transform: lowercase;" class="hero__lower-text"><span style="text-transform: uppercase;">W</span>elcome, <span style="text-transform: uppercase; color: #fa991c; font-weight: bold;">${data.user.username}</span> to our faculty!</p>`;
+            })
+            .catch((error) => {
+                console.error("Error fetching user information:", error);
+            });
+    } else {
+        // User is not logged in
+        loginBlock.style.display = "block";
+        userBlock.style.display = "none";
+        heroLoginBlock.style.display = "flex";
+        heroUserBlock.style.display = "none";
     }
 }
 
-export function logout() {
-    localStorage.removeItem("user");
-    checkUser();
+// Function to get the value of a cookie by name
+function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.split("=");
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+    return null;
 }
