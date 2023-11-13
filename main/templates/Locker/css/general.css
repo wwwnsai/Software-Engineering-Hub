@@ -17,6 +17,50 @@ body {
     overflow-x: hidden;
 }
 
+h1 {
+    font-size: 6rem;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+table {
+    text-align: center;
+    height: 50vh;
+}
+
+table, th, td, tr {
+    border: 1rem solid #FBF3F2;
+    text-align: center;
+    font-weight: bold;
+}
+
+th {
+    width: 14%;
+    margin: 6rem;
+}
+
+td { 
+    border-radius: 15%;
+}
+
+td:hover {
+    background-color: var(--royal-blue-primary);
+    color: var(--color-grey-light);
+    cursor: pointer;
+    transition: ease-in 0.3s;
+}
+
+hr {
+    border: none;
+    height: 0.2rem;
+    background-color: var(--royal-blue-primary);
+}
+
+
 :root {
     --royal-blue-primary: #101d2c;
     --orange-primary: #fa991c;

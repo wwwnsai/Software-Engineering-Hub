@@ -46,6 +46,31 @@
     }
 }
 
+/* <= 1440 */
+
+@media only screen and (max-width: 90em) {
+    html {
+        font-size: 50%;
+    }
+
+    .container {
+        padding: 0 30rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+
+    .footer {
+        padding: 5rem 30rem;
+    }
+}
+
 /* <= 1280 */
 
 @media only screen and (max-width: 80em) {

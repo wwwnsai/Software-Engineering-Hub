@@ -1,0 +1,162 @@
+/* Responsive */
+
+/* 1920 x 1080 */
+
+@media only screen and (min-width: 120em) {
+    html {
+        font-size: 50%;
+    }
+
+    .container {
+        padding: 0 10rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+
+    .locker__container {
+        padding: 2rem 5rem;
+    }
+
+    .locker__container--header {
+        padding: 5rem 0 0 0;
+    }
+
+    .locker__container--body-right {
+        padding: 15rem 0 0 5rem;
+    }
+
+    .locker__container--buttom {
+        padding: 0 0 10rem 0;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    .footer {
+        padding: 10rem 15rem;
+    }
+}
+
+/* >= 1024 */
+
+/* @media only screen and (min-width: 64em) {
+    html {
+        font-size: 50%;
+    }
+
+    table {
+        height: 80%;
+    }
+    
+    th, td, tr {
+        width: 5rem;
+        height: 1rem;
+    } 
+
+    .container {
+        padding: 0 10rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+
+    .locker__container--header {
+        padding: 0rem 0;
+    }
+
+    .locker__container {
+        height: 75vh;
+        background-color: #FBF3F2;
+        border-radius: 0.5rem;
+    }
+} */
+
+/* >= 1280 */
+
+/* @media only screen and (min-width: 80em) {
+    html {
+        font-size: 56.25%;
+    }
+
+    table {
+        height: 70%;
+    }
+
+    th, td, tr {
+        width: 6rem;
+        height: 4rem;
+    } 
+    
+    .container {
+        padding: 0 25rem;
+    }
+
+    .locker__container {
+        height: 75vh;
+        background-color: #FBF3F2;
+        border-radius: 0.5rem;
+    }
+
+    .locker__container--header {
+        padding: 5rem 0;
+    }
+} */
+
+/* >= 1440 */
+
+@media only screen and (min-width: 90em){
+    html {
+        font-size: 45%;
+    }
+
+    .container {
+        padding: 0 10rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+    .locker__container {
+        padding: 2rem 5rem;
+    }
+
+    .locker__container--header {
+        padding: 5rem 0 0 0;
+    }
+
+    .locker__container--body-right {
+        padding: 10rem 0 0 0;
+    }
+
+    .locker__container--buttom {
+        padding: 0 0 10rem 0;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    .footer {
+        padding: 10rem 15rem;
+    }
+    
+}

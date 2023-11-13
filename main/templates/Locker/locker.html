@@ -138,22 +138,92 @@
             </div>
         </div>
 
-        <div class="container locker__guide"></div>
+        <!-- <div class="container locker__guide"></div> -->
 
         <div class="container locker">
             <div class="locker__left">
                 <h1>Locker</h1>
                 <h1>Reservation</h1>
                 <div class="locker__bar"></div>
-                <p>Reserve locker</p>
-                <p>View your locker</p>
+                <div class="locker__nav" id="locker__nav-reservation">
+                    Reserve locker
+                </div>
+                <div class="locker__nav" id="locker__nav-view">
+                    View your locker
+                </div>
             </div>
             <div class="locker__right">
-                <div class="locker__container"></div>
+                <div class="locker__container" id="reserve_locker">
+                    <div class="locker__container--header">
+                        <p class="locker__container--header-text" id="month_name"></p>
+                    </div>
+                    <div class="locker__container--body">
+                        <div class="locker__container--body-left">
+                            <table class="calendar__table" id="calendar__table">
+                                <thead>
+                                    <tr>
+                                        <th>Sun</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="calendar__body">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="locker__container--body-right">
+                            <div class="locker__container--body-right-box">
+                                <div id="rectangle" style="background-color: var(--royal-blue-primary);"></div>
+                                <p class="locker__container--body-right-text">Selected</p>
+                            </div>
+                            <div class="locker__container--body-right-box">
+                                <div id="rectangle" style="background-color: var(--orange-primary);"></div>
+                                <p class="locker__container--body-right-text">Avaliable</p>
+                            </div>
+                            <div class="locker__container--body-right-box">
+                                <div id="rectangle" style="background-color: var(--color-grey-dark);"></div>
+                                <p class="locker__container--body-right-text">Unavaliable</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="locker__container--buttom">
+                        <input type="button" class="locker__container--buttom-btn" id="reserve_btn" value="Reserve"></input>
+                    </form>
+                </div>
+                <div class="locker__container" id="view_locker">
+                    <div class="locker__container--header">
+                        <p class="locker__container--header-text">Your Reserved Lockers</p>
+                    </div>
+                    <div class="locker__container--body-view">
+                        <hr>
+                        <div class="locker__container--body-view-text">
+                            <div class="locker__container--body-view-left">
+                                <b>Locker No:</b> &nbsp; 19 &emsp;&emsp;&emsp;&emsp; <b>Date:</b> &nbsp; 12 - 13 November 2023
+                            </div>
+                            <div class="locker__container--body-view-right">
+                                <img src="{{ url_for('images', path='/image/trash_can.png') }}" id="trash_can" class="img__trash-can">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="locker__container--body-view-text">
+                            <div class="locker__container--body-view-left">
+                                <b>Locker No:</b> &nbsp; 07 &emsp;&emsp;&emsp;&emsp; <b>Date:</b> &nbsp; 20 - 25 November 2023
+                            </div>
+                            <div class="locker__container--body-view-right">
+                                <img src="{{ url_for('images', path='/image/trash_can.png') }}" id="trash_can" class="img__trash-can">
+                            </div>
+                        </div>
+                            <div id="lockerlist">hi</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="container locker__footer"></div>
+        <!-- <div class="container locker__footer"></div> -->
 
         <!-- Section - Footer -->
 
