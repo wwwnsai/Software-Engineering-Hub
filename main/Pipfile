@@ -12,7 +12,8 @@ python-multipart = "*"
 jinja2 = "*"
 bcrypt = "*"
 passlib = "*"
-pydantic = {extras = ["email"], version = "*"}
+pydantic = "*"
+datetime = "*"
 
 [dev-packages]
 

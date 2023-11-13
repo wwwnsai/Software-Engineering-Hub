@@ -186,7 +186,7 @@ async def returnProduct(request :Request, productname: str=Form()):
 
 #reserve locker
 @app.post("/user/reserve/", tags=["user-service"])
-async def reserveLocker(request :Request, lockerID: int=Form()):
+async def reserveLocker(request :Request, lockerID: int=Form(), date: str=Form("2023-01-01")):
     try:
         userEmail = getPayload(request.cookies.get("token"))["user_id"]
     except (KeyError, TypeError):
@@ -199,13 +199,14 @@ async def reserveLocker(request :Request, lockerID: int=Form()):
                 if lockerDB.id == lockerID:
                     if lockerDB.status == True:
                         lockerDB.status = False
-                        lockerDB.user = userDB.username
+                        lockerDB.reserveBy = userDB.username
+                        print(lockerDB.reserveBy)
+                        lockerDB.reserveDate = date
                         transaction.commit()
                         return {"status": True, "message": "Locker reserved"}
                     else:
                         return {"status": False, "message": "Locker not available"}
             return {"status": False, "message": "Locker not found"}
-    return {"status": False, "message": "User not found"}
 
 #for updating user
 @app.put("/user/update", tags=["user-service"])

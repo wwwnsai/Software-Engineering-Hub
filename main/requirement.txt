@@ -7,4 +7,3 @@ jinja2
 bcrypt
 pydantic
 passlib
-pydantic[email]
