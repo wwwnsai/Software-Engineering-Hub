@@ -240,7 +240,7 @@ async def delete_user(request: Request):
 @app.get("/logout", tags=["user"])
 async def logout(response: Response):
     response.delete_cookie(key="token")
-    return {"status": True, "message": "Logout successful"}
+    return RedirectResponse("/", status_code=302)
 
 # USER INFO ==============================================================================
 @app.get("/userinfo", tags=["userinfo"])

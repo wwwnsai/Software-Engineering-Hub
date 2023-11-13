@@ -1,22 +1,6 @@
 // Login
 
 document.getElementById("loginForm").addEventListener("submit", loginUser);
-const xhttp = new XMLHttpRequest();
-xhttp.open("POST", "http://127.0.0.1:8000/login");
-
-xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        console.log(response);
-    }
-
-    const data = JSON.stringify({
-        username: username,
-        password: password,
-    });
-
-    xhttp.send(data);
-};
 
 function loginUser(event) {
     event.preventDefault();
