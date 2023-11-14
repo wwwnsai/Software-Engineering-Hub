@@ -1,0 +1,430 @@
+from fastapi import FastAPI, Request, Depends, HTTPException, Response, Cookie, Form
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+
+import transaction
+
+from app.auth.jwt_bearer import JWTBearer
+from app.auth.jwt_handler import *
+from app.hashing import *
+
+from app.schemas.user import SignUp, UserInfo, Login
+from app.db.model import User as UserDB
+
+from app.schemas.product import addProduct, borrowProduct
+from app.db.model import Product as ProductDB
+
+from app.db.model import BorrowedList as BorrowedDB
+
+from app.db.model import Locker as LockerDB
+
+from app.db.database import *
+
+app = FastAPI()
+# templates
+templates = Jinja2Templates(directory="templates/")
+# Image StaticFiles
+app.mount("/images",
+          StaticFiles(directory="templates/img"), name="images")
+
+# WEBSITE ================================================================================
+
+# Main -------------------------------------
+
+# Main StaticFiles
+app.mount("/main-css",
+          StaticFiles(directory="templates/Main/css"), name="main-css")
+app.mount("/main-js",
+          StaticFiles(directory="templates/Main/"), name="main-js")
+
+
+@app.get("/", response_class=HTMLResponse, tags=["website"])
+async def index(request: Request):
+    return templates.TemplateResponse("Main/main.html", {"request": request})
+
+# Login & SignUp -------------------------------------
+
+# Login StaticFiles
+app.mount("/login-css",
+          StaticFiles(directory="templates/LoginPage/"), name="login-css")
+app.mount("/login-js",
+          StaticFiles(directory="templates/LoginPage/"), name="login-js")
+
+@app.get("/login", response_class=HTMLResponse, tags=["website"])
+async def login(request: Request):
+    return templates.TemplateResponse("LoginPage/login.html", {"request": request})
+
+# Sign up
+
+@app.get("/signup", response_class=HTMLResponse, tags=["website"])
+async def signup(request: Request):
+    return templates.TemplateResponse("LoginPage/register.html", {"request": request})
+
+# User info -------------------------------------
+
+# User info StaticFiles
+app.mount("/userinfo-css",
+          StaticFiles(directory="templates/UserInfo/css"), name="userinfo-css")
+app.mount("/userinfo-js",
+          StaticFiles(directory="templates/UserInfo/"), name="userinfo-js")
+
+@app.get("/userinfos", response_class=HTMLResponse, tags=["website"])
+async def userinfo(request: Request):
+    return templates.TemplateResponse("UserInfo/userinfo.html", {"request": request})
+
+# Items Borrow -------------------------------------
+
+# Items StaticFiles
+app.mount("/item-css",
+          StaticFiles(directory="templates/Item/css"), name="item-css")
+app.mount("/item-js",
+          StaticFiles(directory="templates/Item/"), name="item-js")
+
+@app.get("/item", response_class=HTMLResponse, tags=["website"])
+async def items(request: Request):
+    return templates.TemplateResponse("Item/item.html", {"request": request})
+
+# Add item
+@app.get("/products/addproduct", response_class=HTMLResponse, tags=["website"])
+async def additem(request: Request):
+    return templates.TemplateResponse("addproduct.html", {"request": request})
+
+# Locker -------------------------------------
+
+# Locker StaticFiles
+app.mount("/locker-css",
+          StaticFiles(directory="templates/Locker/css"), name="locker-css")
+app.mount("/locker-js",
+          StaticFiles(directory="templates/Locker/"), name="locker-js")
+
+@app.get("/locker", response_class=HTMLResponse, tags=["website"])
+async def items(request: Request):
+    return templates.TemplateResponse("Locker/locker.html", {"request": request})
+
+# USER ===================================================================================
+
+@app.post("/signup", tags=["user"])
+async def create_user(request: Request, user: SignUp):
+    if not checkDuplicateEmail(user.email):
+        user = UserDB(user.id, user.username, user.email, Hash.bcrypt(user.password))
+        root.users[user.id] = user
+        transaction.commit()
+        token = signJWT(user.email)
+        return {"status": True, "message": "User created", "token": token}
+    else:
+        raise HTTPException(status_code=400, detail="User already exists")
+    
+@app.post("/login", tags=["user"])
+async def login_user(user: Login, response: Response):
+    for userDB in root.users.values():
+        if userDB.email == user.email:
+            if Hash.verify(userDB.password, user.password):
+                token = signJWT(user.email)
+                response.set_cookie(key="token", value=token) 
+                return {"status": True, "message": "User logged in", "token": token}
+            else:
+                raise HTTPException(status_code=400, detail="Incorrect password")
+    raise HTTPException(status_code=404, detail="User not found")
+    
+# User Services ==============================================================================
+#for borrowing item
+@app.post("/user/borrow/", tags=["user-service"])
+async def borrowProduct(request: Request, product: borrowProduct):
+    try:
+        userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    except (KeyError, TypeError):
+        # Handle the exception if "token" is missing or doesn't contain "user_id"
+        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+
+    for userDB in root.users.values():
+        if userDB.email == userEmail:
+            for productDB in root.products.values():
+                if productDB.name == product.name:
+                    if productDB.status == True:
+                        productDB.stock -= 1
+                        if productDB.stock == 0:
+                            productDB.status = False
+                        userDB.borrowProduct(productDB.name)
+                        #then add to borrowed db
+                        borrowed = BorrowedDB(userDB.username, productDB.name)
+                        i = BorrowedList.idCounter
+                        while i in root.borrowed:
+                            i += 1
+                        root.borrowed[i] = borrowed
+                        return {"status": True, "message": "Item borrowed"}
+                    else:
+                        return {"status": False, "message": "Item not available"}
+            return {"status": False, "message": "Item not found"}
+    return {"status": False, "message": "User not found"}
+
+# return item
+@app.post("/user/return/", tags=["user-service"])
+async def returnProduct(request :Request, productname: str=Form()):
+    try:
+        userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    except (KeyError, TypeError):
+        # Handle the exception if "token" is missing or doesn't contain "user_id"
+        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+
+    for userDB in root.users.values():
+        if userDB.email == userEmail:
+            for productDB in root.products.values():
+                if productDB.name == productname:
+                    for i in root.borrowed:
+                        if root.borrowed[i].product == productname:
+                            del root.borrowed[i]
+                            userDB.items.remove(productname)
+                            if productDB.status == False:
+                                productDB.status = True
+                            productDB.stock += 1
+                            transaction.commit()
+                            return {"status": True, "message": "Item returned"}
+                    return {"status": False, "message": "Item not found in borrowed list"}
+            return {"status": False, "message": "Item not found"}
+    return {"status": False, "message": "User not found"}
+
+# Reserve Locker
+@app.post("/user/reserve/", tags=["user-service"])
+async def reserveLocker(request: Request, lockerID: int = Form(), date: str = Form("2023-01-01")):
+    # try:
+    #     userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    # except (KeyError, TypeError):
+    #     # Handle the exception if "token" is missing or doesn't contain "user_id"
+    #     return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+
+    # for userDB in root.users.values():
+    #     if userDB.email == userEmail:
+    #         for lockerDB in root.locker_dates.values():
+    #             if lockerDB.date == date:
+    #                 if lockerDB.status == True:
+    #                     for locker in lockerDB.lockers.values():
+    #                         if locker.status == True:
+    #                             locker.status = False
+    #                             locker.reservedBy = userDB.username
+    #                             locker.reservedDate = date
+    #                             transaction.commit()
+    #                             return {"status": True, "message": "Locker reserved", "locker_id": locker.id}
+    #                         transaction.commit()
+    #                         return {"status": True, "message": "Locker reserved"}
+    #                 return {"status": False, "message": "Locker not available"}
+    #         return {"status": False, "message": "Locker not found"}
+    # return {"status": False, "message": "User not found"}
+
+    from fastapi import Request, Form
+
+@app.post("/user/reserve/", tags=["user-service"])
+async def reserveLocker(request: Request, date: str = Form("2023-01-01")):
+    try:
+        token = request.cookies.get("token")
+        if not token:
+            raise ValueError("Token is missing")
+
+        userEmail = getPayload(token).get("user_id")
+        if not userEmail:
+            raise ValueError("User email not found in the token")
+    except ValueError as e:
+        return {"status": False, "message": str(e), "THEN": "Return to login page"}
+
+    userDB = next((user for user in root.users.values() if user.email == userEmail), None)
+    if userDB is None:
+        return {"status": False, "message": "User not found"}
+
+    lockerDB = root.locker_dates.get(date, None)
+    if lockerDB is None:
+        return {"status": False, "message": "Locker date not found"}
+
+    available_locker = next((locker for locker in lockerDB.lockers.values() if locker.status), None)
+    if available_locker is None:
+        return {"status": False, "message": "No available locker"}
+
+    available_locker.status = False
+    available_locker.reserveBy = userDB.username
+    available_locker.date = date
+    transaction.commit()
+
+    return {"status": True, "message": f"Locker No. {available_locker.id} reserved", "locker_id": available_locker.id}
+
+
+
+#for updating user
+@app.put("/user/update", tags=["user-service"])
+async def update_user(request: Request, user: SignUp):
+    try:
+        userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    except (KeyError, TypeError):
+        # Handle the exception if "token" is missing or doesn't contain "user_id"
+        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+
+    for userDB in root.users.values():
+        if userDB.email == userEmail:
+            userDB.username = user.username
+            userDB.password = Hash.bcrypt(user.password)
+            transaction.commit()
+            return {"status": True, "message": "User updated"}
+
+    return {"status": False, "message": "User not found"}
+
+#for deleting user
+@app.delete("/user/deleteuser", tags=["user-service"])
+async def delete_user(request: Request):
+    userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    for userDB in root.users.values():
+        if userDB.email == userEmail:
+            del root.users[userDB.id]
+            transaction.commit()
+            return {"status": True, "message": "User deleted"}
+    raise HTTPException(status_code=404, detail="User not found")
+
+# Logout
+@app.get("/logout", tags=["user"])
+async def logout(response: Response):
+    response.delete_cookie(key="token")
+    return RedirectResponse("/", status_code=302)
+
+# USER INFO ==============================================================================
+@app.get("/userinfo", tags=["userinfo"])
+async def get_userinfo(request: Request):
+    try:
+        userEmail = getPayload(request.cookies.get("token"))["user_id"]
+    except (KeyError, TypeError):
+        # Handle the exception if "token" is missing or doesn't contain "user_id"
+        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+
+    for userDB in root.users.values():
+        if userDB.email == userEmail:
+            return {"status": True, "message": "User found", "user": userDB.showInfo()}
+    return {"status": False, "message": "User not found"}
+    
+# PRODUCT ===================================================================================
+@app.post("/products/addproduct", tags=["product"])
+async def add_product(request: Request, product: addProduct):
+    if not checkDuplicateProduct(product.id):
+        product = ProductDB(product.id, product.name, product.stock)
+        root.products[product.id] = product
+        transaction.commit()
+        return {"status": True, "message": "Product added"}
+    else:
+        root.products[product.id].stock += product.stock
+        root.products[product.id].status = True
+        transaction.commit()
+        return {"status": True, "message": "Product added"}
+
+# CHECKING ===============================================================================
+
+# Check Users
+@app.post("/user/{id}", tags=["check"])
+async def get_user(id: int):
+    if id in root.users:
+        return {"status": True, "message": "User found", "user": root.users[id].toJSON()}
+    else:
+        raise HTTPException(status_code=404, detail="User not found")
+
+@app.post("/list/user", tags=["check"])
+async def get_users():
+    usersList = []
+    for user in root.users.values():
+        usersList.append(user.toJSON())
+    return {"users": usersList}
+
+# Clear User Database
+@app.post("/clearUser", tags=["clear"])
+async def clear():
+    root.users.clear()
+    transaction.commit()
+    return {"status": True, "message": "Database cleared"}
+
+# Check Products
+@app.post("/list/product", tags=["check"])
+def get_products():
+    products = []
+    for product in root.products.values():
+        products.append(product.toJSON())
+    return {"products": products}
+
+# Clear Product Database
+@app.post("/clearProduct", tags=["clear"])
+async def clear():
+    root.products.clear()
+    transaction.commit()
+    return {"status": True, "message": "Database cleared"}
+
+# Check BorrowedList
+@app.post("/list/borrowed", tags=["check"])
+async def get_borrowed():
+    borrowed = []
+    for borrow in root.borrowed.values():
+        borrowed.append(borrow.toJSON())
+    return {"borrowed": borrowed}
+
+# Clear Borrowed Database
+@app.post("/clearBorrowed", tags=["clear"])
+async def clear():
+    root.borrowed.clear()
+    transaction.commit()
+    return {"status": True, "message": "Database cleared"}
+
+# List of Lockers
+@app.post("/list/lockers", tags=["check"])
+async def get_lockers():
+    locker_dates = []
+    print(type(root.locker_dates))
+    for locker_date in root.locker_dates.values():
+        locker_info = {
+            "date": locker_date.date,
+            "status": locker_date.status,
+            "lockers": {str(id+1): locker.toJSON() for id, locker in locker_date.lockers.items()}
+        }
+        locker_dates.append(locker_info)
+    return {"lockers": locker_dates}
+
+# Clear Locker Database
+@app.post("/clearLocker", tags=["clear"])
+async def clear():
+    root.lockers.clear()
+    root.locker_dates.clear()
+    root.lockers.update(setLockers())
+    root.locker_dates.update(setLocker_dates(root.lockers))
+    transaction.commit()
+    return {"status": True, "message": "Database cleared"}
+
+
+# AUTH ===================================================================================
+
+# Check Token
+@app.get("/checkToken", tags=["auth"])
+async def check_token(request:Request):
+    token = request.cookies.get("token")
+    if token:
+        decoded_token = decodeJWT(token)
+        if decoded_token:
+            return {"status": True}
+        else:
+            return {"status": False}
+    else:
+        return {"status": False}
+
+# Clear cookies
+@app.get("/clearCookie", tags=["auth"])
+async def clear_cookie(response: Response):
+    response.delete_cookie(key="token")
+    return {"status": True, "message": "Cookie cleared"}
+
+# Clear All
+@app.get("/clearAll", tags=["clear"])
+async def clear_all(response: Response):
+    root.users.clear()
+    root.products.clear()
+    root.borrowed.clear()
+    root.lockers.clear()
+    setLockers()
+    transaction.commit()
+    response.delete_cookie(key="token")
+    return {"status": True, "message": "All database cleared"}
+
+# When server close ===============================================================
+@app.on_event("shutdown")
+async def shutdown_event():
+    transaction.commit()
+    db.close()
+    

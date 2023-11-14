@@ -158,7 +158,29 @@ function reserve() {
     if (selected_dates_sorted.length == 0) {
         alert("Please select a date");
     }
+<<<<<<< Updated upstream:Locker/js/script.js
     for (let i = 0; i < selected_dates_sorted.length-1; i++) {
+=======
+    
+    const lockerID = 2;  // Replace with the actual locker ID
+    console.log(lockerID);
+    const date = getSelectedDates();
+    const url = 'http://127.0.0.1:8000/user/reserve/';
+    const formData = new FormData();
+    formData.append('lockerID', lockerID);
+    formData.append('date', date);
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => console.log("Response: ", data))
+    .catch(error => console.error('Error:', error));
+
+    showLockers();
+    
+    for (let i = 0; i <= selected_dates_sorted.length-1; i++) {
+>>>>>>> Stashed changes:main/templates/Locker/main.js
         if (selected_dates_sorted[i+1] - selected_dates_sorted[i] == 1) {
             if (i > 0 && selected_dates_sorted[i] - selected_dates_sorted[i-1] != 1) {
                 message += selected_dates_sorted[i] + " - ";
@@ -185,8 +207,69 @@ function reserve() {
 
 
 // view locker
+<<<<<<< Updated upstream:Locker/js/script.js
  
 
 
 
   
+=======
+async function showLockers(){
+    try {
+        const response = await fetch('/list/lockers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch lockers');
+        }
+
+        const data = await response.json();
+        const lockerDates = data.lockers || [];
+
+        displayLockerDates(lockerDates);
+    } catch (error) {
+        console.error('Error fetching lockers:', error);
+    }
+}
+
+// Function to display locker dates
+function displayLockerDates(lockerDates) {
+    const lockerListElement = document.getElementById('lockerlist');
+    lockerListElement.innerHTML = "<p>";
+
+    lockerDates.forEach((lockerDate) => {
+        const date = lockerDate.date;
+        const status = lockerDate.status;
+        const lockers = lockerDate.lockers || [];
+
+        const lockerDetails = formatLockers(lockers);
+        const locker_ids = lockerDetails.split(",");
+        let id = [];
+        let count = 0;
+        for (let i = 0; i < locker_ids.length; i++)  {
+            if (locker_ids[i].includes("Locker ID: ")) {
+                id[count++] = count;
+            }
+        }
+        // console.log(lockerDetails.split(",")[1].trim());
+        lockerListElement.innerHTML += `<br>Date:</br> ${date}, <br>Lockers:</br> [${id}]\n`;
+    });
+
+    lockerListElement.innerHTML += "</p>";
+}
+
+// Function to format lockers for display
+function formatLockers(lockers) {
+    if (!lockers || typeof lockers !== 'object') {
+        return "No lockers available";
+    }
+
+    const lockerDetails = Object.entries(lockers).map(([id, locker]) => `Locker ID: ${id}, Status: ${locker.status}, reserveBy: ${locker.reserveBy}`).join(', ');
+
+    return lockerDetails || "No lockers available";
+}
+>>>>>>> Stashed changes:main/templates/Locker/main.js
