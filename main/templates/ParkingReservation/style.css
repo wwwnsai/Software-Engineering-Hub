@@ -1,0 +1,165 @@
+/* Section - Navigation */
+
+.navigation {
+    height: 10rem;
+    position: relative;
+}
+
+/* Locker */
+
+.locker__header {
+    width: 100%;
+    height: 40rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+            to right,
+            rgba(184, 165, 165, 0.3),
+            rgba(0, 0, 0, 0.8)
+        ),
+        url(/images/image/kmitl_photo_2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.locker__header-image-text {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 8rem;
+    letter-spacing: 1rem;
+    color: var(--color-white);
+}
+
+.locker__header-image-text--display {
+    text-shadow: 0 0 2rem var(--royal-blue-primary);
+}
+
+.locker__guide {
+    font-size: 2rem;
+    height: 20rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.locker {
+    background-color: #101d2c;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.locker__left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.locker__right {
+    height: 50vh;
+    width: 60%;
+}
+
+.locker__bar {
+    height: 0.2rem;
+    width: 80%;
+    background-color: #fff;
+}
+
+.locker__container {
+    height: 100%;
+    background-color: #fff;
+}
+
+.locker__footer {
+    height: 30rem;
+}
+
+/* Footer */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 10rem 70rem;
+    background-color: var(--royal-blue-primary);
+    color: var(--color-white);
+}
+
+.footer__upper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rem;
+}
+
+.footer__lower {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__lower-stack-left {
+    display: flex;
+}
+
+.footer__lower-btn {
+    margin-right: 5rem;
+}
+
+.footer__logo {
+    width: 10rem;
+    margin-bottom: 2.5rem;
+    mix-blend-mode: plus-lighter;
+}
+
+.footer__text--bold {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+}
+
+.footer__text-low-important {
+    color: var(--color-grey-dark-mark);
+}
+
+.footer__text-icon {
+    color: var(--color-white);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.footer__text-icon > .icon {
+    margin-right: 1rem;
+}
+
+.footer__text-statement {
+    color: var(--color-white);
+    font-size: 1.2rem;
+}
+
+.footer__text-contact {
+    color: var(--color-white);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.footer__icon-contact {
+    display: flex;
+    align-items: center;
+}
+
+.footer__icon-contact > .icon {
+    background-color: var(--orange-primary);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-right: 2rem;
+    font-size: 2rem;
+}

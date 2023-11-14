@@ -1,11 +1,3 @@
-
-const header = document.querySelector(".navigation");
-
-// Navigation Bar Scroll Fixed
-window.addEventListener("scroll", () => {
-    header.classList.toggle("sticky", window.scrollY);
-});
-
 // Get references to navigation elements and content divs
 const navEarly = document.getElementById("admission__navigation-early");
 const navFirst = document.getElementById("admission__navigation-first");

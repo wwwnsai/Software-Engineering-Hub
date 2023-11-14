@@ -131,3 +131,19 @@ body {
 .main__link--signup:hover {
     color: #fa991c;
 }
+
+.login__back {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.login__back-btn {
+    color: #d9d9d9;
+}
+
+.login__back-btn:hover {
+    color: #fa991c;
+}

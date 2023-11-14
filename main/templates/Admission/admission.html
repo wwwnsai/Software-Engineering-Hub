@@ -3,7 +3,23 @@
     <head>
         <title>Software Engineering | KMITL</title>
 
-        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('universal-css', path='/general.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('universal-css', path='/queries.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('universal-css', path='/style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('admission-static', path='/style.css') }}"
+        />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -16,93 +32,26 @@
     <body>
         <!-- Section - Navigation -->
 
-        <div class="navigation">
-            <div class="stack-left">
-                <div class="navigation__se-logo">
-                    <a href="../Main/main.html#">
-                        <img
-                            class="se-logo"
-                            src="../img/logo/SE_logo.png"
-                            alt="SE Logo"
-                    /></a>
-                </div>
+        {% include "Universal/navbar.html" %}
 
-                <div class="navigation__menu">
-                    <ul class="navigation__menu-list">
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="../Main/main.html#section-about"
-                                >About</a
-                            >
-                            <ul>
-                                <li>
-                                    <a href="../Main/main.html#section-about"
-                                        >About</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="../Main/main.html#section-about"
-                                        >Lecturers</a
-                                    >
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="../Main/main.html#section-program"
-                                >Program</a
-                            >
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="../Main/main.html#section-admissions"
-                                >Admissions</a
-                            >
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="../Main/main.html#section-footer"
-                                >Contact</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <!-- Section - Admission -->
 
-            <!-- <div class="navigation__search">
-                <input type="search" />
-            </div> -->
-
-            <div class="stack-right">
-                <a
-                    class="navigation__menu-item navigation__menu-item--special"
-                    href="#"
-                    >Services</a
-                >
-                <div class="navigation__user-logo">
-                    <a href="#">
-                        <img
-                            class="user-logo"
-                            src="../img/logo/User_logo.png"
-                            alt="user Logo"
-                    /></a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="admission_main">
-
+        <div class="admission_main container">
             <div class="admission__navigation">
-                <div class="admission__navigation--each" id="admission__navigation-early">
+                <div
+                    class="admission__navigation--each"
+                    id="admission__navigation-early"
+                >
                     <p>Announcement Direct Admissions 1-1 (Early Round)</p>
                 </div>
-                <div class="admission__navigation--each" id="admission__navigation-first">
-                    <p>Announcement Direct Admissions 1-1 (First Round) for International Students (non-holder of Thai passport)</p>
+                <div
+                    class="admission__navigation--each"
+                    id="admission__navigation-first"
+                >
+                    <p>
+                        Announcement Direct Admissions 1-1 (First Round) for
+                        International Students (non-holder of Thai passport)
+                    </p>
                 </div>
             </div>
 
@@ -110,7 +59,7 @@
                 <div class="admission__header">
                     <div class="admission__header-img">
                         <img
-                            src="../img/logo/Admission_LogoKMITL.png"
+                            src="/images/logo/Admission_LogoKMITL.png"
                             alt="admission-1-1"
                         />
                     </div>
@@ -1253,19 +1202,31 @@
                 </div>
             </div>
 
-            <div class="admission" id="section-admission-1-1-first" style="display: none;">
+            <div
+                class="admission"
+                id="section-admission-1-1-first"
+                style="display: none"
+            >
                 <div class="admission__header">
                     <div class="admission__header-img">
                         <img
-                            src="../img/logo/Admission_LogoKMITL.png"
+                            src="/images/logo/Admission_LogoKMITL.png"
                             alt="admission-1-1"
                         />
                     </div>
                     <div class="admission__header-text">
                         <div class="admission__header-text--description">
-                            <p>Announcement Direct Admissions 1-1 (First Round)</p>
-                            <p>for International Students (non-holders of Thai passport)</p>
-                            <p>Bachelor of Engineering (International Programs) Academic Year 2024</p>
+                            <p>
+                                Announcement Direct Admissions 1-1 (First Round)
+                            </p>
+                            <p>
+                                for International Students (non-holders of Thai
+                                passport)
+                            </p>
+                            <p>
+                                Bachelor of Engineering (International Programs)
+                                Academic Year 2024
+                            </p>
                             <p>
                                 Faculty of Engineering, King Mongkut's Institute
                                 of Technology Ladkrabang (KMITL)
@@ -1279,15 +1240,22 @@
 
                 <div class="admission__body">
                     <p class="indented-paragraph">
-                        School of Engineering, King Mongkut's Institute of Technology Ladkrabang invites qualified applicants 
-                        to apply for admissions to the School of Engineering in 4 years Bachelor's Degree Programs, 5 years 
-                        Unified Bachelor's & Master's Degree Program (KMITL - AIT), 5 years Unified Bachelor's & Master's 
-                        Degree Program (KMITL - CMKL) for Academic Year 2024 (beginning in August 2024), and 4 years and 5 
-                        years Unified Bachelor's & Master's Degree Program (KMITL - NIDA).This round of admissions is opened 
-                        to all applicants with excellent academic backgrounds. Selection of qualified candidates is based on 
-                        the applicant's academic records, standardized test scores, and English proficiency test results, along 
-                        with a personal statement, letters of recommendation, past academic activities, the interview and 
-                        other supplementary documents.
+                        School of Engineering, King Mongkut's Institute of
+                        Technology Ladkrabang invites qualified applicants to
+                        apply for admissions to the School of Engineering in 4
+                        years Bachelor's Degree Programs, 5 years Unified
+                        Bachelor's & Master's Degree Program (KMITL - AIT), 5
+                        years Unified Bachelor's & Master's Degree Program
+                        (KMITL - CMKL) for Academic Year 2024 (beginning in
+                        August 2024), and 4 years and 5 years Unified Bachelor's
+                        & Master's Degree Program (KMITL - NIDA).This round of
+                        admissions is opened to all applicants with excellent
+                        academic backgrounds. Selection of qualified candidates
+                        is based on the applicant's academic records,
+                        standardized test scores, and English proficiency test
+                        results, along with a personal statement, letters of
+                        recommendation, past academic activities, the interview
+                        and other supplementary documents.
                     </p>
                     <p><b>1. Programs and Number of Acceptances</b></p>
                     <p class="indented-paragraph">
@@ -1476,11 +1444,15 @@
                     </p>
                     <div class="indented-paragraph">
                         <p>
-                            Students will spend the first 6 semesters (3 years) at KMITL for bachelor courses, and do the 
-                            7th - 8th semester of Bachelor Capstone Projects at CMKL University (CMKL) and School of 
-                            Engineering, King Mongkut's Institute of Technology Ladkrabang (KMITL) to graduate with a 
-                            Bachelor's degree at the end of Year 4 at KMITL . The coursework of Master's Degree will start 
-                            from 7th semester and finish with a Master's degree at the end of Year 5.
+                            Students will spend the first 6 semesters (3 years)
+                            at KMITL for bachelor courses, and do the 7th - 8th
+                            semester of Bachelor Capstone Projects at CMKL
+                            University (CMKL) and School of Engineering, King
+                            Mongkut's Institute of Technology Ladkrabang (KMITL)
+                            to graduate with a Bachelor's degree at the end of
+                            Year 4 at KMITL . The coursework of Master's Degree
+                            will start from 7th semester and finish with a
+                            Master's degree at the end of Year 5.
                         </p>
                     </div>
                 </div>
@@ -1901,8 +1873,10 @@
                         </p>
                         <p><b>2.1.4 Personal Statement</b></p>
                         <p>
-                            Please write an essay (500 words or fewer) that demonstrates your ability to communicate your 
-                            thoughts and your related experience in the field of study.
+                            Please write an essay (500 words or fewer) that
+                            demonstrates your ability to communicate your
+                            thoughts and your related experience in the field of
+                            study.
                         </p>
                         <p><b>2.1.5 Two Recommendation Letters</b></p>
                         <p>
@@ -1914,9 +1888,11 @@
                     <p><b>2.2. Master's Requirements</b></p>
                     <div class="indented-paragraph">
                         <p>
-                            Recruited students are not guaranteed to be admitted to Unified Programs unless the requirements 
-                            in section 2.2 are met. Those who are not admitted may continue their study in their Bachelor's 
-                            program but will not be eligible for a Master's degree.
+                            Recruited students are not guaranteed to be admitted
+                            to Unified Programs unless the requirements in
+                            section 2.2 are met. Those who are not admitted may
+                            continue their study in their Bachelor's program but
+                            will not be eligible for a Master's degree.
                         </p>
                         <p>
                             <b> 2.2.1 Master's Requirements (Based on AIT)</b>
@@ -2084,15 +2060,28 @@
                         >)
                     </p>
                     <p>
-                        <b>Setp 2:</b> Applicants must upload all necessary documents as the following in 1 pdf file(up to 
-                        4 MB in size only) to online application system with subject filename as Application ID.
+                        <b>Setp 2:</b> Applicants must upload all necessary
+                        documents as the following in 1 pdf file(up to 4 MB in
+                        size only) to online application system with subject
+                        filename as Application ID.
                     </p>
                     <div class="indented-paragraph">
                         <p>1. Your application form</p>
-                        <p>2. A photocopy of the applicant's national identification card or passport</p>
-                        <p>3.Academic Records - High School Transcript, SAT, ACT, IB etc.</p>
-                        <p>4.English Proficiency Test score - IELTS, TOEFL etc.</p>
-                        <p>5.Two recommendation letters from teachers or supervisors.</p>
+                        <p>
+                            2. A photocopy of the applicant's national
+                            identification card or passport
+                        </p>
+                        <p>
+                            3.Academic Records - High School Transcript, SAT,
+                            ACT, IB etc.
+                        </p>
+                        <p>
+                            4.English Proficiency Test score - IELTS, TOEFL etc.
+                        </p>
+                        <p>
+                            5.Two recommendation letters from teachers or
+                            supervisors.
+                        </p>
                         <p>6.Personal Statement</p>
                         <p>7.Portfolios Achievements (optional)</p>
                         <p>
@@ -2353,48 +2342,19 @@
 
         <!-- Section - Footer -->
 
-        <div class="footer" id="section-footer">
-            <div class="footer__column">
-                <img
-                    class="footer__logo"
-                    src="../img/logo/Admission_LogoKMITL.png"
-                    alt=""
-                />
-            </div>
-            <div class="footer__column">
-                <p class="footer__header">KMITL</p>
-                <p class="footer__text--bold">Software Engineering</p>
-                <p class="footer__text-location">1 Chalong Krung, 1 Alley,</p>
-                <p class="footer__text-location">Lat Krabang, Bangkok 10520</p>
-                <p class="footer__text-icon">
-                    <i class="icon fa-solid fa-phone"></i> +66 65 878 5000
-                </p>
-                <p class="footer__text-icon">
-                    <i class="icon fa-solid fa-phone"></i> saraban@kmitl.ac.th
-                </p>
-            </div>
-            <div class="footer__column">
-                <p class="footer__text-contact">
-                    <i class="icon fa-brands fa-instagram"></i> se_kmitl
-                </p>
-                <p class="footer__text-contact">
-                    <i class="icon fa-brands fa-instagram"></i> Facebook
-                </p>
-                <p class="footer__text-contact">
-                    <i class="icon fa-brands fa-instagram"></i> Line
-                </p>
-                <div class="footer__bar"></div>
-                <p class="footer__text-cpr">&copy;2023 Software Engineering,</p>
-                <p class="footer__text-cpr">
-                    King Mongkut's Institute of Technology Ladkrabang
-                </p>
-            </div>
-        </div>
+        {% include "Universal/footer.html" %}
 
         <script
             src="https://kit.fontawesome.com/1c7eef805a.js"
             crossorigin="anonymous"
         ></script>
-        <script src="script.js"></script>
+        <script
+            type="module"
+            src="{{ url_for('universal-js', path='universal.js') }}"
+        ></script>
+        <script
+            type="module"
+            src="{{ url_for('admission-static', path='script.js') }}"
+        ></script>
     </body>
 </html>

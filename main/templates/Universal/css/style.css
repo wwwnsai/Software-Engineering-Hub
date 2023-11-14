@@ -3,8 +3,9 @@
 .navigation {
     z-index: 1;
     background-color: var(--royal-blue-primary);
+    position: fixed;
     width: 100%;
-    height: 10rem;
+    height: 30rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,10 +127,6 @@
     position: relative;
 }
 
-.navigation__menu-item-program--user {
-    display: none;
-}
-
 .navigation__user-logo ul {
     width: 12rem;
     position: absolute;
@@ -162,11 +159,6 @@
     transition: 0.3s ease;
 }
 
-.navigation__username {
-    padding: 1rem 2rem;
-    background-color: var(--color-grey-dark);
-}
-
 .navigation__user-logo:hover ul {
     top: 5.5rem;
     visibility: visible;
@@ -186,45 +178,6 @@
 .navigation__menu-item--special:link,
 .navigation__menu-item--special:visited {
     margin-right: 6rem;
-}
-
-/* Item */
-
-.item__header {
-    width: 100%;
-    height: 40rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(
-            to right,
-            rgba(184, 165, 165, 0.3),
-            rgba(0, 0, 0, 0.8)
-        ),
-        url(/images/image/kmitl_photo_1.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-.item__header-image-text {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 8rem;
-    letter-spacing: 1rem;
-    color: var(--color-white);
-}
-
-.item__header-image-text--display {
-    text-shadow: 0 0 2rem var(--royal-blue-primary);
-}
-
-.item__guide {
-    height: 50rem;
-}
-
-.item__footer {
-    height: 30rem;
 }
 
 /* Footer */

@@ -107,8 +107,17 @@
         padding: 0 10rem;
     }
 
+    /* Hero */
+
     .hero {
         padding-top: 35rem;
+    }
+
+    /* About */
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
     }
 
     .about__header {
@@ -116,7 +125,37 @@
         padding-bottom: 30rem;
     }
 
+    /* Locker */
+
+    .locker__container {
+        padding: 2rem 5rem;
+    }
+
+    .locker__container--header {
+        padding: 5rem 0 0 0;
+    }
+
+    .locker__container--body-right {
+        padding: 10rem 0 0 0;
+    }
+
+    .locker__container--buttom {
+        padding: 0 0 10rem 0;
+    }
+
+    /* Admission */
+
+    .admission_main {
+        padding: 10rem 15rem 0 15rem;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    /* Footer */
+
     .footer {
-        padding: 2rem 10rem;
+        padding: 10rem 15rem;
     }
 }

@@ -8,7 +8,7 @@
 
         <link
             rel="stylesheet"
-            href="{{ url_for('login-css', path='/style.css') }}"
+            href="{{ url_for('login-static', path='/style.css') }}"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,19 +65,15 @@
                         >
                     </p>
                 </form>
+                <div class="login__back">
+                    <a href="/" class="login__back-btn">back to home</a>
+                </div>
             </div>
-            <br />
-            <br />
         </div>
-
-        <h1>USER info</h1>
-        <button type="button" onclick="getInfo()">Show Info</button><br />
-        <p id="username-info"></p>
-        <p id="email-info"></p>
     </body>
 
     <script
         type="module"
-        src="{{ url_for('login-js', path='main.js') }}"
+        src="{{ url_for('login-static', path='main.js') }}"
     ></script>
 </html>

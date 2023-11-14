@@ -22,40 +22,53 @@ from app.db.model import Locker as LockerDB
 from app.db.database import *
 
 app = FastAPI()
+
 # templates
 templates = Jinja2Templates(directory="templates/")
+
 # Image StaticFiles
 app.mount("/images",
           StaticFiles(directory="templates/img"), name="images")
 
 # WEBSITE ================================================================================
 
+# Universal -------------------------------------
+
+# Universal StaticFiles
+app.mount("/universal-css",
+          StaticFiles(directory="templates/Universal/css"), name="universal-css")
+app.mount("/universal-js",
+          StaticFiles(directory="templates/Universal/"), name="universal-js")
+
 # Main -------------------------------------
 
 # Main StaticFiles
-app.mount("/main-css",
-          StaticFiles(directory="templates/Main/css"), name="main-css")
-app.mount("/main-js",
-          StaticFiles(directory="templates/Main/"), name="main-js")
-
+app.mount("/main-static",
+          StaticFiles(directory="templates/Main/"), name="main-static")
 
 @app.get("/", response_class=HTMLResponse, tags=["website"])
 async def index(request: Request):
     return templates.TemplateResponse("Main/main.html", {"request": request})
 
+# Admission -------------------------------------
+
+# Main StaticFiles
+app.mount("/admission-static",
+          StaticFiles(directory="templates/Admission/"), name="admission-static")
+
+@app.get("/admission", response_class=HTMLResponse, tags=["website"])
+async def admission(request: Request):
+    return templates.TemplateResponse("Admission/admission.html", {"request": request})
+
 # Login & SignUp -------------------------------------
 
 # Login StaticFiles
-app.mount("/login-css",
-          StaticFiles(directory="templates/LoginPage/"), name="login-css")
-app.mount("/login-js",
-          StaticFiles(directory="templates/LoginPage/"), name="login-js")
+app.mount("/login-static",
+          StaticFiles(directory="templates/LoginPage/"), name="login-static")
 
 @app.get("/login", response_class=HTMLResponse, tags=["website"])
 async def login(request: Request):
     return templates.TemplateResponse("LoginPage/login.html", {"request": request})
-
-# Sign up
 
 @app.get("/signup", response_class=HTMLResponse, tags=["website"])
 async def signup(request: Request):
@@ -64,22 +77,28 @@ async def signup(request: Request):
 # User info -------------------------------------
 
 # User info StaticFiles
-app.mount("/userinfo-css",
-          StaticFiles(directory="templates/UserInfo/css"), name="userinfo-css")
-app.mount("/userinfo-js",
-          StaticFiles(directory="templates/UserInfo/"), name="userinfo-js")
+app.mount("/userinfos-static",
+          StaticFiles(directory="templates/UserInfo/"), name="userinfos-static")
 
 @app.get("/userinfos", response_class=HTMLResponse, tags=["website"])
 async def userinfo(request: Request):
     return templates.TemplateResponse("UserInfo/userinfo.html", {"request": request})
 
+# Parking Reservation -------------------------------------
+
+# Parking StaticFiles
+app.mount("/parking-static",
+          StaticFiles(directory="templates/ParkingReservation/"), name="parking-static")
+
+@app.get("/parking", response_class=HTMLResponse, tags=["website"])
+async def parking(request: Request):
+    return templates.TemplateResponse("ParkingReservation/parking.html", {"request": request})
+
 # Items Borrow -------------------------------------
 
 # Items StaticFiles
-app.mount("/item-css",
-          StaticFiles(directory="templates/Item/css"), name="item-css")
-app.mount("/item-js",
-          StaticFiles(directory="templates/Item/"), name="item-js")
+app.mount("/item-static",
+          StaticFiles(directory="templates/Item/"), name="item-static")
 
 @app.get("/item", response_class=HTMLResponse, tags=["website"])
 async def items(request: Request):
@@ -93,13 +112,11 @@ async def additem(request: Request):
 # Locker -------------------------------------
 
 # Locker StaticFiles
-app.mount("/locker-css",
-          StaticFiles(directory="templates/Locker/css"), name="locker-css")
-app.mount("/locker-js",
-          StaticFiles(directory="templates/Locker/"), name="locker-js")
+app.mount("/locker-static",
+          StaticFiles(directory="templates/Locker/"), name="locker-static")
 
 @app.get("/locker", response_class=HTMLResponse, tags=["website"])
-async def items(request: Request):
+async def locker(request: Request):
     return templates.TemplateResponse("Locker/locker.html", {"request": request})
 
 # USER ===================================================================================

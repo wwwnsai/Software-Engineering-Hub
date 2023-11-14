@@ -1,0 +1,45 @@
+/* Section - Navigation */
+
+.navigation {
+    height: 10rem;
+    position: relative;
+}
+
+/* Item */
+
+.item__header {
+    width: 100%;
+    height: 40rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+            to right,
+            rgba(184, 165, 165, 0.3),
+            rgba(0, 0, 0, 0.8)
+        ),
+        url(/images/image/kmitl_photo_1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.item__header-image-text {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 8rem;
+    letter-spacing: 1rem;
+    color: var(--color-white);
+}
+
+.item__header-image-text--display {
+    text-shadow: 0 0 2rem var(--royal-blue-primary);
+}
+
+.item__guide {
+    height: 50rem;
+}
+
+.item__footer {
+    height: 30rem;
+}

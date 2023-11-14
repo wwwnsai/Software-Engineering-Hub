@@ -19,7 +19,7 @@
         />
         <link
             rel="stylesheet"
-            href="{{ url_for('item-static', path='/style.css') }}"
+            href="{{ url_for('parking-static', path='/style.css') }}"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,15 +42,15 @@
 
         <!-- Section - Locker -->
 
-        <div class="container item__header">
-            <div class="item__header-image-text">
-                <p class="item__header-image-text--display">item</p>
+        <div class="container locker__header">
+            <div class="locker__header-image-text">
+                <p class="locker__header-image-text--display">
+                    Parking Reservation
+                </p>
             </div>
         </div>
 
-        <div class="container item__guide"></div>
-
-        <div class="container item__footer"></div>
+        <div class="container locker__guide">Unavailable For Maintenance</div>
 
         <!-- Section - Footer -->
 
@@ -63,10 +63,6 @@
         <script
             type="module"
             src="{{ url_for('universal-js', path='universal.js') }}"
-        ></script>
-        <script
-            type="module"
-            src="{{ url_for('item-static', path='main.js') }}"
         ></script>
     </body>
 </html>

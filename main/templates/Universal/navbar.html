@@ -1,0 +1,80 @@
+<div class="container navigation">
+    <div class="stack-left">
+        <div class="navigation__se-logo">
+            <a href="/">
+                <img
+                    class="se-logo"
+                    src="{{ url_for('images', path='/logo/SE_logo.png') }}"
+                    alt="SE Logo"
+            /></a>
+        </div>
+
+        <div class="navigation__menu">
+            <ul class="navigation__menu-list">
+                <li class="navigation__menu-item">
+                    <a class="navigation__menu-item-btn" href="#section-about"
+                        >About</a
+                    >
+                    <ul class="navigation__menu-item-about">
+                        <li><a href="/">About</a></li>
+                        <li><a href="/">Lecturers</a></li>
+                    </ul>
+                </li>
+                <li class="navigation__menu-item">
+                    <a class="navigation__menu-item-btn" href="#section-program"
+                        >Program</a
+                    >
+                    <ul class="navigation__menu-item-program">
+                        <li><a href="/">Software-Engineering</a></li>
+                        <li><a href="/">KMITL-Glasgow</a></li>
+                        <li><a href="/">Exchange-Study-Abroad</a></li>
+                        <li><a href="/">Internships</a></li>
+                    </ul>
+                </li>
+                <li class="navigation__menu-item">
+                    <a
+                        class="navigation__menu-item-btn"
+                        href="#section-admissions"
+                        >Admissions</a
+                    >
+                </li>
+                <li class="navigation__menu-item">
+                    <a class="navigation__menu-item-btn" href="#section-footer"
+                        >Contact</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stack-right">
+        <a
+            class="btn__next--orange navigation__menu-item navigation__menu-item--special"
+            href="#section-services"
+            >Services</a
+        >
+        <div class="navigation__user-logo">
+            <a href="/login">
+                <img
+                    class="user-logo"
+                    src="{{ url_for('images', path='/logo/User_logo.png') }}"
+                    alt="user Logo"
+            /></a>
+            <ul
+                class="navigation__menu-item-program navigation__menu-item-program--guest"
+                id="loginBlock"
+            >
+                <li>
+                    <a href="/login">Sign In</a>
+                </li>
+                <li>
+                    <a href="/signup">Sign Up</a>
+                </li>
+            </ul>
+            <ul
+                class="navigation__menu-item-program navigation__menu-item-program--guest"
+                id="userBlock"
+            ></ul>
+        </div>
+    </div>
+</div>

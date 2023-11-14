@@ -8,17 +8,20 @@
 
         <link
             rel="stylesheet"
-            href="{{ url_for('main-css', path='/general.css') }}"
+            href="{{ url_for('universal-css', path='/general.css') }}"
         />
         <link
             rel="stylesheet"
-            href="{{ url_for('main-css', path='/style.css') }}"
+            href="{{ url_for('universal-css', path='/queries.css') }}"
         />
         <link
             rel="stylesheet"
-            href="{{ url_for('main-css', path='/queries.css') }}"
+            href="{{ url_for('universal-css', path='/style.css') }}"
         />
-
+        <link
+            rel="stylesheet"
+            href="{{ url_for('main-static', path='/style.css') }}"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -36,96 +39,7 @@
     <body>
         <!-- Section - Navigation -->
 
-        <div class="container navigation">
-            <div class="stack-left">
-                <div class="navigation__se-logo">
-                    <a href="/">
-                        <img
-                            class="se-logo"
-                            src="{{ url_for('images', path='/logo/SE_logo.png') }}"
-                            alt="SE Logo"
-                    /></a>
-                </div>
-
-                <div class="navigation__menu">
-                    <ul class="navigation__menu-list">
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="#section-about"
-                                >About</a
-                            >
-                            <ul class="navigation__menu-item-about">
-                                <li><a href="/">About</a></li>
-                                <li><a href="/">Lecturers</a></li>
-                            </ul>
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="#section-program"
-                                >Program</a
-                            >
-                            <ul class="navigation__menu-item-program">
-                                <li><a href="/">Software-Engineering</a></li>
-                                <li><a href="/">KMITL-Glasgow</a></li>
-                                <li><a href="/">Exchange-Study-Abroad</a></li>
-                                <li><a href="/">Internships</a></li>
-                            </ul>
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="#section-admissions"
-                                >Admissions</a
-                            >
-                        </li>
-                        <li class="navigation__menu-item">
-                            <a
-                                class="navigation__menu-item-btn"
-                                href="#section-footer"
-                                >Contact</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- <div class="navigation__search">
-                <input type="search" />
-            </div> -->
-
-            <div class="stack-right">
-                <a
-                    class="btn__next--orange navigation__menu-item navigation__menu-item--special"
-                    href="#section-services"
-                    >Services</a
-                >
-                <div class="navigation__user-logo">
-                    <a href="/login">
-                        <img
-                            class="user-logo"
-                            src="{{ url_for('images', path='/logo/User_logo.png') }}"
-                            alt="user Logo"
-                    /></a>
-                    <ul
-                        class="navigation__menu-item-program navigation__menu-item-program--guest"
-                        id="loginBlock"
-                    >
-                        <li>
-                            <a href="/login">Sign In</a>
-                        </li>
-                        <li>
-                            <a href="/register">Sign Up</a>
-                        </li>
-                    </ul>
-                    <ul
-                        class="navigation__menu-item-program navigation__menu-item-program--guest"
-                        id="userBlock"
-                    ></ul>
-                </div>
-            </div>
-        </div>
+        {% include "Universal/navbar.html" %}
 
         <!-- Section - Hero -->
 
@@ -610,7 +524,7 @@
                         <a
                             class="btn__next--orange"
                             id="admissions__find-out-more-btn--1"
-                            href="../Admission/admission.html#section-admission-1-1-early"
+                            href="/admission"
                             >Read more<i
                                 class="icon fa-solid fa-arrow-right"
                             ></i
@@ -628,7 +542,7 @@
                         <a
                             class="btn__next--orange"
                             id="admissions__find-out-more-btn--2"
-                            href="../Admission/admission.html#section-admission-1-1-first"
+                            href="/admission"
                             >Read more<i
                                 class="icon fa-solid fa-arrow-right"
                             ></i
@@ -646,7 +560,7 @@
                         <a
                             class="btn__next--orange"
                             id="admissions__find-out-more-btn"
-                            href="../Admission/admission.html#section-admission-1-1-early"
+                            href="/admission"
                             >Read more<i
                                 class="icon fa-solid fa-arrow-right"
                             ></i
@@ -658,7 +572,7 @@
                 <a
                     class="btn__next--orange"
                     id="admissions__find-out-all-btn"
-                    href="../Admission/admission.html"
+                    href="/admission"
                     >Read All<i class="icon fa-solid fa-arrow-right"></i
                 ></a>
             </div>
@@ -718,7 +632,7 @@
                             alt=""
                         /></div
                 ></a>
-                <a class="services__element-btn" href="/locker">
+                <a class="services__element-btn" href="/parking">
                     <div class="services__element services__element--2">
                         <h2 class="services__element-header">
                             Parking Reservation<i
@@ -759,71 +673,19 @@
 
         <!-- Section - Footer -->
 
-        <div class="footer" id="section-footer">
-            <div class="footer__upper">
-                <div class="footer__column">
-                    <img
-                        class="footer__logo"
-                        src="{{ url_for('images', path='/logo/SE_logo.png') }}"
-                        alt="KMITL Logo"
-                    />
-                    <p class="footer__text--bold">Software Engineering</p>
-                    <p class="footer__text-low-important">
-                        1 Chalong Krung, 1 Alley, <br />
-                        Krabang, Bangkok 10520
-                    </p>
-                </div>
-                <div class="footer__column">
-                    <p class="footer__text--bold">Contact Us</p>
-                    <p class="footer__text-icon">
-                        <i class="icon fa-solid fa-phone"></i> +66 65 878 5000
-                    </p>
-                    <p class="footer__text-icon">
-                        <i class="icon fa-solid fa-phone"></i>
-                        saraban@kmitl.ac.th
-                    </p>
-                </div>
-                <div class="footer__column">
-                    <div class="footer__icon-contact">
-                        <i class="icon fa-brands fa-instagram"></i>
-                        <i class="icon fa-brands fa-instagram"></i>
-                        <i class="icon fa-brands fa-instagram"></i>
-                    </div>
-                </div>
-                <div class="footer__column">
-                    <p class="footer__text--bold">Newsletter</p>
-                    <p class="footer__text-low-important">
-                        Subscribe To Our Newsletter
-                    </p>
-                </div>
-            </div>
-            <div class="footer__lower">
-                <div class="footer__lower-stack-left">
-                    <p class="footer__text-statement footer__lower-btn">
-                        Cookie Statement
-                    </p>
-                    <p class="footer__text-statement footer__lower-btn">
-                        Terms of Service
-                    </p>
-                    <p class="footer__text-statement footer__lower-btn">
-                        Privacy Policy
-                    </p>
-                </div>
-                <p class="footer__text-statement">
-                    &copy;2023 Software Engineering, King Mongkut's Institute of
-                    Technology Ladkrabang
-                </p>
-            </div>
-        </div>
+        {% include "Universal/footer.html" %}
 
         <script
             src="https://kit.fontawesome.com/1c7eef805a.js"
             crossorigin="anonymous"
         ></script>
-
         <script
             type="module"
-            src="{{ url_for('main-js', path='main.js') }}"
+            src="{{ url_for('universal-js', path='universal.js') }}"
+        ></script>
+        <script
+            type="module"
+            src="{{ url_for('main-static', path='main.js') }}"
         ></script>
     </body>
 </html>
