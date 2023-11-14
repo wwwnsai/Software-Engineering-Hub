@@ -162,6 +162,7 @@ async function reserve() {
 
     const lockerID = 1;  // Replace with the actual locker ID
     const date = getSelectedDates();
+    // console.log(date);
     const url = 'http://127.0.0.1:8000/user/reserve/';
     const formData = new FormData();
     formData.append('date', date);
@@ -261,8 +262,8 @@ function displayLockerDates(lockerDates) {
         const status = lockerDate.status;
         const lockers = lockerDate.lockers || [];
 
-        // lockerListElement.innerHTML += `Date: ${date}, Status: ${status}, Lockers: ${formatLockers(lockers)}<br>`;
-        lockerListElement.innerHTML += `Date: ${date}`;
+        lockerListElement.innerHTML += `Date: ${date}, Status: ${status}, Lockers: ${formatLockers(lockers)}<br>`;
+        // lockerListElement.innerHTML += `Date: ${date}`;
     });
 
     lockerListElement.innerHTML += "</p>";

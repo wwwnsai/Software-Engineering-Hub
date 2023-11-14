@@ -215,24 +215,36 @@ async def reserveLocker(request :Request, date: str=Form()):
     except ValueError as e:
         return {"status": False, "message": str(e), "THEN": "Return to login page"}
 
+    # for dateDB in date:
     userDB = next((user for user in root.users.values() if user.email == userEmail), None)
     if userDB is None:
         return {"status": False, "message": "User not found"}
 
     lockerDB = root.locker_dates.get(date, None)
+    print(lockerDB.date)
+    print(lockerDB.lockers)
+
     if lockerDB is None:
         return {"status": False, "message": "Locker date not found"}
 
+    # for locker in lockerDB.lockers.values():
+    #     if locker.status:
+    #         locker.status = False
+    #         locker.reserveBy = userDB.username
+    #         # locker.date = date
+    #         transaction.commit()
+    #         # print(locker.date)
+    #         return {"status": True, "message": f"Locker No. {locker.id} reserved", "date": date}
     available_locker = next((locker for locker in lockerDB.lockers.values() if locker.status), None)
     if available_locker is None:
         return {"status": False, "message": "No available locker"}
 
     available_locker.status = False
     available_locker.reserveBy = userDB.username
-    available_locker.date = date
+    # available_locker.date = date
     transaction.commit()
 
-    return {"status": True, "message": f"Locker No. {available_locker.id} reserved", "date": available_locker.date}
+    return {"status": True, "message": f"Locker No. {available_locker.id} reserved", "date": date}
 
 #for updating user
 @app.put("/user/update", tags=["user-service"])
