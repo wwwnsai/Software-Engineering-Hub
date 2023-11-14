@@ -135,7 +135,7 @@ function selected_date() {
     let today_date = today.getDate();
     for (let i = 0; i < selected_dates.length; i++) {
         if (selected_dates[i] == 1) {
-            period.push(today_date+i);
+            period.push(today_date + i);
         }
     }
     return period;
@@ -143,16 +143,68 @@ function selected_date() {
 
 function getSelectedDates() {
     let selected_dates_sorted = selected_date();
-    selected_dates_sorted.sort();
-    let date = "";
-    for (let i = 0; i <= selected_dates_sorted.length-1; i++) {
-        date += currentYear + "-" + month + "-" + selected_dates_sorted[i] + ", ";
-    }
+    selected_dates_sorted.sort((a, b) => a - b); // Sort numerically
+    let date = selected_dates_sorted
+        .map(day => `${currentYear}-${month}-${day}`)
+        .join(", ");
     return date;
 }
 
-// async function getLockerID () {
-//     let lockerID_empty = [];
+async function reserve() {
+    let message = "You have successfully reserved a locker from \n";
+    let selected_dates_sorted = selected_date();
+    selected_dates_sorted.sort((a, b) => a - b);
+
+    if (selected_dates_sorted.length === 0) {
+        alert("Please select a date");
+        return;
+    }
+
+    const lockerID = 1;  // Replace with the actual locker ID
+    const date = getSelectedDates();
+    const url = 'http://127.0.0.1:8000/user/reserve/';
+    const formData = new FormData();
+    formData.append('date', date);
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Result: ", data);
+        showLockers();
+        alert(message);
+    })
+    .catch(error => console.error('Error:', error));
+    
+    // for (let i = 0; i <= selected_dates_sorted.length-1; i++) {
+    //     if (selected_dates_sorted[i+1] - selected_dates_sorted[i] == 1) {
+    //         if (i > 0 && selected_dates_sorted[i] - selected_dates_sorted[i-1] != 1) {
+    //             message += selected_dates_sorted[i] + " - ";
+    //         }
+    //         if (i == 0) {
+    //             message += selected_dates_sorted[i] + " - ";
+    //         }
+    //         if (selected_dates_sorted[i+2] - selected_dates_sorted[i+1] != 1) {
+    //             message += selected_dates_sorted[i+1] + " " + monthName + " " + currentYear + "\n";
+    //         }
+    //     }
+    //     else if (selected_dates_sorted[i+1] - selected_dates_sorted[i] > 1) {
+    //         if (!message.includes(selected_dates_sorted[i])) {
+    //             message += selected_dates_sorted[i] + " " + monthName + " " + currentYear + "\n";
+    //         }
+    //         if (selected_dates_sorted[i+2] - selected_dates_sorted[i+1] != 1) {
+    //             message += selected_dates_sorted[i+1] + " " + monthName + " " + currentYear + "\n";
+    //         }
+    //     }
+    // }
+    // alert(message);
+    
+}
+    
+
+// view locker
+// function show() {
 //     fetch('/list/lockers', {
 //         method: 'POST',
 //         headers: {
@@ -162,93 +214,68 @@ function getSelectedDates() {
 //     .then(response => response.json())
 //     .then(data => {
 //         var lockers = data.lockers;
-//         for (let i = 0; i < lockers.length; i++) {
-//             if (lockers[i].status) {
-//                 lockerID_empty.push(parseInt(lockers[i].id, 10));
-//             }
-//         }
+//         console.log(lockers);
+//         var lockerListElement = document.getElementById('lockerlist');
+//         lockerListElement.innerHTML = "<p>";  
+//         lockers.forEach(function(locker) {
+//             lockerListElement.innerHTML += locker.reserveDate + ", ";
+//         });
+//         lockerListElement.innerHTML += "</p>";
 //     })
 //     .catch(error => {
 //         console.error('Error fetching lockers:', error);
 //     });
-
-//     return lockerID_empty[0];
 // }
 
-async function reserve() {
-    let message = "You have successfully reserved a locker from \n";
-    let selected_dates_sorted = selected_date();
-    selected_dates_sorted.sort();
-    console.log(selected_dates_sorted);
-    
-    if (selected_dates_sorted.length === 0) {
-        alert("Please select a date");
-        return;
-    }
-    
-    const lockerID = 1;  // Replace with the actual locker ID
-    console.log(lockerID);
-    const date = getSelectedDates();
-    const url = 'http://127.0.0.1:8000/user/reserve/';
-    const formData = new FormData();
-    formData.append('lockerID', lockerID);
-    formData.append('date', date);
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
 
-    show();
-    
-    for (let i = 0; i <= selected_dates_sorted.length-1; i++) {
-        if (selected_dates_sorted[i+1] - selected_dates_sorted[i] == 1) {
-            if (i > 0 && selected_dates_sorted[i] - selected_dates_sorted[i-1] != 1) {
-                message += selected_dates_sorted[i] + " - ";
-            }
-            if (i == 0) {
-                message += selected_dates_sorted[i] + " - ";
-            }
-            if (selected_dates_sorted[i+2] - selected_dates_sorted[i+1] != 1) {
-                message += selected_dates_sorted[i+1] + " " + monthName + " " + currentYear + "\n";
-            }
-        }
-        else if (selected_dates_sorted[i+1] - selected_dates_sorted[i] > 1) {
-            if (!message.includes(selected_dates_sorted[i])) {
-                message += selected_dates_sorted[i] + " " + monthName + " " + currentYear + "\n";
-            }
-            if (selected_dates_sorted[i+2] - selected_dates_sorted[i+1] != 1) {
-                message += selected_dates_sorted[i+1] + " " + monthName + " " + currentYear + "\n";
-            }
-        }
-    }
-    alert(message);
-    
-}
-    
-
-// view locker
-function show() {
-    fetch('/list/lockers', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        var lockers = data.lockers;
-        console.log(lockers);
-        var lockerListElement = document.getElementById('lockerlist');
-        lockerListElement.innerHTML = "<p>";  
-        lockers.forEach(function(locker) {
-            lockerListElement.innerHTML += locker.reserveDate + ", ";
+// Function to fetch lockers and display them
+async function showLockers() {
+    try {
+        const response = await fetch('/list/lockers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
-        lockerListElement.innerHTML += "</p>";
-    })
-    .catch(error => {
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch lockers');
+        }
+
+        const data = await response.json();
+        const lockerDates = data.lockers || [];
+        
+        displayLockerDates(lockerDates);
+    } catch (error) {
         console.error('Error fetching lockers:', error);
-    });
+    }
 }
+
+// Function to display locker dates
+function displayLockerDates(lockerDates) {
+    const lockerListElement = document.getElementById('lockerlist');
+    lockerListElement.innerHTML = "<p>";
+
+    lockerDates.forEach((lockerDate) => {
+        const date = lockerDate.date;
+        const status = lockerDate.status;
+        const lockers = lockerDate.lockers || [];
+
+        // lockerListElement.innerHTML += `Date: ${date}, Status: ${status}, Lockers: ${formatLockers(lockers)}<br>`;
+        lockerListElement.innerHTML += `Date: ${date}`;
+    });
+
+    lockerListElement.innerHTML += "</p>";
+}
+
+// Function to format lockers for display
+function formatLockers(lockers) {
+    if (!lockers || typeof lockers !== 'object') {
+        return "No lockers available";
+    }
+
+    const lockerDetails = Object.entries(lockers).map(([id, locker]) => `Locker ID: ${id}, Status: ${locker.status}`).join(', ');
+
+    return lockerDetails || "No lockers available";
+}
+

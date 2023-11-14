@@ -203,27 +203,36 @@ async def returnProduct(request :Request, productname: str=Form()):
 
 #reserve locker
 @app.post("/user/reserve/", tags=["user-service"])
-async def reserveLocker(request :Request, lockerID: int=Form(), date: str=Form("2023-01-01")):
+async def reserveLocker(request :Request, date: str=Form()):
     try:
-        userEmail = getPayload(request.cookies.get("token"))["user_id"]
-    except (KeyError, TypeError):
-        # Handle the exception if "token" is missing or doesn't contain "user_id"
-        return {"status": False, "message": "Invalid token", "THEN":"Return to login page"}
+        token = request.cookies.get("token")
+        if not token:
+            raise ValueError("Token is missing")
 
-    for userDB in root.users.values():
-        if userDB.email == userEmail:
-            for lockerDB in root.lockers.values():
-                if lockerDB.id == lockerID:
-                    if lockerDB.status == True:
-                        lockerDB.status = False
-                        lockerDB.reserveBy = userDB.username
-                        print(lockerDB.reserveBy)
-                        lockerDB.reserveDate = date
-                        transaction.commit()
-                        return {"status": True, "message": "Locker reserved"}
-                    else:
-                        return {"status": False, "message": "Locker not available"}
-            return {"status": False, "message": "Locker not found"}
+        userEmail = getPayload(token).get("user_id")
+        if not userEmail:
+            raise ValueError("User email not found in the token")
+    except ValueError as e:
+        return {"status": False, "message": str(e), "THEN": "Return to login page"}
+
+    userDB = next((user for user in root.users.values() if user.email == userEmail), None)
+    if userDB is None:
+        return {"status": False, "message": "User not found"}
+
+    lockerDB = root.locker_dates.get(date, None)
+    if lockerDB is None:
+        return {"status": False, "message": "Locker date not found"}
+
+    available_locker = next((locker for locker in lockerDB.lockers.values() if locker.status), None)
+    if available_locker is None:
+        return {"status": False, "message": "No available locker"}
+
+    available_locker.status = False
+    available_locker.reserveBy = userDB.username
+    available_locker.date = date
+    transaction.commit()
+
+    return {"status": True, "message": f"Locker No. {available_locker.id} reserved", "date": available_locker.date}
 
 #for updating user
 @app.put("/user/update", tags=["user-service"])
@@ -346,7 +355,7 @@ async def clear():
 @app.post("/list/lockers", tags=["check"])
 async def get_lockers():
     lockers = []
-    for locker in root.lockers.values():
+    for locker in root.locker_dates.values():
         lockers.append(locker.toJSON())
     return {"lockers": lockers}
 
@@ -354,7 +363,13 @@ async def get_lockers():
 @app.post("/clearLocker", tags=["clear"])
 async def clear():
     root.lockers.clear()
-    setLockers()
+    root.locker_dates.clear()
+    new_lockers = setLockers()
+    root.lockers.update(new_lockers)
+    
+    new_locker_dates = setLocker_dates(root.lockers)
+    root.locker_dates.update(new_locker_dates)
+
     transaction.commit()
     return {"status": True, "message": "Database cleared"}
 

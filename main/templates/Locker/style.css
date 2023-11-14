@@ -30,7 +30,7 @@ th {
 }
 
 td {
-    border-radius: 15%;
+    border-radius: 20%;
 }
 
 td:hover {
@@ -122,7 +122,7 @@ hr {
     text-align: center;
     padding: 5rem;
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: semibold;
 }
 
@@ -138,10 +138,10 @@ hr {
 }
 
 .locker__container {
-    height: 80vh;
+    height: 65vh;
     background-color: #fbf3f2;
     border-radius: 0.5rem;
-    padding: 5rem;
+    padding: 3rem;
 }
 
 .locker__container--header {
@@ -152,7 +152,7 @@ hr {
 
 .locker__container--header-text {
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding-bottom: 2rem;
 }
 
@@ -205,8 +205,8 @@ hr {
 
 .locker__container--body-right-box {
     display: flex;
-    margin: 5rem;
-    padding-left: 5rem;
+    margin: 3rem 0;
+    padding-left: 2rem;
 }
 
 #rectangle {
@@ -227,7 +227,7 @@ hr {
 .locker__container--buttom {
     justify-content: center;
     margin: auto;
-    padding: 1rem 0;
+    padding: 2rem 0;
     display: flex;
     width: 20%;
 }

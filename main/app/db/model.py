@@ -91,8 +91,6 @@ class Locker(persistent.Persistent):
         self.id = id
         self.status = status # True = Available, False = Unavailable
         self.reserveBy = None
-        self.reserveDate = None
-        self.reservedLocker = []
         
     def borrow(self, user):
         self.reserveBy = user
@@ -102,7 +100,6 @@ class Locker(persistent.Persistent):
             "id": self.id,
             "status": self.status,
             "reserveBy": self.reserveBy,
-            "reserveDate": self.reserveDate,
         }
         
     def showInfo(self):
@@ -116,5 +113,25 @@ class Locker(persistent.Persistent):
     def reserve(self, user):
         self.reservedLocker.append(user)
         self._p_changed = True
-    
+
+class Locker_dates(persistent.Persistent):
+
+    def __init__(self, date, lockers=None, status=True) -> None:
+        self.date = date
+        self.status = status
+        self.lockers = lockers
+        self._p_changed = True
         
+    def toJSON(self):
+        return {
+            "date": self.date,
+            "status": self.status,
+            "lockers": {str(id): locker.toJSON() for id, locker in self.lockers.items()}
+        }
+        
+    def showInfo(self):
+        return {
+            "id": self.id,
+            "date": self.date,
+            "lockers": {str(id): locker.toJSON() for id, locker in self.lockers.items()}
+        }
