@@ -191,12 +191,8 @@
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
-<<<<<<< Updated upstream
-    padding: 10rem 30rem;
-=======
     padding-top: 10rem;
     padding-bottom: 10rem;
->>>>>>> Stashed changes
     background-color: var(--royal-blue-primary);
     color: var(--color-white);
 }
