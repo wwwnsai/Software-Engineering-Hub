@@ -1,6 +1,10 @@
 // Login
+const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
 
-document.getElementById("loginForm").addEventListener("submit", loginUser);
+if (loginForm) {
+    loginForm.addEventListener("submit", loginUser);
+}
 
 function loginUser(event) {
     event.preventDefault();
@@ -35,13 +39,14 @@ function loginUser(event) {
 
 // Register
 
-document
-    .getElementById("registerForm")
-    .addEventListener("submit", registerUser);
+if (registerForm) {
+    registerForm.addEventListener("submit", registerUser);
+}
 
 function registerUser(event) {
     event.preventDefault();
 
+    const student_id = document.getElementById("student_id-register").value;
     const username = document.getElementById("username-register").value;
     const email = document.getElementById("email-register").value;
     const password = document.getElementById("password-register").value;
@@ -52,6 +57,7 @@ function registerUser(event) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
+            id: student_id,
             username: username,
             email: email,
             password: password,
@@ -59,6 +65,7 @@ function registerUser(event) {
     })
         .then((response) => response.json())
         .then((data) => {
+            console.log(data);
             if (data.status === true) {
                 document.cookie = `token=${data.token}`;
                 alert("Registration successful");

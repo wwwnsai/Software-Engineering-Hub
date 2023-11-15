@@ -32,8 +32,8 @@ body {
     position: relative;
     font-size: 1.6rem;
     text-decoration: none;
-    color: #101d2c;
-    background-color: #fa991c;
+    color: var(--royal-blue-primary);
+    background-color: var(--orange-primary);
     border-radius: 1rem;
     padding: 1rem 2rem;
 

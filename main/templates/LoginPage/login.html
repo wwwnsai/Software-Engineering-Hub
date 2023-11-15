@@ -26,14 +26,17 @@
                 <form id="loginForm">
                     <div class="main__body--input">
                         <div class="main__body--input-text">
-                            <label for="email" class="main__label">Email</label>
+                            <label for="email" class="main__label"
+                                >Email (must end with @kmitl.ac.th):</label
+                            >
                             <input
                                 type="email"
                                 id="username-login"
                                 class="main__input"
                                 name="email"
-                                placeholder="Enter your email"
                                 required
+                                pattern=".+@kmitl\.ac\.th$"
+                                placeholder="Enter your email"
                             />
                         </div>
                         <div class="main__body--input-text">
