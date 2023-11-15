@@ -61,13 +61,13 @@ class Product(persistent.Persistent):
 class BorrowedList(persistent.Persistent):
     idCounter = 0
     
-    def __init__(self, name, product) -> None:
+    def __init__(self, name, product, dateOfReturn) -> None:
         self.id = BorrowedList.idCounter
         BorrowedList.idCounter += 1
         self.name = name
         self.product = product
         self.dateOfBorrow = datetime.datetime.now()
-        self.dateOfReturn = None
+        self.dateOfReturn = dateOfReturn
         
     def toJSON(self):
         return {
@@ -75,6 +75,7 @@ class BorrowedList(persistent.Persistent):
             "name": self.name,
             "product": self.product,
             "dateOfBorrow": self.dateOfBorrow,
+            "dateOfReturn": self.dateOfReturn
         }
         
     def showInfo(self):
@@ -83,6 +84,7 @@ class BorrowedList(persistent.Persistent):
             "name": self.name,
             "product": self.product,
             "dateOfBorrow": self.dateOfBorrow,
+            "dateOfReturn": self.dateOfReturn
         }
         
 class Locker(persistent.Persistent):

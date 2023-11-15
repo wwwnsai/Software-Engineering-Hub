@@ -15,10 +15,12 @@ class addProduct(BaseModel):
         
 class borrowProduct(BaseModel):
     name: str = Field(..., example="Product 1")
+    dateOfReturn: str = Field(..., example="2023-11-20")
     class Config():
         schema_extra = {
             "example": {
-                "name": "Product 1"
+                "name": "Product 1",
+                "dateOfReturn": "2023-11-20"
             }
         }
         

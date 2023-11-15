@@ -13,7 +13,6 @@ db = ZODB.DB(storage)
 connection = db.open()
 root = connection.root()
 
-print("Root: ", root)
 if not hasattr(root, "users"):
     root.users = BTrees.OOBTree.BTree()
     
@@ -98,6 +97,11 @@ def checkProductAvailable(id):
 
 #BORROWED
 
+def passedReturnDate(returnDate):
+    today = date.today()
+    if today > returnDate:
+        return True
+    return False
 #LOCKER
 
     

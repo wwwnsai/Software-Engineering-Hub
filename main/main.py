@@ -164,7 +164,7 @@ async def borrowProduct(request: Request, product: borrowProduct):
                             productDB.status = False
                         userDB.borrowProduct(productDB.name)
                         #then add to borrowed db
-                        borrowed = BorrowedDB(userDB.username, productDB.name)
+                        borrowed = BorrowedDB(userDB.username, productDB.name, product.dateOfReturn)
                         i = BorrowedList.idCounter
                         while i in root.borrowed:
                             i += 1
