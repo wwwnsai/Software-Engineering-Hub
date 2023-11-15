@@ -1,5 +1,6 @@
 import persistent
 import datetime
+import BTrees.OOBTree
 
 class User(persistent.Persistent):
     def __init__(self, id, username, email, password) -> None:
@@ -119,7 +120,7 @@ class Locker_dates(persistent.Persistent):
     def __init__(self, date, lockers=None, status=True) -> None:
         self.date = date
         self.status = status
-        self.lockers = lockers
+        self.lockers = lockers if lockers is not None else BTrees.OOBTree.BTree()
         self._p_changed = True
         
     def toJSON(self):

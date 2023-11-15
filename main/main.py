@@ -222,7 +222,6 @@ async def reserveLocker(request :Request, date: str=Form()):
 
     lockerDB = root.locker_dates.get(date, None)
     print(lockerDB.date)
-    print(lockerDB.lockers)
 
     if lockerDB is None:
         return {"status": False, "message": "Locker date not found"}
@@ -235,16 +234,17 @@ async def reserveLocker(request :Request, date: str=Form()):
     #         transaction.commit()
     #         # print(locker.date)
     #         return {"status": True, "message": f"Locker No. {locker.id} reserved", "date": date}
-    available_locker = next((locker for locker in lockerDB.lockers.values() if locker.status), None)
+    available_locker = next((locker for locker in list(lockerDB.lockers.values()) if locker.status), None)
+
     if available_locker is None:
         return {"status": False, "message": "No available locker"}
-
+    print(available_locker.id)
     available_locker.status = False
     available_locker.reserveBy = userDB.username
-    # available_locker.date = date
     transaction.commit()
 
     return {"status": True, "message": f"Locker No. {available_locker.id} reserved", "date": date}
+
 
 #for updating user
 @app.put("/user/update", tags=["user-service"])
@@ -374,12 +374,10 @@ async def get_lockers():
 # Clear Locker Database
 @app.post("/clearLocker", tags=["clear"])
 async def clear():
-    root.lockers.clear()
+    # root.lockers.clear()
     root.locker_dates.clear()
-    new_lockers = setLockers()
-    root.lockers.update(new_lockers)
     
-    new_locker_dates = setLocker_dates(root.lockers)
+    new_locker_dates = setLocker_dates()
     root.locker_dates.update(new_locker_dates)
 
     transaction.commit()
@@ -413,7 +411,7 @@ async def clear_all(response: Response):
     root.products.clear()
     root.borrowed.clear()
     root.lockers.clear()
-    setLockers()
+    setLocker_dates()
     transaction.commit()
     response.delete_cookie(key="token")
     return {"status": True, "message": "All database cleared"}

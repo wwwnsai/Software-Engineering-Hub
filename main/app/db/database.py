@@ -3,7 +3,7 @@ import BTrees.OOBTree
 from datetime import date
 import calendar
 import transaction
-
+import copy
 
 from app.db.model import *
 from app.auth.jwt_handler import *
@@ -22,38 +22,32 @@ if not hasattr(root, "products"):
     
 if not hasattr(root, "borrowed"):
     root.borrowed = BTrees.OOBTree.BTree()
-    
-def setLockers():
-    lockers = BTrees.OOBTree.BTree()
-    for i in range(36):
-        locker = Locker(i + 1, True)
-        lockers[i] = locker
-    transaction.commit()
-    return lockers
 
-def setLocker_dates(lockers):
+def setLocker_dates():
     today = date.today()
     days_in_month = calendar.monthrange(today.year, today.month)[1]
     day = today.day
     month = today.month
     year = today.year
 
+    lockers = BTrees.OOBTree.BTree()
+    for i in range(36):
+        locker = Locker(i + 1, True)
+        lockers[i+1] = locker
+
     locker_dates = BTrees.OOBTree.BTree()
     r = days_in_month - day + 1
     for i in range(r):
         date_str = f"{year}-{month}-{day + i}"
-        locker_date = Locker_dates(date_str, lockers, True)
+        locker_date = Locker_dates(date_str, copy.deepcopy(lockers), True)
         locker_dates[date_str] = locker_date
 
     transaction.commit()
     return locker_dates
 
-if not hasattr(root, "lockers"):
-    root.lockers = setLockers()
-    transaction.commit()
 
 if not hasattr(root, "locker_dates"):
-    root.locker_dates = setLocker_dates(root.lockers)
+    root.locker_dates = setLocker_dates()
     transaction.commit()
     print("Lockers database have been created")
 else:
