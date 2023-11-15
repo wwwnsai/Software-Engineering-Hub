@@ -41,8 +41,27 @@
 
         {% include "Universal/navbar.html" %}
 
+        <!-- Section - User Information -->
+
+        <div class="container userinfo__container">
+            <p id="userinfo__username"></p>
+        </div>
+
         <!-- Section - Footer -->
 
         {% include "Universal/footer.html" %}
+
+        <script
+            src="https://kit.fontawesome.com/1c7eef805a.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            type="module"
+            src="{{ url_for('universal-js', path='universal.js') }}"
+        ></script>
+        <script
+            type="module"
+            src="{{ url_for('userinfos-static', path='main.js') }}"
+        ></script>
     </body>
 </html>

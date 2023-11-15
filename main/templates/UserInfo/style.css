@@ -1,0 +1,10 @@
+/* Navigation Bar */
+
+.navigation {
+    height: 10rem;
+    position: relative;
+}
+
+.userinfo__container {
+    height: 60rem;
+}

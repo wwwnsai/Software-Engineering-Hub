@@ -6,7 +6,6 @@ function handleLogoutClick() {
     deleteCookie();
 }
 
-// Function to get the value of a cookie by name
 function getCookie(name) {
     const cookies = document.cookie.split("; ");
     for (const cookie of cookies) {
@@ -18,7 +17,6 @@ function getCookie(name) {
     return null;
 }
 
-// Function to check login status and update page content
 export function updatePageContent() {
     const token = getCookie("token");
     const loginBlock = document.getElementById("loginBlock");
@@ -38,16 +36,9 @@ export function updatePageContent() {
             heroUserBlock.style.display = "block";
         }
 
-        // Fetch user information based on the token (you'll need to implement this)
-        fetch(`/userinfo`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
+        fetch(`/userinfo`, {})
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                // Update userBlock with user information
                 let firstName = data.user.username.split(" ");
                 userBlock.innerHTML = `<li><a href="/userinfos">${firstName[0]}</a></li>
                     <li><a href="/logout" id="logoutButton">Logout</a></li>`;
@@ -63,14 +54,12 @@ export function updatePageContent() {
             })
             .catch((error) => {
                 console.error("Error fetching user information:", error);
-                // Error
                 loginBlock.style.display = "block";
                 userBlock.style.display = "none";
                 heroLoginBlock.style.display = "flex";
                 heroUserBlock.style.display = "none";
             });
     } else {
-        // User is not logged in
         loginBlock.style.display = "block";
         userBlock.style.display = "none";
 

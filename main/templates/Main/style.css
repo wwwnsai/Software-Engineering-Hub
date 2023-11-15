@@ -62,6 +62,7 @@
     -webkit-text-fill-color: transparent;
     font-weight: 700;
 }
+
 /* About */
 
 .about__header {
@@ -99,7 +100,6 @@
 
 .about {
     height: 100%;
-    width: 100%;
     margin-bottom: 10rem;
     display: flex;
     justify-content: space-between;
