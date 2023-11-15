@@ -72,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return calendarHTML;
     }
     calendar_body.innerHTML = generateDate(currentYear, currentMonth);
+
+    // showLockers();
 });
 
 
@@ -95,7 +97,8 @@ document.addEventListener("click", function (e) {
         locker_nav_res.classList.remove("active");
         locker_res_container.setAttribute("style", "display: none;");
         locker_view_container.setAttribute("style", "display: block;");
-        setTimeout(() => {
+        // showLockers();
+        showLockers().then(() => {
             nav[0] = 0;
             nav[1] = 1;
         }, 0);
@@ -123,7 +126,7 @@ document.addEventListener("click", function (e) {
             selected_dates[0] = 1;
         }
     }
-    // console.log(selected_dates);
+
     // submit reserve dates
     if (e.target == document.getElementsByClassName("locker__container--buttom-btn")[0]) {
         reserve();
@@ -143,7 +146,7 @@ function selected_date() {
 
 function getSelectedDates() {
     let selected_dates_sorted = selected_date();
-    selected_dates_sorted.sort((a, b) => a - b); // Sort numerically
+    selected_dates_sorted.sort((a, b) => a - b); 
     let date = selected_dates_sorted
         .map(day => `${currentYear}-${month}-${day}`)
         .join(", ");
@@ -151,7 +154,7 @@ function getSelectedDates() {
 }
 
 async function reserve() {
-    let message = "You have successfully reserved a locker from \n";
+    let message = "You have successfully reserved a locker on: \n";
     let selected_dates_sorted = selected_date();
     selected_dates_sorted.sort((a, b) => a - b);
 
@@ -159,10 +162,12 @@ async function reserve() {
         alert("Please select a date");
         return;
     }
+    if (selected_dates_sorted.length > 1) {
+        alert("Please select only one date at a time");
+        return;
+    }
 
-    const lockerID = 1;  // Replace with the actual locker ID
     const date = getSelectedDates();
-    // console.log(date);
     const url = 'http://127.0.0.1:8000/user/reserve/';
     const formData = new FormData();
     formData.append('date', date);
@@ -173,110 +178,131 @@ async function reserve() {
     .then(response => response.json())
     .then(data => {
         console.log("Result: ", data);
-        showLockers();
-        alert(message);
+        // showLockers();
+        alert(message + date);
     })
     .catch(error => console.error('Error:', error));
     
-    // for (let i = 0; i <= selected_dates_sorted.length-1; i++) {
-    //     if (selected_dates_sorted[i+1] - selected_dates_sorted[i] == 1) {
-    //         if (i > 0 && selected_dates_sorted[i] - selected_dates_sorted[i-1] != 1) {
-    //             message += selected_dates_sorted[i] + " - ";
-    //         }
-    //         if (i == 0) {
-    //             message += selected_dates_sorted[i] + " - ";
-    //         }
-    //         if (selected_dates_sorted[i+2] - selected_dates_sorted[i+1] != 1) {
-    //             message += selected_dates_sorted[i+1] + " " + monthName + " " + currentYear + "\n";
-    //         }
-    //     }
-    //     else if (selected_dates_sorted[i+1] - selected_dates_sorted[i] > 1) {
-    //         if (!message.includes(selected_dates_sorted[i])) {
-    //             message += selected_dates_sorted[i] + " " + monthName + " " + currentYear + "\n";
-    //         }
-    //         if (selected_dates_sorted[i+2] - selected_dates_sorted[i+1] != 1) {
-    //             message += selected_dates_sorted[i+1] + " " + monthName + " " + currentYear + "\n";
-    //         }
-    //     }
-    // }
-    // alert(message);
     
 }
-    
-
-// view locker
-// function show() {
-//     fetch('/list/lockers', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         var lockers = data.lockers;
-//         console.log(lockers);
-//         var lockerListElement = document.getElementById('lockerlist');
-//         lockerListElement.innerHTML = "<p>";  
-//         lockers.forEach(function(locker) {
-//             lockerListElement.innerHTML += locker.reserveDate + ", ";
-//         });
-//         lockerListElement.innerHTML += "</p>";
-//     })
-//     .catch(error => {
-//         console.error('Error fetching lockers:', error);
-//     });
-// }
 
 
 // Function to fetch lockers and display them
+// async function showLockers() {
+//     try {
+//         const response = await fetch('/list/lockers', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         });
+
+//         if (!response.ok) {
+//             throw new Error('Failed to fetch lockers');
+//         }
+
+//         const data = await response.json();
+//         const lockerDates = data.lockers || [];
+        
+//         displayLockerDates(lockerDates);
+//     } catch (error) {
+//         console.error('Error fetching lockers:', error);
+//     }
+// }
+
+// Function to fetch lockers and display them
 async function showLockers() {
+    let username = "";
     try {
-        const response = await fetch('/list/lockers', {
+        const responseUserInfo = await fetch('http://127.0.0.1:8000/userinfo', {});
+        const dataUserInfo = await responseUserInfo.json();
+        console.log(dataUserInfo.user.username);
+        username = dataUserInfo.user.username;
+    } catch (error) {
+        console.error("Error fetching user information:", error);
+    }
+
+    try {
+        const responseLockers = await fetch('/list/lockers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
-        if (!response.ok) {
+        if (!responseLockers.ok) {
             throw new Error('Failed to fetch lockers');
         }
 
-        const data = await response.json();
-        const lockerDates = data.lockers || [];
-        
-        displayLockerDates(lockerDates);
+        const dataLockers = await responseLockers.json();
+        const lockerDates = dataLockers.lockers || [];
+        displayLockerDates(lockerDates, username);
     } catch (error) {
         console.error('Error fetching lockers:', error);
     }
 }
 
 // Function to display locker dates
-function displayLockerDates(lockerDates) {
-    const lockerListElement = document.getElementById('lockerlist');
-    lockerListElement.innerHTML = "<p>";
+function displayLockerDates(lockerDates, username) {
+    const lockerList = document.querySelector('.locker__container--body-view');
+    lockerList.innerHTML = "<hr>";
 
     lockerDates.forEach((lockerDate) => {
+        const bodyText = document.createElement('div');
+        bodyText.classList.add('locker__container--body-view-text');
+
+        const bodyLeft = document.createElement('div');
+        bodyLeft.classList.add('locker__container--body-view-left');
+        bodyLeft.innerHTML = "";  
+        
+        const bodyRight = document.createElement('div');
+        bodyRight.classList.add('locker__container--body-view-right');
+
+        const trashCanImage = document.createElement('img');
+        const trashCanImageUrl = window.trashCanImageUrl;
+        trashCanImage.setAttribute('src', trashCanImageUrl);
+        trashCanImage.setAttribute('id', 'trash_can');
+        trashCanImage.classList.add('img__trash-can');
+
+        bodyRight.appendChild(trashCanImage);
+
         const date = lockerDate.date;
-        const status = lockerDate.status;
-        const lockers = lockerDate.lockers || [];
+        const lockers_each_date = lockerDate.lockers || [];
 
-        lockerListElement.innerHTML += `Date: ${date}, Status: ${status}, Lockers: ${formatLockers(lockers)}<br>`;
-        // lockerListElement.innerHTML += `Date: ${date}`;
+        const lockerDetails = formatLockers(lockers_each_date, username);
+        if (lockerDetails === "No reserved lockers") {
+            // bodyText.appendChild(bodyLeft);
+        } 
+
+        else {
+            bodyLeft.innerHTML += `<b>Locker No:</b> &nbsp; ${lockerDetails} &emsp;&emsp;&emsp;&emsp; <b>Date:</b> &nbsp; ${date}`;
+            bodyText.appendChild(bodyLeft);
+            bodyText.appendChild(bodyRight);
+            lockerList.appendChild(bodyText);
+            lockerList.innerHTML += "<hr>";
+        }
+        
     });
-
-    lockerListElement.innerHTML += "</p>";
 }
 
-// Function to format lockers for display
-function formatLockers(lockers) {
+
+function formatLockers(lockers, username) {
     if (!lockers || typeof lockers !== 'object') {
         return "No lockers available";
     }
 
-    const lockerDetails = Object.entries(lockers).map(([id, locker]) => `Locker ID: ${id}, Status: ${locker.status}`).join(', ');
+    const lockerArray = Object.values(lockers);
 
-    return lockerDetails || "No lockers available";
+    const reservedLockers = lockerArray.filter(locker => locker && locker.reserveBy === username);
+
+    if (reservedLockers.length === 0) {
+        return "No reserved lockers";
+    }
+
+    const lockerDetails = reservedLockers.map(locker => `${locker.id}`).join(', ');
+
+    return lockerDetails;
 }
+
+
 

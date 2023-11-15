@@ -28,7 +28,6 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
         />
-
         <!-- <link
             rel="shortcut icon"
             type="image/png"
@@ -111,7 +110,7 @@
                     </div>
                     <div class="locker__container--body-view">
                         <hr>
-                        <div class="locker__container--body-view-text">
+                        <!-- <div class="locker__container--body-view-text">
                             <div class="locker__container--body-view-left">
                                 <b>Locker No:</b> &nbsp; 19 &emsp;&emsp;&emsp;&emsp; <b>Date:</b> &nbsp; 12 - 13 November 2023
                             </div>
@@ -127,8 +126,7 @@
                             <div class="locker__container--body-view-right">
                                 <img src="{{ url_for('images', path='/image/trash_can.png') }}" id="trash_can" class="img__trash-can">
                             </div>
-                        </div>
-                            <div id="lockerlist">hi</div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -152,5 +150,8 @@
             type="module"
             src="{{ url_for('locker-static', path='main.js') }}"
         ></script>
+        <script>
+            var trashCanImageUrl = "{{ url_for('images', path='/image/trash_can.png') }}";
+        </script>
     </body>
 </html>

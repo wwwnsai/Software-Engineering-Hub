@@ -225,15 +225,7 @@ async def reserveLocker(request :Request, date: str=Form()):
 
     if lockerDB is None:
         return {"status": False, "message": "Locker date not found"}
-
-    # for locker in lockerDB.lockers.values():
-    #     if locker.status:
-    #         locker.status = False
-    #         locker.reserveBy = userDB.username
-    #         # locker.date = date
-    #         transaction.commit()
-    #         # print(locker.date)
-    #         return {"status": True, "message": f"Locker No. {locker.id} reserved", "date": date}
+    
     available_locker = next((locker for locker in list(lockerDB.lockers.values()) if locker.status), None)
 
     if available_locker is None:
@@ -397,6 +389,16 @@ async def check_token(request:Request):
             return {"status": False}
     else:
         return {"status": False}
+    #         user_id = decoded_token.get("user_id")
+    #         if user_id and user_id in root.users:
+    #             user_data = root.users[user_id].toJSON()
+    #             return {"status": True, "user": user_data}
+    #         else:
+    #             return {"status": False, "message": "User not found"}
+    #     else:
+    #         return {"status": False, "message": "Invalid token"}
+    # else:
+    #     return {"status": False, "message": "Token not found"}
 
 # Clear cookies
 @app.get("/clearCookie", tags=["auth"])
