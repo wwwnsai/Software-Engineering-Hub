@@ -326,12 +326,12 @@ async def clear():
     return {"status": True, "message": "Database cleared"}
 
 # Check Products
-@app.post("/list/product", tags=["check"])
+@app.get("/list/product", tags=["check"])
 def get_products():
     products = []
     for product in root.products.values():
         products.append(product.toJSON())
-    return {"products": products}
+    return products
 
 # Clear Product Database
 @app.post("/clearProduct", tags=["clear"])

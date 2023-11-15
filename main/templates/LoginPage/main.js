@@ -46,10 +46,12 @@ if (registerForm) {
 function registerUser(event) {
     event.preventDefault();
 
-    const student_id = document.getElementById("student_id-register").value;
     const username = document.getElementById("username-register").value;
     const email = document.getElementById("email-register").value;
     const password = document.getElementById("password-register").value;
+
+    const student_id = email.split("@")[0];
+    console.log(student_id);
 
     fetch("/signup", {
         method: "POST",

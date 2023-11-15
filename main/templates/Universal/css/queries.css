@@ -62,7 +62,6 @@
     /* Footer */
 
     .footer {
-        padding: 10rem 40rem;
     }
 }
 
@@ -90,9 +89,9 @@
         padding-top: 25rem;
         padding-bottom: 30rem;
     }
-    
+
     /* Locker */
-    
+
     .locker__container {
         padding: 2rem 5rem;
     }
@@ -112,7 +111,6 @@
     /* Footer */
 
     .footer {
-        padding: 5rem 30rem;
     }
 }
 
@@ -137,7 +135,6 @@
     }
 
     .footer {
-        padding: 5rem 25rem;
     }
 }
 
@@ -201,6 +198,5 @@
     /* Footer */
 
     .footer {
-        padding: 10rem 15rem;
     }
 }

@@ -17,6 +17,10 @@ body {
     overflow-x: hidden;
 }
 
+input {
+    border: 0;
+}
+
 :root {
     --royal-blue-primary: #101d2c;
     --orange-primary: #fa991c;

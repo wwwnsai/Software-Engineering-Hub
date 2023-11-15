@@ -40,7 +40,7 @@
 
         {% include "Universal/navbar.html" %}
 
-        <!-- Section - Locker -->
+        <!-- Section - Item -->
 
         <div class="container item__header">
             <div class="item__header-image-text">
@@ -49,138 +49,37 @@
         </div>
 
         <div class="container item__user">
-            <div class="item__user-welcome" id="itemLoginBlock">hi</div>
+            <div class="item__user-welcome" id="itemLoginBlock">
+                <p>Please Sign In to use our services</p>
+                <a class="btn__next--orange" href="/login">Sign in</a>
+            </div>
             <div class="item__user-welcome" id="itemUserBlock"></div>
         </div>
 
-        <div class="container item__container">
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
+        <div class="container" id="itemMenuContainer">
+            <div class="item__menu" id="itemMenu">
+                <div
+                    class="item__menu-list item__menu-list--active"
+                    id="item__menu-list--1"
+                >
+                    Items List
                 </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
+                <div class="item__menu-list" id="item__menu-list--2">
+                    Borrow List
                 </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
-            </div>
-
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
+                <div class="item__menu-list" id="item__menu-list--3">
+                    Return List
                 </div>
             </div>
 
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
+            <div class="item__container" id="itemContainer"></div>
+
+            <div class="borrow__container" id="borrowContainer">
+                <p id="borrowEmpty">Add item that you want to borrow</p>
+                <div class="borrow__btn" id="borrowBtn">Borrow</div>
             </div>
 
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
-            </div>
-
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
-            </div>
-
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
-            </div>
-
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
-            </div>
-
-            <div class="item__card">
-                <div class="item__card--upper">
-                    <img
-                        class="item__card-img"
-                        src="{{ url_for('images', path='/image/kmitl_photo_1.jpg') }}"
-                        alt="img"
-                    />
-                </div>
-                <div class="item__card--lower">
-                    <div class="item__card-name">Mouse</div>
-                </div>
-                <div class="item__card-btn" id=" item__card-btn">
-                    <i class="icon fa-solid fa-plus"></i>Add to list
-                </div>
-            </div>
+            <div class="return__container" id="returnContainer"></div>
         </div>
 
         <!-- Section - Footer -->

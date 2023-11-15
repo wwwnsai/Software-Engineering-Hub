@@ -23,6 +23,9 @@ export function updatePageContent() {
     const userBlock = document.getElementById("userBlock");
     const heroLoginBlock = document.getElementById("heroLoginBlock");
     const heroUserBlock = document.getElementById("heroUserBlock");
+    const itemLoginBlock = document.getElementById("itemLoginBlock");
+    const itemUserBlock = document.getElementById("itemUserBlock");
+    const itemMenuContainer = document.getElementById("itemMenuContainer");
 
     if (token) {
         loginBlock.style.display = "none";
@@ -34,6 +37,18 @@ export function updatePageContent() {
 
         if (heroUserBlock) {
             heroUserBlock.style.display = "block";
+        }
+
+        if (itemLoginBlock) {
+            itemLoginBlock.style.display = "none";
+        }
+
+        if (itemUserBlock) {
+            itemUserBlock.style.display = "block";
+        }
+
+        if (itemMenuContainer) {
+            itemMenuContainer.style.display = "grid";
         }
 
         fetch(`/userinfo`, {})
@@ -49,15 +64,33 @@ export function updatePageContent() {
 
                 if (heroUserBlock) {
                     heroUserBlock.innerHTML = `
-                <p style="text-align: center; text-transform: lowercase; margin: 0;" class="hero__lower-text"><span style="text-transform: uppercase;">W</span>elcome, <span style="text-transform: uppercase; color: #fa991c; font-weight: bold;">${data.user.username}</span> to our faculty!</p>`;
+                    <p style="text-align: center; text-transform: lowercase; margin: 0;" class="hero__lower-text"><span style="text-transform: uppercase;">W</span>elcome, <span style="text-transform: uppercase; color: #fa991c; font-weight: bold;">${data.user.username}</span> to our faculty!</p>`;
+                }
+
+                if (itemUserBlock) {
+                    itemUserBlock.innerHTML = `
+                    <p class="item__user-welcome-header" style="text-align: center; text-transform: lowercase;"><span style="text-transform: uppercase;">H</span>i, <span style="text-transform: uppercase; font-weight: bold;">${data.user.username}</span></p>`;
                 }
             })
             .catch((error) => {
                 console.error("Error fetching user information:", error);
                 loginBlock.style.display = "block";
                 userBlock.style.display = "none";
-                heroLoginBlock.style.display = "flex";
-                heroUserBlock.style.display = "none";
+                if (heroLoginBlock) {
+                    heroLoginBlock.style.display = "flex";
+                }
+                if (heroUserBlock) {
+                    heroUserBlock.style.display = "none";
+                }
+                if (itemLoginBlock) {
+                    itemLoginBlock.style.display = "flex";
+                }
+                if (itemUserBlock) {
+                    itemUserBlock.style.display = "none";
+                }
+                if (itemMenuContainer) {
+                    itemMenuContainer.style.display = "none";
+                }
             });
     } else {
         loginBlock.style.display = "block";
@@ -69,6 +102,18 @@ export function updatePageContent() {
 
         if (heroUserBlock) {
             heroUserBlock.style.display = "none";
+        }
+
+        if (itemLoginBlock) {
+            itemLoginBlock.style.display = "flex";
+        }
+
+        if (itemUserBlock) {
+            itemUserBlock.style.display = "none";
+        }
+
+        if (itemMenuContainer) {
+            itemMenuContainer.style.display = "none";
         }
     }
 }

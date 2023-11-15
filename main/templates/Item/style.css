@@ -36,11 +36,45 @@
     text-shadow: 0 0 2rem var(--royal-blue-primary);
 }
 
+.item__user-welcome {
+    font-size: 2rem;
+    margin: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.item__user-welcome-header {
+    font-size: 3.2rem;
+}
+
+.item__menu {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+    margin-bottom: 10rem;
+}
+
+.item__menu-list {
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.item__menu-list:hover {
+    border-bottom: 0.2rem solid var(--orange-primary);
+}
+
+.item__menu-list--active {
+    border-bottom: 0.2rem solid var(--orange-primary);
+}
+
 .item__container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5rem;
-    padding-top: 10rem;
     padding-bottom: 10rem;
 }
 
@@ -94,10 +128,75 @@
     transition: 0.2s;
 }
 
-.item__card-btn:hover {
-    transform: scale(1.05);
-}
-
 .item__card-btn:hover > .icon {
     transform: rotate(90deg);
+}
+
+.item__comfirm-btn {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1adc6b;
+    color: var(--royal-blue-primary);
+}
+
+.item__comfirm-btn > .icon {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.borrow__container {
+    display: none;
+    padding-bottom: 10rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.borrow__list {
+    width: 50rem;
+    padding: 2rem;
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 4rem 1rem rgb(0, 0, 0, 0.05);
+    border-radius: 2rem;
+}
+
+.borrow__list > .icon {
+    color: var(--royal-blue-primary);
+    cursor: pointer;
+}
+
+.borrowEmpty {
+    display: block;
+}
+
+.borrow__btn {
+    display: none;
+    background-color: var(--orange-primary);
+    cursor: pointer;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
+    /* Transition */
+    transition: 0.3s ease;
+}
+
+.borrow__btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgb(16, 29, 44, 0.1);
+}
+
+.borrow__btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgb(16, 29, 44, 0.3);
+}
+
+.return__container {
+    display: none;
+    padding-bottom: 10rem;
 }
