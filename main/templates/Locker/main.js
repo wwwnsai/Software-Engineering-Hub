@@ -57,13 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     let cellClass = "";
                     if (date.toDateString() === today.toDateString()) {
                         cellClass = "today";
+                        calendarHTML += `<td class="${cellClass}" style="color: red;">${dayCounter}</td>`;
                     } else if (date < today) {
                         cellClass = "past-date";
+                        calendarHTML += `<td class="${cellClass}">${dayCounter}</td>`;
                     }
                     else if (date > today) {
                         cellClass = "future-date";
+                        calendarHTML += `<td class="${cellClass}">${dayCounter}</td>`;
                     }
-                    calendarHTML += `<td class="${cellClass}">${dayCounter}</td>`;
                     dayCounter++;
                 }
             }
@@ -71,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return calendarHTML;
     }
+    check_avaliableDates();
     calendar_body.innerHTML = generateDate(currentYear, currentMonth);
 });
 
@@ -130,6 +133,51 @@ document.addEventListener("click", function (e) {
     }
 });
 
+async function check_avaliableDates() {
+    try {
+        const responseLockers = await fetch('/list/lockers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!responseLockers.ok) {
+            throw new Error('Failed to fetch lockers');
+        }
+
+        const dataLockers = await responseLockers.json();
+        const lockerDates = dataLockers.lockers || [];
+
+        lockerDates.forEach((lockerDate) => {
+            if (!lockerDate.status) {
+                const calendar_body = document.getElementById("calendar__body");
+                const calendar_rows = calendar_body.getElementsByTagName("tr");
+
+                for (let i = 0; i < calendar_rows.length; i++) {
+                    const calendar_dates = calendar_rows[i].getElementsByTagName("td");
+
+                    for (let j = 0; j < calendar_dates.length; j++) {
+                        if (calendar_dates[j].innerHTML == lockerDate.date.split("-")[2]) {
+                            if (calendar_dates[j].classList.contains("selected_date__active")) {
+                                calendar_dates[j].classList.remove("selected_date__active");
+                            }
+                            if (calendar_dates[j].classList.contains("future-date")) {
+                                calendar_dates[j].classList.remove("future-date");
+                            } else if (calendar_dates[j].classList.contains("today")) {
+                                calendar_dates[j].classList.remove("today");
+                            }
+                            calendar_dates[j].classList.add("past-date");
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching lockers:', error);
+    }
+}
+
 function selected_date() {
     let period = [];
     let today_date = today.getDate();
@@ -168,6 +216,10 @@ async function reserve() {
     const date = getSelectedDates();
     const url = 'http://127.0.0.1:8000/user/reserve/';
     const formData = new FormData();
+    if (await check_reserve_duplication(date)) {
+        alert("You have already reserved a locker on this date");
+        return;
+    }
     formData.append('date', date);
     fetch(url, {
         method: 'POST',
@@ -250,7 +302,6 @@ async function showLockers() {
 function displayLockerDates(lockerDates, username) {
     const lockerList = document.querySelector('.locker__container--body-view');
     lockerList.innerHTML = "<hr>";
-    let count = 0;
     lockerDates.forEach((lockerDate) => {
         const bodyText = document.createElement('div');
         bodyText.classList.add('locker__container--body-view-text');
@@ -322,5 +373,49 @@ function formatLockers(lockers, username) {
     return lockerDetails;
 }
 
+async function check_reserve_duplication(date) {
+    let username = "";
+    try {
+        const responseUserInfo = await fetch('http://127.0.0.1:8000/userinfo', {});
+        const dataUserInfo = await responseUserInfo.json();
+        username = dataUserInfo.user.username;
+    } catch (error) {
+        console.error("Error fetching user information:", error);
+        return false; // Return false on error
+    }
 
+    try {
+        const responseLockers = await fetch('/list/lockers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
+        if (!responseLockers.ok) {
+            throw new Error('Failed to fetch lockers');
+        }
+
+        const dataLockers = await responseLockers.json();
+        const lockerDates = dataLockers.lockers || [];
+
+        for (const lockerDate of lockerDates) {
+            if (lockerDate.date === date) {
+                const lockers_each_date = lockerDate.lockers || [];
+                const lockerArray = Object.values(lockers_each_date);
+
+                for (const locker of lockerArray) {
+                    if (locker.reserveBy === username) {
+                        console.log("locker: ", locker);
+                        return true;
+                    }
+                }
+                return false; 
+            }
+        }
+
+    } catch (error) {
+        console.error('Error fetching lockers:', error);
+        return false; 
+    }
+}

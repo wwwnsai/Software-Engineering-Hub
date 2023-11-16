@@ -229,6 +229,7 @@ async def reserveLocker(request :Request, date: str=Form()):
     available_locker = next((locker for locker in list(lockerDB.lockers.values()) if locker.status), None)
 
     if available_locker is None:
+        lockerDB.status = False
         return {"status": False, "message": "No available locker"}
     print(available_locker.id)
     available_locker.status = False
@@ -364,7 +365,7 @@ async def get_lockers():
     return {"lockers": lockers}
 
 # Delete Locker reservation
-@app.post("/delete/locker", tags=["check"])
+@app.post("/delete/locker", tags=["clear"])
 async def delete_locker(id: int=Form(), date: str=Form()):
     lockerDB = root.locker_dates.get(date, None)
     if lockerDB is None:
