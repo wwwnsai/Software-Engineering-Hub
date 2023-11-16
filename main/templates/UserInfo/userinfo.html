@@ -42,13 +42,17 @@
         {% include "Universal/navbar.html" %}
 
         <!-- Section - User Information -->
-
         <div class="container userinfo__container">
-            <p id="userinfo__id"></p>
-            <p id="userinfo__username"></p>
-            <p id="userinfo__email"></p>
-        </div>
-
+            <div class="userinfo__container--header">
+                <h1>USER Profile</h1>
+            </div>
+            <div class="userinfo__container--body">
+                <p id="userinfo__id"></p>
+                <p id="userinfo__username"></p>
+                <p id="userinfo__email"></p>
+                <p id="userinfo__items"></p>
+            </div>
+        </div>  
         <!-- Section - Footer -->
 
         {% include "Universal/footer.html" %}

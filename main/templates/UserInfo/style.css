@@ -1,4 +1,16 @@
 /* Navigation Bar */
+:root {
+    --royal-blue-primary: #101d2c;
+    --orange-primary: #fa991c;
+    --color-white: #fff;
+    --color-grey-dark: #e3e3e3;
+    --color-grey-dark-mark: #808080;
+    --color-grey-light: #f9f7f6;
+}
+
+p {
+    margin: 7rem;
+}
 
 .navigation {
     height: 10rem;
@@ -6,8 +18,32 @@
 }
 
 .userinfo__container {
-    height: 60rem;
+    height: 90rem;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    padding: 10rem;
+    background-color: var(--royal-blue-primary);
+    color: var(--color-white);
+}
+
+.userinfo__container--header,
+.userinfo__container--body {
+    height: 100%;
+    width: 50%;
+    align-items: center;
+}
+
+.userinfo__container--header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.userinfo__container--body {
+    padding: 10rem 0;
+    justify-content: center;
+    font-size: 3rem;
+    line-height: normal;
 }
