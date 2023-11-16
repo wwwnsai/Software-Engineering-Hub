@@ -52,17 +52,6 @@ function returnItem() {
                 }
             });
 
-            fetch(`/userinfo`, {})
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.user.items.length === 0) {
-                        returnEmpty.style.display = "block";
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching user information:", error);
-                });
-
             fetch("/user/return/", {
                 method: "POST",
                 headers: {
@@ -75,6 +64,19 @@ function returnItem() {
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.status === true) {
+                        fetch(`/userinfo`, {})
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.user.items.length === 0) {
+                                    returnEmpty.style.display = "block";
+                                }
+                            })
+                            .catch((error) => {
+                                console.error(
+                                    "Error fetching user information:",
+                                    error
+                                );
+                            });
                         alert("Returned Successful");
                     } else {
                         alert("Returned Failed" + data.detail);
