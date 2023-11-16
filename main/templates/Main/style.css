@@ -2,7 +2,7 @@
 
 .hero {
     background-color: var(--royal-blue-primary);
-    padding-top: 40rem;
+    padding-top: 35rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -26,6 +26,7 @@
 }
 
 .hero__lower-text {
+    animation: fadeIn 2s;
     font-size: 2rem;
     margin-right: 5rem;
     color: var(--color-white);
@@ -40,6 +41,11 @@
 
 .man-with-tech {
     height: 35rem;
+    animation: fadeInLeft 2s;
+}
+
+.hero__content {
+    animation: fadeInRight 2s;
 }
 
 .hero__content--white {
@@ -223,7 +229,7 @@
 
 .lecturers__box {
     position: relative;
-    width: 20rem;
+    width: 22rem;
     height: 70%;
     overflow: hidden;
 
@@ -244,6 +250,11 @@
 
 .lecturers__box:hover .lecturers__image {
     filter: brightness(70%);
+}
+
+.lecturers__image {
+    height: 100%;
+    width: 100%;
 }
 
 .lecturers__info {
@@ -590,7 +601,7 @@
 }
 
 .divider__image-text {
-    padding-left: 10rem;
+    padding-left: 12rem;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 4rem;

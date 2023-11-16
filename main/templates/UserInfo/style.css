@@ -1,17 +1,3 @@
-/* Navigation Bar */
-:root {
-    --royal-blue-primary: #101d2c;
-    --orange-primary: #fa991c;
-    --color-white: #fff;
-    --color-grey-dark: #e3e3e3;
-    --color-grey-dark-mark: #808080;
-    --color-grey-light: #f9f7f6;
-}
-
-p {
-    margin: 7rem;
-}
-
 .navigation {
     height: 10rem;
     position: relative;

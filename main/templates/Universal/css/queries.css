@@ -29,7 +29,7 @@
     }
 
     .container {
-        padding: 0 30rem;
+        padding: 0 40rem;
     }
 
     .hero {
@@ -122,7 +122,46 @@
     }
 
     .container {
-        padding: 0 25rem;
+        padding: 0 20rem;
+    }
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+
+    .footer {
+    }
+}
+
+/* <= 1024 */
+
+@media only screen and (max-width: 64em) {
+    html {
+        font-size: 50%;
+    }
+
+    @media screen and (max-width: 768px) {
+        .hamburger-menu {
+            display: block;
+        }
+
+        .stack-left,
+        .stack-right {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: block;
+        }
+    }
+
+    .container {
+        padding: 0 10rem;
     }
 
     .hero {
@@ -142,11 +181,74 @@
 
 @media only screen and (max-width: 48em) {
     html {
-        font-size: 43.75%;
+        font-size: 37.5%;
     }
 
     .container {
-        padding: 0 10rem;
+        padding: 0 8rem;
+    }
+
+    /* Hero */
+
+    .hero {
+        padding-top: 35rem;
+    }
+
+    /* About */
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+
+    .about__header {
+        padding-top: 25rem;
+        padding-bottom: 30rem;
+    }
+
+    /* Locker */
+
+    .locker__container {
+        padding: 2rem 5rem;
+    }
+
+    .locker__container--header {
+        padding: 5rem 0 0 0;
+    }
+
+    .locker__container--body-right {
+        padding: 10rem 0 0 0;
+    }
+
+    .locker__container--buttom {
+        padding: 0 0 10rem 0;
+    }
+
+    /* Admission */
+
+    .admission_main {
+        padding: 10rem 15rem 0 15rem;
+    }
+
+    .divider__image {
+        padding: 0rem 15rem;
+    }
+
+    /* Footer */
+
+    .footer {
+    }
+}
+
+/* <= 548px */
+
+@media only screen and (max-width: 34.25em) {
+    html {
+        font-size: 37.5%;
+    }
+
+    .container {
+        padding: 0 5rem;
     }
 
     /* Hero */

@@ -21,6 +21,14 @@ input {
     border: 0;
 }
 
+::-moz-selection {
+    background: #f5f5dc;
+}
+
+::selection {
+    background: #f5f5dc;
+}
+
 :root {
     --royal-blue-primary: #101d2c;
     --orange-primary: #fa991c;
@@ -57,6 +65,39 @@ input {
 .btn__next--orange:active {
     transform: translateY(-0.1rem);
     box-shadow: 0 0.5rem 1rem rgb(16, 29, 44, 0.3);
+}
+
+/* Animation */
+
+@keyframes fadeInLeft {
+    0% {
+        transform: translateX(-5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0rem);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        transform: translateX(5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0rem);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* GENRAL REUSABLE COMPONENTS */
