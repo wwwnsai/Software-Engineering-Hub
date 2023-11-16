@@ -5,7 +5,7 @@ const itemMenuSelections = document.querySelectorAll(".item__menu-list");
 const borrowEmpty = document.getElementById("borrowEmpty");
 const borrowBtn = document.getElementById("borrowBtn");
 
-const itemList = [];
+let itemList = [];
 
 function handleItemMenuClick(event) {
     itemMenuSelections.forEach((item) => {
@@ -45,7 +45,7 @@ function addCard(product) {
 
     const img = document.createElement("img");
     img.classList.add("item__card-img");
-    img.src = "/images/image/kmitl_photo_1.jpg";
+    img.src = "/images/image/kmitl_photo_2.jpg";
     img.alt = "img";
 
     upperDiv.appendChild(img);
@@ -69,10 +69,17 @@ function addCard(product) {
     confirmDiv.id = `confirm-Product ${product.id}`;
     confirmDiv.innerHTML = '<i class="icon fa-solid fa-check"></i></i>Borrowed';
 
+    const unavailableDiv = document.createElement("div");
+    unavailableDiv.classList.add("item__unavailable-btn");
+    unavailableDiv.id = `unavailable-Product ${product.id}`;
+    unavailableDiv.innerHTML =
+        '<i class="icon fa-solid fa-xmark"></i>Unavailable';
+
     itemCard.appendChild(upperDiv);
     itemCard.appendChild(lowerDiv);
     itemCard.appendChild(btnDiv);
     itemCard.appendChild(confirmDiv);
+    itemCard.appendChild(unavailableDiv);
 
     itemContainer.appendChild(itemCard);
 }
@@ -84,10 +91,68 @@ function addItemBorrow(product) {
 
     itemCard.innerHTML = `
     <p>${product.name}</p><p>Return By ${product.dateOfReturn}</p>
-    <i class="icon fa-solid fa-trash-can"></i>`;
+    <i class="icon icon-delete fa-solid fa-trash-can" id="${product.name}"></i>`;
 
     borrowContainer.appendChild(itemCard);
     borrowContainer.insertBefore(itemCard, borrowBtn);
+}
+
+function deleteBorrow() {
+    const allDeleteBtn = document.querySelectorAll(".icon-delete");
+    const allBorrowList = document.querySelectorAll(".borrow__list");
+
+    allDeleteBtn.forEach((delBtn) => {
+        delBtn.addEventListener("click", function () {
+            const storedItemList = localStorage.getItem("itemList");
+            let itemListArray = JSON.parse(storedItemList);
+
+            allBorrowList.forEach((borrowList) => {
+                if (borrowList.id === delBtn.id) {
+                    borrowList.remove();
+                }
+
+                if (borrowList.id === delBtn.id) {
+                    itemListArray.forEach((item) => {
+                        const productName = item.name;
+                        document.getElementById(
+                            `${productName}`
+                        ).style.display = "flex";
+                        document.getElementById(
+                            `confirm-${productName}`
+                        ).style.display = "none";
+                    });
+                }
+            });
+
+            let nameToDelete = delBtn.id;
+
+            let newItemList = itemList.filter(
+                (item) => item.name !== nameToDelete
+            );
+
+            itemList = newItemList;
+
+            let newArray = itemListArray.filter(
+                (item) => item.name !== nameToDelete
+            );
+
+            localStorage.setItem("itemList", JSON.stringify(newArray));
+
+            const newStoredItemList = localStorage.getItem("itemList");
+
+            if (
+                newStoredItemList &&
+                JSON.parse(newStoredItemList).length === 0
+            ) {
+                borrowEmpty.style.display = "block";
+                borrowBtn.style.display = "none";
+
+                localStorage.removeItem("itemList");
+            }
+
+            fetchReload();
+        });
+    });
 }
 
 function saveItemList() {
@@ -138,6 +203,8 @@ function cardBorrow() {
             saveItemList();
 
             checkItem();
+
+            deleteBorrow();
         });
     });
 }
@@ -217,7 +284,20 @@ function addBtnClicked() {
         });
     });
 }
+function fetchReload() {
+    const storedItemList = localStorage.getItem("itemList");
 
+    if (storedItemList && storedItemList.length !== 0) {
+        const itemListArray = JSON.parse(storedItemList);
+
+        itemListArray.forEach((item) => {
+            const productName = item.name;
+            document.getElementById(`${productName}`).style.display = "none";
+            document.getElementById(`confirm-${productName}`).style.display =
+                "flex";
+        });
+    }
+}
 function fetchUserBorrowed() {
     fetch(`/userinfo`, {})
         .then((response) => response.json())
@@ -245,6 +325,10 @@ function fetchData() {
 
             addBtnClicked();
 
+            fetchReload();
+
+            deleteBorrow();
+
             fetchUserBorrowed();
         })
         .catch((error) => {
@@ -252,4 +336,4 @@ function fetchData() {
         });
 }
 
-fetchData();
+window.addEventListener("load", fetchData());

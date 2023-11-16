@@ -4,6 +4,7 @@ function deleteCookie() {
 
 function handleLogoutClick() {
     deleteCookie();
+    localStorage.removeItem("itemList");
 }
 
 function getCookie(name) {

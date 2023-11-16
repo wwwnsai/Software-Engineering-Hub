@@ -125,7 +125,7 @@
 .item__card-btn > .icon {
     font-size: 1.2rem;
     margin-right: 1rem;
-    transition: 0.2s;
+    transition: 0.4s;
 }
 
 .item__card-btn:hover > .icon {
@@ -142,6 +142,20 @@
 }
 
 .item__comfirm-btn > .icon {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.item__unavailable-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #bc071f;
+    color: var(--color-white);
+}
+
+.item__unavailable-btn > .icon {
     font-size: 1.2rem;
     margin-right: 1rem;
 }
