@@ -37,11 +37,6 @@
     .locker__container--buttom {
         padding: 0 0 10rem 0;
     }
-
-    /* Footer */
-
-    .footer {
-    }
 }
 
 /* <= 1440 */
@@ -52,7 +47,7 @@
     }
 
     .container {
-        padding: 0 30rem;
+        padding: 0 45rem;
     }
 
     .hero {
@@ -85,11 +80,6 @@
 
     .locker__container--buttom {
         padding: 0 0 10rem 0;
-    }
-
-    /* Footer */
-
-    .footer {
     }
 }
 
@@ -212,11 +202,6 @@
     .divider__image {
         padding: 0rem 15rem;
     }
-
-    /* Footer */
-
-    .footer {
-    }
 }
 
 /* <= 548px */
@@ -230,25 +215,87 @@
         padding: 0 5rem;
     }
 
+    .se-logo {
+        margin-right: 0rem !important;
+    }
+
     /* Hero */
 
     .hero {
-        padding-top: 35rem;
+        padding-top: 5rem !important;
+    }
+
+    .hero__upper {
+        text-align: center;
+        flex-direction: column;
     }
 
     /* About */
 
-    .about__header {
-        padding-top: 25rem;
-        padding-bottom: 30rem;
+    .about {
+        flex-direction: column;
+    }
+
+    .about__details-element {
+        width: 60rem !important;
+    }
+
+    .about__left-section {
+        margin-bottom: 10rem;
+    }
+
+    .about__selection-element {
+        width: 100% !important;
+    }
+
+    .about__section-element-text {
+        font-size: 1.6rem !important;
+    }
+
+    .about__bar {
+        display: none;
     }
 
     .about__header {
-        padding-top: 25rem;
-        padding-bottom: 30rem;
+        text-align: center;
+        padding-top: 15rem !important;
+        padding-bottom: 25rem !important;
+    }
+
+    .about__header-text {
+        font-size: 2rem !important;
+    }
+
+    .about__header-find-out-more {
+        font-size: 1rem !important;
+    }
+
+    /* Program */
+
+    .col-1-of-3 {
+        width: 20rem !important;
+    }
+
+    .card__details {
+        padding: 2rem !important;
+    }
+
+    /* Admission */
+
+    .admissions__row {
+        padding: 0 2rem !important;
+    }
+
+    .admissions__topic {
+        width: 30rem;
+        font-size: 1.6rem !important;
     }
 
     /* Locker */
+
+    .locker__header {
+        text-align: center;
+    }
 
     .locker__container {
         padding: 2rem 5rem;
@@ -266,6 +313,12 @@
         padding: 0 0 10rem 0;
     }
 
+    /* Item */
+
+    .item__container {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+
     /* Admission */
 
     .admission_main {
@@ -273,11 +326,55 @@
     }
 
     .divider__image {
+        height: 30rem !important;
         padding: 0rem 15rem;
+    }
+
+    .divider__image-text {
+        font-size: 2.4rem !important;
+        padding-left: 0 !important;
+    }
+
+    /* Service */
+
+    .services__row {
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .services__element-btn:not(:last-child) {
+        margin-bottom: 5rem;
     }
 
     /* Footer */
 
     .footer {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer__upper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer__lower {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer__text--bold {
+        margin-top: 4rem;
+    }
+
+    .footer__lower-stack-left {
+        flex-direction: column;
+    }
+
+    .footer__lower-btn {
+        margin-right: 0rem !important;
+        margin-bottom: 2rem;
     }
 }

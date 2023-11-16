@@ -79,18 +79,10 @@
             <ul class="navigation__menu-item-program--user" id="userBlock"></ul>
         </div>
     </div>
-
-    <!-- Hamburger menu button -->
-    <div class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
 </div>
 
-<!-- Mobile navigation menu -->
-<div class="mobile-menu">
-    <div class="stack-left">
+<div class="container navigation__responsive">
+    <div class="stack-upper">
         <div class="navigation__se-logo">
             <a href="/">
                 <img
@@ -99,7 +91,9 @@
                     alt="SE Logo"
             /></a>
         </div>
+    </div>
 
+    <div class="stack-lower">
         <div class="navigation__menu">
             <ul class="navigation__menu-list">
                 <li class="navigation__menu-item">
@@ -137,37 +131,6 @@
                     >
                 </li>
             </ul>
-        </div>
-    </div>
-
-    <div class="stack-right">
-        <a
-            class="btn__next--orange navigation__menu-item navigation__menu-item--special"
-            href="/#section-services"
-            >Services</a
-        >
-        <div class="navigation__user-logo">
-            <a href="/login" id="logoLoginBlock">
-                <img
-                    class="user-logo user-logo--guest"
-                    src="{{ url_for('images', path='/logo/User_logo.png') }}"
-                    alt="user Logo"
-            /></a>
-            <a href="/userinfos" id="logoUserBlock">
-                <img
-                    class="user-logo user-logo--user"
-                    src="{{ url_for('images', path='/logo/User_logo.png') }}"
-                    alt="user Logo"
-            /></a>
-            <ul class="navigation__menu-item-program--guest" id="loginBlock">
-                <li>
-                    <a href="/login">Sign In</a>
-                </li>
-                <li>
-                    <a href="/signup">Sign Up</a>
-                </li>
-            </ul>
-            <ul class="navigation__menu-item-program--user" id="userBlock"></ul>
         </div>
     </div>
 </div>

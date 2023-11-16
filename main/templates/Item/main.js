@@ -480,6 +480,7 @@ function fetchReload() {
         });
     }
 }
+
 function fetchUserBorrowed() {
     fetch(`/userinfo`, {})
         .then((response) => response.json())

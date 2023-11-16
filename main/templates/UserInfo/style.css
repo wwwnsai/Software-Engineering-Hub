@@ -3,33 +3,60 @@
     position: relative;
 }
 
-.userinfo__container {
-    height: 90rem;
+.userinfo__header {
+    width: 100%;
+    height: 40rem;
     display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 10rem;
-    background-color: var(--royal-blue-primary);
+    background: linear-gradient(
+            to right,
+            rgba(184, 165, 165, 0.3),
+            rgba(0, 0, 0, 0.8)
+        ),
+        url(/images/image/kmitl_photo_3.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.userinfo__header-image-text {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 8rem;
+    letter-spacing: 1rem;
     color: var(--color-white);
 }
 
-.userinfo__container--header,
-.userinfo__container--body {
-    height: 100%;
-    width: 50%;
+.userinfo__header-image-text--display {
+    text-shadow: 0 0 2rem var(--royal-blue-primary);
+}
+
+.userinfo__container {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: var(--color-white);
 }
 
 .userinfo__container--header {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 4rem;
+    font-size: 2.4rem;
     font-weight: bold;
+    margin-bottom: 10rem;
 }
 
 .userinfo__container--body {
-    padding: 10rem 0;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: normal;
+}
+
+.userinfo__data {
+    margin-left: 2rem;
 }

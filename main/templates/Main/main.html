@@ -293,7 +293,10 @@
 
         <!-- Divider -->
 
-        <div class="container divider__image">
+        <div
+            class="container divider__image divider__image--research"
+            id="section-program"
+        >
             <div class="divider__blank"></div>
             <div class="divider__image-text">
                 <p class="divider__image-text--display">
@@ -304,7 +307,7 @@
 
         <!-- Section - Program -->
 
-        <div class="container program" id="section-program">
+        <div class="container program">
             <h1 class="program__header">Program</h1>
 
             <div class="program__row">
@@ -499,7 +502,10 @@
 
         <!-- Divider -->
 
-        <div class="container divider__image">
+        <div
+            class="container divider__image divider__image--study"
+            id="section-admissions"
+        >
             <div class="divider__blank"></div>
             <div class="divider__image-text">
                 <p class="divider__image-text--display">
@@ -510,7 +516,7 @@
 
         <!-- Section - Admissions -->
 
-        <div class="container admissions" id="section-admissions">
+        <div class="container admissions">
             <h1 class="admissions__header">Admissions</h1>
             <div class="admissions__container">
                 <div class="admissions__row">
@@ -580,29 +586,14 @@
 
         <!-- Divider -->
 
-        <div class="divider">
+        <div class="divider" id="section-services">
             <div class="divider__bar"></div>
         </div>
 
         <!-- Services -->
 
-        <div class="container services" id="section-services">
+        <div class="container services">
             <h1 class="services__header">Services</h1>
-
-            <div class="services__row services__row--1">
-                <div class="services__text-header">What is Services?</div>
-                <div class="services__divider-bar"></div>
-                <div class="services__text">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Eius quidem suscipit sint earum reprehenderit eveniet
-                    recusandae, odit incidunt quasi sequi officia aperiam
-                    repellat molestias rem iste voluptatibus dolorum iusto
-                    libero dolorem consectetur eaque repudiandae! Corrupti
-                    voluptas vel suscipit sunt, voluptatibus quibusdam enim
-                    architecto iste. Accusamus quae doloribus odio non
-                    doloremque rerum dolorem provident.
-                </div>
-            </div>
 
             <div class="services__row services__row--2">
                 <a class="services__element-btn" href="/locker">
@@ -621,7 +612,7 @@
                         </h2>
                         <img
                             class="services__element-image"
-                            src="{{ url_for('images', path='/image/test.jpg') }}"
+                            src="{{ url_for('images', path='/image/locker.jpg') }}"
                             alt=""
                         /></div
                 ></a>
@@ -641,23 +632,27 @@
                         </h2>
                         <img
                             class="services__element-image"
-                            src="{{ url_for('images', path='/image/test.jpg') }}"
+                            src="{{ url_for('images', path='/image/parking.jpg') }}"
                             alt=""
                         /></div
                 ></a>
                 <a class="services__element-btn" href="/item">
                     <div class="services__element services__element--3">
                         <h2 class="services__element-header">
-                            ยืมของ<i class="icon fa-solid fa-arrow-right"></i>
+                            Item Borrowing<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i>
                         </h2>
                         <h2
                             class="services__element-header services__element-header--show"
                         >
-                            ยืมของ<i class="icon fa-solid fa-arrow-right"></i>
+                            Item Borrowing<i
+                                class="icon fa-solid fa-arrow-right"
+                            ></i>
                         </h2>
                         <img
                             class="services__element-image"
-                            src="{{ url_for('images', path='/image/test.jpg') }}"
+                            src="{{ url_for('images', path='/image/kmitl_photo_2.jpg') }}"
                             alt=""
                         /></div
                 ></a>

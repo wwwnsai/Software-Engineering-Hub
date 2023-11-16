@@ -29,6 +29,8 @@ export function updatePageContent() {
     const itemMenuContainer = document.getElementById("itemMenuContainer");
     const logoLoginBlock = document.getElementById("logoLoginBlock");
     const logoUserBlock = document.getElementById("logoUserBlock");
+    const lockerLoginBlock = document.getElementById("lockerLoginBlock");
+    const lockerUserBlock = document.getElementById("lockerUserBlock");
 
     if (token) {
         loginBlock.style.display = "none";
@@ -55,6 +57,14 @@ export function updatePageContent() {
 
         if (itemMenuContainer) {
             itemMenuContainer.style.display = "grid";
+        }
+
+        if (lockerLoginBlock) {
+            lockerLoginBlock.style.display = "none";
+        }
+
+        if (lockerUserBlock) {
+            lockerUserBlock.style.display = "flex";
         }
 
         fetch(`/userinfo`, {})
@@ -99,6 +109,12 @@ export function updatePageContent() {
                 if (itemMenuContainer) {
                     itemMenuContainer.style.display = "none";
                 }
+                if (lockerLoginBlock) {
+                    lockerLoginBlock.style.display = "flex";
+                }
+                if (lockerUserBlock) {
+                    lockerUserBlock.style.display = "none";
+                }
             });
     } else {
         loginBlock.style.display = "block";
@@ -125,6 +141,14 @@ export function updatePageContent() {
 
         if (itemMenuContainer) {
             itemMenuContainer.style.display = "none";
+        }
+
+        if (lockerLoginBlock) {
+            lockerLoginBlock.style.display = "flex";
+        }
+
+        if (lockerUserBlock) {
+            lockerUserBlock.style.display = "none";
         }
     }
 }

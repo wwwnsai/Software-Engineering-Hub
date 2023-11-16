@@ -72,6 +72,7 @@
 /* About */
 
 .about__header {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -167,7 +168,7 @@
 .about__details-element {
     color: var(--royal-blue-primary);
     height: 100%rem;
-    width: 65rem;
+    width: 70rem;
 }
 
 .about__details-element-header {
@@ -281,8 +282,7 @@
 }
 
 /* About - Lecturers section divider */
-
-.about__header {
+x .about__header {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8rem));
 }
 
@@ -381,7 +381,7 @@
 }
 
 .card__picture--1 {
-    background-image: url("/images/image/kmitl_photo_1.jpg");
+    background-image: url("/images/image/kmitl_photo_2.jpg");
 }
 
 .card__details {
@@ -477,7 +477,7 @@
     font-size: 3.6rem;
     letter-spacing: 0.5rem;
     text-transform: uppercase;
-    margin-bottom: 5rem;
+    margin-bottom: 8rem;
     text-align: center;
 }
 
@@ -487,7 +487,6 @@
 }
 
 .services__row--2 {
-    margin-top: 10rem;
     display: flex;
     justify-content: space-between;
 }
@@ -584,6 +583,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.divider__image--research {
+    background: linear-gradient(
+            to right,
+            rgba(184, 165, 165, 0.3),
+            rgba(0, 0, 0, 0.8)
+        ),
+        url("/images/image/research.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.divider__image--study {
     background: linear-gradient(
             to right,
             rgba(184, 165, 165, 0.3),

@@ -1,16 +1,10 @@
 import { updatePageContent } from "./js/user.js";
+import { mediaQuery, handleMediaQuery } from "./js/nav.js";
 
-document.addEventListener("DOMContentLoaded", function () {
-    var hamburgerMenu = document.querySelector(".hamburger-menu");
-    var mobileMenu = document.querySelector(".mobile-menu");
-
-    hamburgerMenu.addEventListener("click", function () {
-        mobileMenu.style.display =
-            mobileMenu.style.display === "block" ? "none" : "block";
-    });
-});
 // Initial function
 function init() {
+    handleMediaQuery(mediaQuery);
+    mediaQuery.addListener(handleMediaQuery);
     updatePageContent();
 }
 
