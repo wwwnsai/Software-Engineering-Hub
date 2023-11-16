@@ -72,8 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return calendarHTML;
     }
     calendar_body.innerHTML = generateDate(currentYear, currentMonth);
-
-    // showLockers();
 });
 
 
@@ -178,7 +176,6 @@ async function reserve() {
     .then(response => response.json())
     .then(data => {
         console.log("Result: ", data);
-        // showLockers();
         alert(message + date);
     })
     .catch(error => console.error('Error:', error));
@@ -211,7 +208,6 @@ async function deleteLocker(lockerId, date) {
         const data = await response.json();
         console.log("Result: ", data);
 
-        // Refresh the locker display after deletion
         showLockers();
     } catch (error) {
         console.error('Error deleting locker reservation:', error);
@@ -244,14 +240,14 @@ async function showLockers() {
 
         const dataLockers = await responseLockers.json();
         const lockerDates = dataLockers.lockers || [];
-        displayLockerDates(lockerDates, username, dataLockers.date);
+        displayLockerDates(lockerDates, username);
     } catch (error) {
         console.error('Error fetching lockers:', error);
     }
 }
 
 // Function to display locker dates
-function displayLockerDates(lockerDates, username, dateLocker) {
+function displayLockerDates(lockerDates, username) {
     const lockerList = document.querySelector('.locker__container--body-view');
     lockerList.innerHTML = "<hr>";
     let count = 0;
