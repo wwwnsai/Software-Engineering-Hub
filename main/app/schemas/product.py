@@ -23,4 +23,12 @@ class borrowProduct(BaseModel):
                 "dateOfReturn": "2023-11-20"
             }
         }
-        
+
+class returnProduct(BaseModel):
+    name: str = Field(..., example="Product 1")
+    class Config():
+        schema_extra = {
+            "example": {
+                "name": "Product 1",
+            }
+        }

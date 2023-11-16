@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Depends, HTTPException, Response, Cookie, Form
+from fastapi import FastAPI, Request, Depends, HTTPException, Response, Cookie, Form, Body
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -12,7 +12,7 @@ from app.hashing import *
 from app.schemas.user import SignUp, UserInfo, Login
 from app.db.model import User as UserDB
 
-from app.schemas.product import addProduct, borrowProduct
+from app.schemas.product import addProduct, borrowProduct, returnProduct
 from app.db.model import Product as ProductDB
 
 from app.db.model import BorrowedList as BorrowedDB
@@ -177,7 +177,7 @@ async def borrowProduct(request: Request, product: borrowProduct):
 
 # return item
 @app.post("/user/return/", tags=["user-service"])
-async def returnProduct(request :Request, productname: str=Form()):
+async def returnProduct(request :Request, productname: returnProduct):
     try:
         userEmail = getPayload(request.cookies.get("token"))["user_id"]
     except (KeyError, TypeError):
@@ -187,11 +187,11 @@ async def returnProduct(request :Request, productname: str=Form()):
     for userDB in root.users.values():
         if userDB.email == userEmail:
             for productDB in root.products.values():
-                if productDB.name == productname:
+                if productDB.name == productname.name:
                     for i in root.borrowed:
-                        if root.borrowed[i].product == productname:
+                        if root.borrowed[i].product == productname.name:
                             del root.borrowed[i]
-                            userDB.items.remove(productname)
+                            userDB.items.remove(productname.name)
                             if productDB.status == False:
                                 productDB.status = True
                             productDB.stock += 1
@@ -342,7 +342,7 @@ async def clear():
     return {"status": True, "message": "Database cleared"}
 
 # Check BorrowedList
-@app.post("/list/borrowed", tags=["check"])
+@app.get("/list/borrowed", tags=["check"])
 async def get_borrowed():
     borrowed = []
     for borrow in root.borrowed.values():

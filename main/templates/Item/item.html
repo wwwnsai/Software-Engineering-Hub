@@ -82,7 +82,62 @@
                 <div class="borrow__btn" id="borrowBtn">Borrow</div>
             </div>
 
-            <div class="return__container" id="returnContainer"></div>
+            <div class="return__container" id="returnContainer">
+                <p id="returnEmpty">You have nothing to return</p>
+            </div>
+
+            <div class="addproduct__container" id="addProductContainer">
+                <form id="addProductForm">
+                    <div class="main__body--input">
+                        <div class="main__body--input-text">
+                            <label for="product-id" class="main__label"
+                                >Product ID</label
+                            >
+                            <input
+                                type="text"
+                                id="product-id"
+                                class="main__input"
+                                name="product-id"
+                                required
+                                placeholder="Enter product ID"
+                            />
+                        </div>
+                        <div class="main__body--input-text">
+                            <label for="product-name" class="main__label"
+                                >Product Name</label
+                            >
+                            <input
+                                type="text"
+                                id="product-name"
+                                class="main__input"
+                                name="product-name"
+                                placeholder="Enter product name"
+                                required
+                            />
+                        </div>
+                        <div class="main__body--input-text">
+                            <label for="amount" class="main__label"
+                                >Amount Add</label
+                            >
+                            <input
+                                type="text"
+                                id="product-amount"
+                                class="main__input"
+                                name="amount"
+                                placeholder="Enter product amount"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="main__body--input">
+                        <input
+                            type="submit"
+                            value="Add Product"
+                            class="main__btn"
+                        />
+                    </div>
+                </form>
+            </div>
         </div>
 
         <!-- Section - Footer -->
