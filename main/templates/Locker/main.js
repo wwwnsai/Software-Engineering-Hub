@@ -333,8 +333,9 @@ function displayLockerDates(lockerDates, username) {
                 console.log("lockerId: ", lockerId);
                 console.log("date: ", date);
                 deleteLocker(lockerId, date);
+                e.stopPropagation();
             }
-        });
+        }, { once: true });
 
         bodyRight.appendChild(trashCanImage);
 
