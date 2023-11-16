@@ -441,6 +441,8 @@ function fetchBorrow() {
             borrowEmpty.style.display = "block";
             borrowBtn.style.display = "none";
 
+            itemList = [];
+
             checkBorrowItem();
         } catch (error) {
             console.error("Error parsing stored item list:", error);

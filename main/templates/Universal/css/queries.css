@@ -1,26 +1,5 @@
 /* Responsive */
 
-/* <= 2460 */
-
-@media only screen and (max-width: 153.75em) {
-    html {
-        font-size: 56.25%;
-    }
-
-    .container {
-        padding: 0 70rem;
-    }
-
-    .hero {
-        padding-top: 35rem;
-    }
-
-    .about__header {
-        padding-top: 25rem;
-        padding-bottom: 30rem;
-    }
-}
-
 /* <= 1920 */
 
 @media only screen and (max-width: 120em) {
