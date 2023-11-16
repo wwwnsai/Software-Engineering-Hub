@@ -1,9 +1,189 @@
 const itemContainer = document.getElementById("itemContainer");
 const borrowContainer = document.getElementById("borrowContainer");
 const returnContainer = document.getElementById("returnContainer");
+const addProductContainer = document.getElementById("addProductContainer");
 const itemMenuSelections = document.querySelectorAll(".item__menu-list");
 const borrowEmpty = document.getElementById("borrowEmpty");
 const borrowBtn = document.getElementById("borrowBtn");
+const returnEmpty = document.getElementById("returnEmpty");
+const addProductForm = document.getElementById("addProductForm");
+
+function checkStock(allProducts) {
+    fetch(`/userinfo`, {})
+        .then((response) => response.json())
+        .then((data) => {
+            allProducts.forEach((product) => {
+                if (
+                    product.stock === 0 &&
+                    product.status === false &&
+                    !data.user.items.includes(product.name)
+                ) {
+                    console.log(product);
+                    document.getElementById(`${product.name}`).style.display =
+                        "none";
+                    document.getElementById(
+                        `confirm-${product.name}`
+                    ).style.display = "none";
+                    document.getElementById(
+                        `unavailable-${product.name}`
+                    ).style.display = "flex";
+                }
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching user information:", error);
+        });
+}
+
+function returnItem() {
+    const allReturnBtns = document.querySelectorAll(".return__logo");
+    const allReturnLists = document.querySelectorAll(".return__list");
+
+    allReturnBtns.forEach((returnBtn) => {
+        returnBtn.addEventListener("click", function () {
+            allReturnLists.forEach((returnList) => {
+                if (returnBtn.id === returnList.id) {
+                    document.getElementById(`${returnBtn.id}`).style.display =
+                        "flex";
+                    document.getElementById(
+                        `confirm-${returnBtn.id}`
+                    ).style.display = "none";
+                    returnList.remove();
+                }
+            });
+
+            fetch(`/userinfo`, {})
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.user.items.length === 0) {
+                        returnEmpty.style.display = "block";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user information:", error);
+                });
+
+            fetch("/user/return/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: returnBtn.id,
+                }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === true) {
+                        alert("Returned Successful");
+                    } else {
+                        alert("Returned Failed" + data.detail);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error during return:", error);
+                });
+        });
+    });
+}
+
+function addItemReturn(product) {
+    const itemCard = document.createElement("div");
+    itemCard.classList.add("return__list");
+    itemCard.id = `${product.product}`;
+
+    itemCard.innerHTML = `
+        <p>${product.product}</p><p>Return By ${product.dateOfReturn}</p>
+        <p class="return__logo" id="${product.product}">
+            <i style="margin-right: 1rem;" class="icon icon-return fa-solid fa-arrow-left"></i>Return
+        </p>`;
+
+    returnContainer.appendChild(itemCard);
+}
+
+function checkBorrowItem() {
+    let userLogged;
+
+    const allReturnLists = document.querySelectorAll(".return__list");
+
+    allReturnLists.forEach((returnList) => {
+        returnList.remove();
+    });
+
+    fetch("/userinfo")
+        .then((response) => response.json())
+        .then((data) => {
+            userLogged = data.user.username;
+
+            fetch("/list/borrowed")
+                .then((response) => response.json())
+                .then((data) => {
+                    data.borrowed.forEach((borrowed) => {
+                        if (borrowed.name === userLogged) {
+                            returnEmpty.style.display = "none";
+                            addItemReturn(borrowed);
+                        } else {
+                            returnEmpty.style.display = "block";
+                        }
+                    });
+
+                    returnItem();
+                })
+                .catch((error) => {
+                    console.error("Error fetching product information:", error);
+                });
+        })
+        .catch((error) => {
+            console.error("Error fetching user information:", error);
+        });
+}
+
+if (addProductForm) {
+    addProductForm.addEventListener("submit", addProduct);
+}
+
+function addProduct(event) {
+    event.preventDefault();
+
+    let productId = document.getElementById("product-id").value;
+    let productName = document.getElementById("product-name").value;
+    let productAmount = document.getElementById("product-amount").value;
+
+    fetch("/products/addproduct", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: productId,
+            name: productName,
+            stock: productAmount,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.status === true) {
+                let mainInput = document.querySelectorAll(".main__input");
+                mainInput.forEach((mi) => {
+                    mi.value = "";
+                });
+
+                const allItemCard = document.querySelectorAll(".item__card");
+
+                allItemCard.forEach((itemCard) => {
+                    itemCard.remove();
+                });
+
+                fetchData();
+                alert("Added Successful");
+            } else {
+                alert("Added Failed" + data.detail);
+            }
+        })
+        .catch((error) => {
+            console.error("Error during add:", error);
+        });
+}
 
 let itemList = [];
 
@@ -18,6 +198,7 @@ function handleItemMenuClick(event) {
     itemContainer.style.display = "none";
     borrowContainer.style.display = "none";
     returnContainer.style.display = "none";
+    addProductContainer.style.display = "none";
 
     determineContainerToShow(clickedElement);
 }
@@ -29,6 +210,8 @@ function determineContainerToShow(clickedElement) {
         borrowContainer.style.display = "flex";
     } else if (clickedElement.id === "item__menu-list--3") {
         returnContainer.style.display = "flex";
+    } else if (clickedElement.id === "item__menu-list--4") {
+        addProductContainer.style.display = "flex";
     }
 }
 
@@ -93,7 +276,6 @@ function addItemBorrow(product) {
     <p>${product.name}</p><p>Return By ${product.dateOfReturn}</p>
     <i class="icon icon-delete fa-solid fa-trash-can" id="${product.name}"></i>`;
 
-    borrowContainer.appendChild(itemCard);
     borrowContainer.insertBefore(itemCard, borrowBtn);
 }
 
@@ -220,8 +402,6 @@ function fetchBorrow() {
             const itemListArray = JSON.parse(storedItemList);
 
             itemListArray.forEach((item) => {
-                console.log("Item:", item);
-
                 const requestBody = {
                     name: item.name,
                     dateOfReturn: item.dateOfReturn,
@@ -235,14 +415,10 @@ function fetchBorrow() {
                     body: JSON.stringify(requestBody),
                 })
                     .then((response) => {
-                        console.log(response);
                         if (!response.ok) {
                             throw new Error("Network response was not ok");
                         }
                         return response.json();
-                    })
-                    .then((data) => {
-                        console.log("Data from /user/borrow:", data);
                     })
                     .catch((error) => {
                         console.error(
@@ -262,6 +438,8 @@ function fetchBorrow() {
 
             borrowEmpty.style.display = "block";
             borrowBtn.style.display = "none";
+
+            checkBorrowItem();
         } catch (error) {
             console.error("Error parsing stored item list:", error);
         }
@@ -320,6 +498,10 @@ function fetchData() {
             allProducts.forEach((product) => {
                 addCard(product);
             });
+
+            checkBorrowItem();
+
+            checkStock(allProducts);
 
             cardBorrow();
 

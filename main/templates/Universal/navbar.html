@@ -54,9 +54,15 @@
             >Services</a
         >
         <div class="navigation__user-logo">
-            <a href="/login">
+            <a href="/login" id="logoLoginBlock">
                 <img
-                    class="user-logo"
+                    class="user-logo user-logo--guest"
+                    src="{{ url_for('images', path='/logo/User_logo.png') }}"
+                    alt="user Logo"
+            /></a>
+            <a href="/userinfos" id="logoUserBlock">
+                <img
+                    class="user-logo user-logo--user"
                     src="{{ url_for('images', path='/logo/User_logo.png') }}"
                     alt="user Logo"
             /></a>

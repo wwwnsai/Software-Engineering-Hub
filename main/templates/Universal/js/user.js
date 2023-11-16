@@ -27,10 +27,15 @@ export function updatePageContent() {
     const itemLoginBlock = document.getElementById("itemLoginBlock");
     const itemUserBlock = document.getElementById("itemUserBlock");
     const itemMenuContainer = document.getElementById("itemMenuContainer");
+    const logoLoginBlock = document.getElementById("logoLoginBlock");
+    const logoUserBlock = document.getElementById("logoUserBlock");
 
     if (token) {
         loginBlock.style.display = "none";
         userBlock.style.display = "block";
+
+        logoLoginBlock.style.display = "none";
+        logoUserBlock.style.display = "flex";
 
         if (heroLoginBlock) {
             heroLoginBlock.style.display = "none";
@@ -77,6 +82,8 @@ export function updatePageContent() {
                 console.error("Error fetching user information:", error);
                 loginBlock.style.display = "block";
                 userBlock.style.display = "none";
+                logoLoginBlock.style.display = "flex";
+                logoUserBlock.style.display = "none";
                 if (heroLoginBlock) {
                     heroLoginBlock.style.display = "flex";
                 }
@@ -96,6 +103,9 @@ export function updatePageContent() {
     } else {
         loginBlock.style.display = "block";
         userBlock.style.display = "none";
+
+        logoLoginBlock.style.display = "flex";
+        logoUserBlock.style.display = "none";
 
         if (heroLoginBlock) {
             heroLoginBlock.style.display = "flex";
