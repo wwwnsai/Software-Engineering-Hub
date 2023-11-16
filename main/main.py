@@ -363,6 +363,22 @@ async def get_lockers():
         lockers.append(locker.toJSON())
     return {"lockers": lockers}
 
+# Delete Locker reservation
+@app.post("/delete/locker", tags=["check"])
+async def delete_locker(id: int=Form(), date: str=Form()):
+    lockerDB = root.locker_dates.get(date, None)
+    if lockerDB is None:
+        return {"status": False, "message": "Locker date not found"}
+    
+    locker = lockerDB.lockers.get(id, None)
+    if locker is None:
+        return {"status": False, "message": "Locker not found"}
+    
+    locker.status = True
+    locker.reserveBy = None
+    transaction.commit()
+    return {"status": True, "message": "Locker reservation deleted"}
+
 # Clear Locker Database
 @app.post("/clearLocker", tags=["clear"])
 async def clear():
