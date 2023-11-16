@@ -214,7 +214,7 @@ async function reserve() {
     }
 
     const date = getSelectedDates();
-    const url = 'http://127.0.0.1:8000/user/reserve/';
+    const url = '/user/reserve/';
     const formData = new FormData();
     if (await check_reserve_duplication(date)) {
         alert("You have already reserved a locker on this date");
@@ -240,7 +240,7 @@ async function deleteLocker(lockerId, date) {
         return;
     }
 
-    const url = 'http://127.0.0.1:8000/delete/locker';
+    const url = '/delete/locker';
     const formData = new FormData();
     console.log("lockerId: ", lockerId);
     console.log("date: ", date);
@@ -270,7 +270,7 @@ async function deleteLocker(lockerId, date) {
 async function showLockers() {
     let username = "";
     try {
-        const responseUserInfo = await fetch('http://127.0.0.1:8000/userinfo', {});
+        const responseUserInfo = await fetch('/userinfo', {});
         const dataUserInfo = await responseUserInfo.json();
         console.log(dataUserInfo.user.username);
         username = dataUserInfo.user.username;
@@ -377,7 +377,7 @@ function formatLockers(lockers, username) {
 async function check_reserve_duplication(date) {
     let username = "";
     try {
-        const responseUserInfo = await fetch('http://127.0.0.1:8000/userinfo', {});
+        const responseUserInfo = await fetch('/userinfo', {});
         const dataUserInfo = await responseUserInfo.json();
         username = dataUserInfo.user.username;
     } catch (error) {
