@@ -406,16 +406,6 @@ async def check_token(request:Request):
             return {"status": False}
     else:
         return {"status": False}
-    #         user_id = decoded_token.get("user_id")
-    #         if user_id and user_id in root.users:
-    #             user_data = root.users[user_id].toJSON()
-    #             return {"status": True, "user": user_data}
-    #         else:
-    #             return {"status": False, "message": "User not found"}
-    #     else:
-    #         return {"status": False, "message": "Invalid token"}
-    # else:
-    #     return {"status": False, "message": "Token not found"}
 
 # Clear cookies
 @app.get("/clearCookie", tags=["auth"])

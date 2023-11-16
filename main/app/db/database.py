@@ -102,6 +102,5 @@ def passedReturnDate(returnDate):
     if today > returnDate:
         return True
     return False
-#LOCKER
 
     
