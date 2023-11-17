@@ -1,7 +1,7 @@
 /* Universal */
 
 h1 {
-    font-size: 6rem;
+    font-size: 4.4rem;
     font-weight: bold;
 }
 
@@ -129,9 +129,9 @@ hr {
 .locker__nav {
     width: 80%;
     text-align: center;
-    padding: 5rem;
+    padding: 4rem;
     cursor: pointer;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: semibold;
 }
 

@@ -60,6 +60,16 @@ app.mount("/admission-static",
 async def admission(request: Request):
     return templates.TemplateResponse("Admission/admission.html", {"request": request})
 
+# Program -------------------------------------
+
+# Program StaticFiles
+app.mount("/program-static", 
+          StaticFiles(directory="templates/Program/"), name="program-static")
+
+@app.get("/program", response_class=HTMLResponse, tags=["website"])
+async def program(request: Request):
+    return templates.TemplateResponse("Program/program.html", {"request": request})
+
 # Login & SignUp -------------------------------------
 
 # Login StaticFiles

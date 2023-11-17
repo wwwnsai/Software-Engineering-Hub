@@ -1,0 +1,12 @@
+.navigation {
+    height: 10rem;
+    position: relative;
+}
+
+.program__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}

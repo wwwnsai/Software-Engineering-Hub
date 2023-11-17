@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Software Engineering | KMITL</title>
+
+        <link
+            rel="stylesheet"
+            href="{{ url_for('universal-css', path='/general.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('universal-css', path='/queries.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('universal-css', path='/style.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('program-static', path='/style.css') }}"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- <link
+            rel="shortcut icon"
+            type="image/png"
+            href="../img/logo/SE_logo.png"
+        /> -->
+    </head>
+
+    <body>
+        <!-- Section - Navigation -->
+
+        {% include "Universal/navbar.html" %}
+
+        <!-- Section - Locker -->
+
+        <div class="container program__header">Unavailable For Maintenance</div>
+
+        <!-- Section - Footer -->
+
+        {% include "Universal/footer.html" %}
+
+        <script
+            src="https://kit.fontawesome.com/1c7eef805a.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            type="module"
+            src="{{ url_for('universal-js', path='universal.js') }}"
+        ></script>
+    </body>
+</html>
